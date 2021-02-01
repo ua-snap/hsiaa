@@ -160,6 +160,7 @@
                 :mode-bar-buttons-to-remove="modebarbuttonstoremove"
                 :to-image-button-options="monthlyToImageButtonOptions"
                 :display-mode-bar="true"
+                :displaylogo="false"
               ></Plotly>
 
               <Plotly
@@ -168,6 +169,7 @@
                 :mode-bar-buttons-to-remove="modebarbuttonstoremove"
                 :to-image-button-options="histogramToImageButtonOptions"
                 :display-mode-bar="true"
+                :displaylogo="false"
               ></Plotly>
             </div>
           </div>
