@@ -158,6 +158,7 @@
                 :data="concentrationPlotData"
                 :layout="concentrationPlotLayout"
                 :mode-bar-buttons-to-remove="modebarbuttonstoremove"
+                :to-image-button-options="monthlyToImageButtonOptions"
                 :display-mode-bar="true"
               ></Plotly>
 
@@ -165,6 +166,7 @@
                 :data="thresholdChartData"
                 :layout="thresholdChartLayout"
                 :mode-bar-buttons-to-remove="modebarbuttonstoremove"
+                :to-image-button-options="histogramToImageButtonOptions"
                 :display-mode-bar="true"
               ></Plotly>
             </div>
@@ -387,6 +389,20 @@ export default {
         'toggleHover',
         'toggleSpikelines',
       ],
+      monthlyToImageButtonOptions: {
+        format: 'png',
+        filename: 'sea_ice_concentration_plot',
+        height: 800,
+        width: 1200,
+        scale: 1 // Multiply title/legend/axis/canvas sizes by this factor
+      },
+      histogramToImageButtonOptions: {
+        format: 'png',
+        filename: 'sea_ice_concentration_histogram',
+        height: 800,
+        width: 1200,
+        scale: 1 // Multiply title/legend/axis/canvas sizes by this factor
+      },
       thresholdChartData: [],
       thresholdChartLayout: {
         title: "Sea Ice Concentration, 1850-2018",
