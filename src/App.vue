@@ -57,10 +57,10 @@
               <p class="date--display--date">{{ displayDate }}</p>
               <vue-slider v-model="selectedDate" :height="20" :min="1850" :max="2018" :hide-label="true" />
               <span v-on:click="decrementMonth" class="button is-small">
-                <i class="fas fa-arrow-alt-circle-left"> Past Month</i>
+                <i class="fas fa-arrow-alt-circle-left" /><span class="month-indicator">Past Month</span>
               </span>
-              <span v-on:click="incrementMonth" class="button is-small">
-                <i class="fas fa-arrow-alt-circle-right"> Next Month</i>
+              <span v-on:click="incrementMonth" class="button is-small" style="margin-left: 5px;">
+                <i class="fas fa-arrow-alt-circle-right" /><span class="month-indicator">Next Month</span>
               </span>
             </div>
 
@@ -763,6 +763,11 @@ section.lead {
 section.foldout {
   padding: 3rem 0;
   position: relative;
+}
+
+.month-indicator {
+  padding-left: 3px;
+  font-weight: 500;
 }
 
 #map--main {
