@@ -29,7 +29,7 @@
             >
             (IARC), at the
             <a href="https://uaf.edu/uaf/">University of Alaska Fairbanks</a>,
-            with assistance from the University of Illinois, Urbana-Champaign.
+            with assistance from the <a href="https://illinois.edu/">University of Illinois, Urbana-Champaign</a>.
           </p>
 
           <p>
