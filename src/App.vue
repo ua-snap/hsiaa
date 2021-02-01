@@ -212,7 +212,7 @@
             state of Alaska, the Atlas features the
             <a href="https://nsidc.org/the-drift/data-update/gridded-monthly-arctic-sea-ice-back-to-1850-for-analysis-or-browsing/" target="_blank">Pan-Arctic SIBT1850 Sea Ice Dataset</a>.
           </p>
-          <img src="assets/SourcesChart.jpg" width="1000px" height="500px" />
+          <img src="./assets/SourcesChart.svg" width="1000px" height="500px" />
           <p>
             <br/>
             <a href="https://nsidc.org/sites/nsidc.org/files/G10010_V002.0.pdf" target="_blank">See more information on the data sources comprising this atlas.</a>
@@ -324,7 +324,7 @@ export default {
 
     this.map.on("click", this.handleMapClick);
     // Necessary to see the markers .
-    L.Icon.Default.imagePath = "~static/";
+    L.Icon.Default.imagePath = "/";
   },
   data() {
     return {
