@@ -1,6 +1,8 @@
 <template>
   <div>
-    <mv-header logo="accap" :buttons="navbuttons"></mv-header>
+    <div class="header-wrapper">
+      <mv-header logo="accap" :buttons="navbuttons"></mv-header>
+    </div>
     <section class="section lead">
       <div class="container">
         <div class="titles">
@@ -10,27 +12,22 @@
           </h2>
         </div>
         <div class="content">
-          <p class="is-size-5">
-            <strong>We can plan for the future by studying the past.</strong>
-          </p>
-          <p class="is-size-5">
-            If you live in an Alaska coastal community, hunt or fish in a marine
-            environment, work in shipping or oil and gas, serve with the US
-            Coast Guard, research Arctic ecosystems or are otherwise interested
-            in Arctic sea ice data and climate change, this atlas is for you.
+          <h2 class="title is-4">
+            About the HSIA
+          </h2>
+          <p class="is-size-6">
+            <strong>If you live in an Arctic or sub-Arctic coastal community,
+            hunt or fish in a marine environment</strong>, work in shipping or
+            oil and gas, serve with the Coast Guard, research Arctic
+            ecosystems or are otherwise interested in Arctic sea ice data and
+            climate change, <strong>this atlas is for you.</strong>
           </p>
           <p class="is-size-6">
-            Now you can simultaneously view multiple sources of historical sea
-            ice data from the seas off northern Alaska. Choose a region and time
-            of interest and inspect a map of data collected between the
-            mid-1800s and today, to discover how ice extent and concentration
-            have changed over time.
-          </p>
-          <p class="is-size-6">
-            The Atlas shows “snapshots” in time, as well as historical trends in
-            arctic sea ice cover and extent. It is not designed for forecasting
-            or prediction, but can provide useful historical context for future
-            planning efforts.
+            View historical sea ice data from the seas around the circumpolar
+            north and discover how ice extent and concentration have changed
+            over time. This atlas shows snapshots in time as well as long term
+            patterns. It is not designed for forecasting or prediction, but can
+            provide useful historical context for future planning efforts.
           </p>
         </div>
       </div>
@@ -55,22 +52,18 @@
               </span>
             </div>
 
+            <!-- Slider wrapper! -->
             <div class="date--display">
               <p class="date--display--date">{{ displayDate }}</p>
-              <vue-slider
-                v-model="selectedDate"
-                :height="20"
-                :min="1850"
-                :max="2018"
-                :hide-label="true"
-              />
-              <span v-on:click="decrementMonth" class="button icon is-medium">
-                <i class="fas fa-arrow-alt-circle-left"></i>
+              <vue-slider v-model="selectedDate" :height="20" :min="1850" :max="2018" :hide-label="true" />
+              <span v-on:click="decrementMonth" class="button is-small">
+                <i class="fas fa-arrow-alt-circle-left"> Past Month</i>
               </span>
-              <span v-on:click="incrementMonth" class="button icon is-medium">
-                <i class="fas fa-arrow-alt-circle-right"></i>
+              <span v-on:click="incrementMonth" class="button is-small">
+                <i class="fas fa-arrow-alt-circle-right"> Next Month</i>
               </span>
             </div>
+
             <div id="map--main"></div>
           </div>
         </div>
@@ -78,6 +71,7 @@
           v-bind:class="{ sidelined: foldoutActive }"
           class="report--section"
         >
+          <!-- Go back to the map -->
           <div v-on:click="foldoutActive = false" class="button is-link back">
             <span class="icon is-large">
               <i class="fas fa-arrow-left"></i>
@@ -87,6 +81,7 @@
             </span>
           </div>
 
+          <!-- Loading spinner! -->
           <div
             class="loading-spinner box"
             v-bind:class="{ hidden: reportIsLoaded }"
@@ -101,10 +96,14 @@
             </div>
           </div>
 
+          <!-- Show this section once the data are loaded,
+            we'll know then if it's valid or not.
+          -->
           <div
             class="report--loaded"
             v-bind:class="{ hidden: !reportIsLoaded }"
           >
+            <!-- Notify user of invalid pixel, or hide if it's OK. -->
             <div
               class="report--invalid"
               v-bind:class="{ hidden: validMapPixel }"
@@ -119,6 +118,7 @@
               </p>
             </div>
 
+            <!-- Report wrapper; hide unless there's data. -->
             <div
               class="report--charts"
               v-bind:class="{ hidden: !validMapPixel }"
@@ -133,15 +133,8 @@
                   <div class="field">
                     <label class="label">Choose month or season</label>
                     <div class="control">
-                      <div class="select">
-                        <select v-model="selectedMonthOrSeason">
-                          <optgroup label="By season">
-                            <option value="winter">Winter</option>
-                            <option value="spring">Spring</option>
-                            <option value="summer">Summer</option>
-                            <option value="fall">Fall</option>
-                          </optgroup>
-                          <optgroup label="By month">
+                      <div class="select is-multiple">
+                        <select v-model="selectedMonthOrSeason" multiple>
                             <option value="0">January</option>
                             <option value="1">February</option>
                             <option value="2">March</option>
@@ -154,7 +147,6 @@
                             <option value="9">October</option>
                             <option value="10">November</option>
                             <option value="11">December</option>
-                          </optgroup>
                         </select>
                       </div>
                     </div>
@@ -165,13 +157,15 @@
               <Plotly
                 :data="concentrationPlotData"
                 :layout="concentrationPlotLayout"
-                :display-mode-bar="false"
+                :mode-bar-buttons-to-remove="modebarbuttonstoremove"
+                :display-mode-bar="true"
               ></Plotly>
 
               <Plotly
                 :data="thresholdChartData"
                 :layout="thresholdChartLayout"
-                :display-mode-bar="false"
+                :mode-bar-buttons-to-remove="modebarbuttonstoremove"
+                :display-mode-bar="true"
               ></Plotly>
             </div>
           </div>
@@ -181,39 +175,80 @@
     <section style="padding: 2rem 0;">
       <div class="container">
         <div class="content">
-          <h2 class="title is-4">
-            Challenges of data collection and interpretation
+          <h2 class="title is-5">
+            Data animation
           </h2>
           <p>
-            Collecting sea ice data has always been difficult and dangerous
-            work. Interpreting data is not dangerous, but remains difficult due
-            to differences in historic interpretations of ice concentration from
-            modern protocols as well as instrument calibrations and sensors
-            (human observation, radar, satellites) over time.
+            View animations of sea ice extent below either across the entire
+            dataset &lpar;Every month from January 1850 to December 2019&rpar; or for
+            individual months.
+          </p>
+          <h2 class="title is-5">Data collection and interpretation</h2>
+          <p>
+            Collecting and interpreting sea ice data has always been difficult
+            work. Challenges stem from differences in historic interpretations
+            of ice concentration, different charting conventions, and especially
+            changes in available observing tools &lpar;ships, airplanes starting in
+            the early 1900s, satellites starting in the 1970s&rpar;
           </p>
           <p>
-            Challenges faced by the Atlas data team included questions such as,
-            Which hard copy maps to digitize? How do we interpret this
-            handwriting? How do we fill gaps in the data record? Which time
-            scale is best to use?
+            Data included in this atlas begins with sea ice observations
+            extrapolated from whaling ship log books in the Beaufort, Chukchi,
+            and Bering seas starting in 1850.
           </p>
-          <h2 class="title is-5">Data sources in this atlas</h2>
+          <p>
+            Data gaps from those logs are filled with analog-derived sea
+            ice coverage &lpar;longer gaps&rpar; or interpolation &lpar;short gaps&rpar;.
+            Other sea ice data sources are incorporated as they came into being
+            beginning with information from the Danish Meteorological Institute
+            sea ice charts dating back to 1893, through the satellite microwave
+            sensor products that became routine in 1978. Find more details on
+            the methodology involved in the synthesis of the various data
+            sources in this
+            <a href="https://www.tandfonline.com/doi/abs/10.1111/j.1931-0846.2016.12195.x" target="_blank">2017 paper in the Journal Arctic</a>.
+          </p>
+          <p>
+            In addition to historical sea ice data covering the seas around the
+            state of Alaska, the Atlas features the
+            <a href="https://nsidc.org/the-drift/data-update/gridded-monthly-arctic-sea-ice-back-to-1850-for-analysis-or-browsing/" target="_blank">Pan-Arctic SIBT1850 Sea Ice Dataset</a>.
+          </p>
+          <img src="assets/SourcesChart.jpg" width="1000px" height="500px" />
+          <p>
+            <br/>
+            <a href="https://nsidc.org/sites/nsidc.org/files/G10010_V002.0.pdf" target="_blank">See more information on the data sources comprising this atlas.</a>
+          </p>
+          <h2 class="title is-5">Download data</h2>
+          <p>
+            Your download will include the entire Historical Sea Ice dataset compiled from the sources listed here, not a subset of selected dates.
+          </p>
+          <p>
+            <a href="http://ckan.snap.uaf.edu/dataset/historical-sea-ice-atlas-observed-estimates-of-sea-ice-concentration-in-alaska-waters" target="_blank">Download this dataset</a>.
+          </p>
+          <h2 class="title is-5">This Atlas calculates and illustrates these sea ice measurements</h2>
           <dl>
-            <dt>Analog filling of spatial and temporal gaps</dt>
+            <dt>Sea ice concentration</dt>
             <dd>
-              Spatial and temporal gaps in a given grid filled with best analog
-              representations of the given month.
+              Amount of sea ice covering an area. Written as the ratio of sea
+              ice to water, either a fraction &lpar;8/10&rpar; or percentage &lpar;80&percnt;&rpar; of sea
+              ice coverage. &lt;30&percnt; sea ice concentration &equals; navigable by ship. >90&percnt;
+              is considered solid ice.
+
             </dd>
-            <dt>Arctic and Antarctic Research Institute (AARI)</dt>
+            <dt>Sea ice extent</dt>
             <dd>
-              Located in St. Petersburg, Russia, AARI produces sea ice charts
-              for safety of navigation in the Eurasian Arctic and other
-              operational and scientific purposes. Chart coverage focuses on the
-              Northern Sea Route, although later charts extend into the central
-              Arctic. Charts contain several categories of ice concentration.
+              Total area covered by some amount of sea ice at a given time,
+              including open water between floes. The Atlas considers sea ice
+              &quot;present&quot; if sea ice concentration is &gt;15&percnt;.
+              Thus, sea ice extent is the area of sea covered by at least
+              15&percnt; ice for a specific date. The Atlas reports monthly averages,
+              so the sea ice extent for a given month represents the measured
+              or interpolated sea ice extent closest to the middle of that month.
             </dd>
           </dl>
-          <p><a class="button">Show more...</a></p>
+          <p>
+            For information about other measurements of sea ice not covered in this atlas see
+            <a href="https://nsidc.org/cryosphere/glossary-terms/sea-ice" target="_blank">the National Snow and Ice Data Center’s glossary of terms</a>.
+          </p>
         </div>
       </div>
     </section>
@@ -270,25 +305,6 @@ var months = {
   11: "December"
 };
 
-// Mapping of seasons to month numbers
-var seasons = {
-  winter: {
-    months: [11, 0, 1],
-    title: "Winter (December, January, February)"
-  },
-  spring: {
-    months: [2, 3, 4],
-    title: "Spring (March, April, May)"
-  },
-  summer: {
-    months: [5, 6, 7],
-    title: "Summer (June, July, August)"
-  },
-  fall: {
-    months: [8, 9, 10],
-    title: "Fall (September, October, November)"
-  }
-};
 
 export default {
   name: "HSIAA",
@@ -341,7 +357,7 @@ export default {
       timeseriesData: undefined,
 
       // Actively selected month for concentration chart (0-11, ...)
-      selectedMonthOrSeason: 0,
+      selectedMonthOrSeason: [0],
 
       // Plotly layout objects
       concentrationPlotData: [], // default empty
@@ -353,6 +369,24 @@ export default {
         },
         legend: { orientation: "h" }
       },
+      modebarbuttonstoremove: [
+        'zoom2d',
+        'pan2d',
+        'select2d',
+        'lasso2d',
+        'zoomIn2d',
+        'zoomOut2d',
+        'autoScale2d',
+        'resetScale2d',
+        'hoverClosestCartesian',
+        'hoverCompareCartesian',
+        'hoverClosestPie',
+        'hoverClosest3d',
+        'hoverClosestGl2d',
+        'hoverClosestGeo',
+        'toggleHover',
+        'toggleSpikelines',
+      ],
       thresholdChartData: [],
       thresholdChartLayout: {
         title: "Sea Ice Concentration, 1850-2018",
@@ -444,7 +478,7 @@ export default {
       // Projection definition.
       var proj = new L.Proj.CRS(
         "EPSG:3572",
-        "+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
+        "+proj=laea +lat_0=87 +lon_0=-155 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
         {
           resolutions: [4096, 2048, 1024, 512, 256, 128, 64],
           origin: [-4889334.802954878, -4889334.802954878]
@@ -472,7 +506,6 @@ export default {
         layers: [baseLayer]
       };
 
-      console.log(config);
       return config;
     },
     decrementMonth() {
@@ -513,32 +546,34 @@ export default {
             {
               x: xrange,
               y: y,
-              type: "scatter"
-            }
+              type: "scatter",
+            },
           ];
           monthFragment = months[this.selectedMonthOrSeason];
         } else {
           // Add a series of traces for the season
-          traces = seasons[this.selectedMonthOrSeason].months.map(month => {
+          traces = this.selectedMonthOrSeason.map((month) => {
+            monthFragment = monthFragment + months[month] + ", "
             let y = this.timeseriesData.filter((value, index) => {
-              return index % 12 === month;
+              return index % 12 === Number(month);
             });
             return {
               x: xrange,
               y: y,
               type: "scatter",
-              name: months[month]
+              name: months[month],
             };
           });
-          monthFragment = seasons[this.selectedMonthOrSeason].title;
+          // Removes additional space and comma from title of month's chosen
+          monthFragment = monthFragment.substring(0, monthFragment.length - 2)
         }
         this.concentrationPlotLayout = {
           title: `Sea Ice Concentration at ${this.latDeg}ºN, ${this.lngDeg}ºE, ${monthFragment}, 1850-2018`,
           yaxis: {
             range: [0, 105],
-            fixedrange: true
+            fixedrange: true,
           },
-          legend: { orientation: "h" }
+          legend: { orientation: "h" },
         };
         this.concentrationPlotData = traces;
       }
@@ -576,7 +611,7 @@ export default {
       var dates = getDateFromInteger(this.selectedDate, this.monthOffset);
       this.displayDate = dates.display;
       if (this.layer) {
-        this.$options.components["mv-map"].leaflet.map.removeLayer(this.layer);
+        this.map.removeLayer(this.layer);
       }
       this.layer = L.tileLayer.wms(
         "http://apollo.snap.uaf.edu:8080/rasdaman/ows?",
@@ -607,6 +642,9 @@ export default {
 
       // Set the current latlng in the app context
       this.latlng = event.latlng;
+
+      // Set the month shown via the map to be the concentration map's initial selection
+      this.selectedMonthOrSeason = [this.monthOffset];
 
       // If we've already got a point on the map, clear it out
       // until we know if this point is valid or not.
@@ -730,7 +768,7 @@ section.foldout {
 #map--main {
   display: block;
   position: relative;
-  min-height: 90vh;
+  min-height: 100vh;
   width: 100vw;
 }
 
@@ -848,7 +886,8 @@ section.foldout {
 }
 
 .content {
-  max-width: 50rem;
+  padding: 0 10vw;
+  text-align: justify;
 }
 
 dt {
