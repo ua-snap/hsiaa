@@ -410,11 +410,14 @@ export default {
       thresholdChartData: [],
       thresholdChartLayout: {
         title: "Sea Ice Concentration, 1850-2018",
-        height: 1000,
+        height: 1500,
         yaxis: {
           type: "category",
           fixedrange: true,
-          range: xrange
+          range: xrange,
+          autotick: false,
+          tick0: 1850,
+          dtick: 5
         },
         xaxis: {
           tickmode: "array",
@@ -611,21 +614,21 @@ export default {
             let dataIndex = (year - 1850) * 12 + (month - 1);
             // Loop as many times as the %conc to fake the "histogram!"
             for (let i = 1; i <= this.timeseriesData[dataIndex]; ++i) {
-              // Push month and year every 5 years or if on last year of dataset (2018)
-              if (year % 5 == 0 || year === 2018) {
                 x.push(month);
                 y.push(year);
-              }
             }
           });
         });
         this.thresholdChartLayout = {
           title: `Sea Ice Concentration at ${this.latDeg}ºN, ${this.lngDeg}ºE, 1850-2018`,
-          height: 1000,
+          height: 1500,
           yaxis: {
             type: "category",
             fixedrange: true,
             range: xrange,
+            autotick: false,
+            tick0: 1850,
+            dtick: 5,
           },
           xaxis: {
             tickmode: "array",
