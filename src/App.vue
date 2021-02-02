@@ -187,6 +187,8 @@
             dataset &lpar;Every month from January 1850 to December 2019&rpar; or for
             individual months.
           </p>
+          <iframe class="youtube-videos" width="450" height="300" src="https://www.youtube.com/embed/IxtKVbKPMeo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="youtube-videos" width="450" height="300" src="https://www.youtube.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <h2 class="title is-5">Data collection and interpretation</h2>
           <p>
             Collecting and interpreting sea ice data has always been difficult
@@ -818,6 +820,10 @@ section.foldout {
 .month-indicator {
   padding-left: 3px;
   font-weight: 500;
+}
+
+.youtube-videos {
+  margin-left: 25px;
 }
 
 #map--main {
