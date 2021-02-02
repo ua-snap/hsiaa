@@ -472,6 +472,7 @@ export default {
       this.updateConcentrationPlot();
     },
     timeseriesData() {
+      console.log(this.timeseriesData);
       this.updateConcentrationPlot();
       this.updateThresholdPlot();
     },
@@ -515,6 +516,7 @@ export default {
         minZoom: 0,
         maxZoom: 5,
         center: [64, -155],
+        maxBounds: [[47.87, -174.72], [72.29, -100.00]],
         scrollWheelZoom: false,
         crs: proj,
         continuousWorld: true,
