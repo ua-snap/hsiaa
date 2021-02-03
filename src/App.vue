@@ -133,21 +133,10 @@
                   <div class="field">
                     <label class="label">Choose month or season</label>
                     <div class="control">
-                      <div class="select is-multiple">
-                        <select v-model="selectedMonthOrSeason" multiple>
-                            <option value="0">January</option>
-                            <option value="1">February</option>
-                            <option value="2">March</option>
-                            <option value="3">April</option>
-                            <option value="4">May</option>
-                            <option value="5">June</option>
-                            <option value="6">July</option>
-                            <option value="7">August</option>
-                            <option value="8">September</option>
-                            <option value="9">October</option>
-                            <option value="10">November</option>
-                            <option value="11">December</option>
-                        </select>
+                      <div class="control--select">
+                        <multiselect v-model="selectedMonthOrSeason" :options="multiselectOptions" :multiple="true" :close-on-select="false" :clear-on-select="false" :preserve-search="true" placeholder="Choose desired months" label="month" track-by="number" :preselect-first="false">
+                          <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ values.length }} month(s) selected</span></template>
+                        </multiselect>
                       </div>
                     </div>
                   </div>
@@ -275,6 +264,7 @@ import moment from "moment";
 import { Plotly } from "vue-plotly";
 import "@fortawesome/fontawesome-free/css/all.css";
 import axios from "axios";
+import Multiselect from 'vue-multiselect';
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -317,6 +307,7 @@ export default {
   components: {
     VueSlider,
     Plotly,
+    Multiselect,
     "mv-footer": Footer,
     "mv-header": Header
   },
@@ -363,7 +354,22 @@ export default {
       timeseriesData: undefined,
 
       // Actively selected month for concentration chart (0-11, ...)
-      selectedMonthOrSeason: [0],
+      selectedMonthOrSeason: [{number: 0, month: "January"}],
+
+      multiselectOptions: [
+        { number: 0, month: "January"},
+        { number: 1, month: "February"},
+        { number: 2, month: "March"},
+        { number: 3, month: "April"},
+        { number: 4, month: "May"},
+        { number: 5, month: "June"},
+        { number: 6, month: "July"},
+        { number: 7, month: "August"},
+        { number: 8, month: "September"},
+        { number: 9, month: "October"},
+        { number: 10, month: "November"},
+        { number: 11, month: "December"}
+      ],
 
       // Plotly layout objects
       concentrationPlotData: [], // default empty
@@ -561,10 +567,11 @@ export default {
       if (this.timeseriesData) {
         let traces = [];
         let monthFragment = "";
+        console.log(this.selectedMonthOrSeason);
         // Month was selected
-        if (!isNaN(Number(this.selectedMonthOrSeason))) {
+        if (!isNaN(Number(this.selectedMonthOrSeason.number))) {
           let y = this.timeseriesData.filter((value, index) => {
-            return index % 12 === Number(this.selectedMonthOrSeason);
+            return index % 12 === Number(this.selectedMonthOrSeason.number);
           });
           // Draw the sea ice concentration plot.
           traces = [
@@ -574,19 +581,19 @@ export default {
               type: "scatter",
             },
           ];
-          monthFragment = months[this.selectedMonthOrSeason];
+          monthFragment = months[this.selectedMonthOrSeason.number];
         } else {
           // Add a series of traces for the season
           traces = this.selectedMonthOrSeason.map((month) => {
-            monthFragment = monthFragment + months[month] + ", "
+            monthFragment = monthFragment + months[month.number] + ", "
             let y = this.timeseriesData.filter((value, index) => {
-              return index % 12 === Number(month);
+              return index % 12 === Number(month.number);
             });
             return {
               x: xrange,
               y: y,
               type: "scatter",
-              name: months[month],
+              name: months[month.number],
             };
           });
           // Removes additional space and comma from title of month's chosen
@@ -700,7 +707,7 @@ export default {
       this.latlng = event.latlng;
 
       // Set the month shown via the map to be the concentration map's initial selection
-      this.selectedMonthOrSeason = [this.monthOffset];
+      this.selectedMonthOrSeason = [{number: this.monthOffset, month: months[this.monthOffset]}];
 
       // If we've already got a point on the map, clear it out
       // until we know if this point is valid or not.
@@ -948,6 +955,10 @@ section.foldout {
       }
     }
   }
+}
+
+.control--select {
+  width: 25vw;
 }
 
 .content {
