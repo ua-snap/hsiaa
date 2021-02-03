@@ -375,6 +375,10 @@ export default {
       concentrationPlotData: [], // default empty
       concentrationPlotLayout: {
         title: "Sea Ice Concentration, 1850-2018, January",
+        xaxis: {
+          range: [1850, 2018],
+          fixedrange: true
+        },
         yaxis: {
           range: [0, 105],
           fixedrange: true
@@ -601,6 +605,10 @@ export default {
         }
         this.concentrationPlotLayout = {
           title: `Sea Ice Concentration at ${this.latDeg}ºN, ${this.lngDeg}ºE, ${monthFragment}, 1850-2018`,
+          xaxis: {
+            range: [1850, 2018],
+            fixedrange: true
+          },
           yaxis: {
             range: [0, 105],
             fixedrange: true,
