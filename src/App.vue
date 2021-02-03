@@ -653,6 +653,7 @@ export default {
           {
             x: x,
             y: y,
+            hovertemplate: "Month: %{x}</br></br>Year: %{y}</br>Concentration Percentage: %{z}%<extra></extra>",
             type: "histogram2d",
             autocolorscale: false,
             colorscale: "YlGnBu",
