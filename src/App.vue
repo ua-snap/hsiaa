@@ -55,7 +55,7 @@
             <!-- Slider wrapper! -->
             <div class="date--display">
               <p class="date--display--date">{{ displayDate }}</p>
-              <vue-slider v-model="selectedDate" :height="20" :min="1850" :max="2018" :hide-label="true" />
+              <vue-slider v-model="selectedDate" :height="20" :min="1850" :max="2019" :hide-label="true" />
               <span v-on:click="decrementMonth" class="button is-small">
                 <i class="fas fa-arrow-alt-circle-left" /><span class="month-indicator">Past Month</span>
               </span>
@@ -124,7 +124,7 @@
               v-bind:class="{ hidden: !validMapPixel }"
             >
               <h3 class="title is-4">
-                Sea ice, 1850&ndash;2018 at {{ latDeg }}&deg;N,
+                Sea ice, 1850&ndash;2019 at {{ latDeg }}&deg;N,
                 {{ lngDeg }}&deg;E
               </h3>
 
@@ -282,7 +282,7 @@ var getDateFromInteger = function(year, month) {
 
 // Range of years
 var xrange = [];
-for (let x = 1850; x <= 2018; x++) {
+for (let x = 1850; x <= 2019; x++) {
   xrange.push(x);
 }
 
@@ -374,9 +374,9 @@ export default {
       // Plotly layout objects
       concentrationPlotData: [], // default empty
       concentrationPlotLayout: {
-        title: "Sea Ice Concentration, 1850-2018, January",
+        title: "Sea Ice Concentration, 1850-2019, January",
         xaxis: {
-          range: [1850, 2018],
+          range: [1850, 2019],
           fixedrange: true
         },
         yaxis: {
@@ -419,7 +419,7 @@ export default {
       },
       thresholdChartData: [],
       thresholdChartLayout: {
-        title: "Sea Ice Concentration, 1850-2018",
+        title: "Sea Ice Concentration, 1850-2019",
         height: 1500,
         yaxis: {
           type: "category",
@@ -560,8 +560,8 @@ export default {
       if (this.monthOffset > 11) {
         this.monthOffset = 0;
         var newDate = this.selectedDate + 1;
-        if (newDate > 2018) {
-          newDate = 2018;
+        if (newDate > 2019) {
+          newDate = 2019;
           this.monthOffset = 11;
         }
         this.selectedDate = newDate;
@@ -571,7 +571,6 @@ export default {
       if (this.timeseriesData) {
         let traces = [];
         let monthFragment = "";
-        console.log(this.selectedMonthOrSeason);
         // Month was selected
         if (!isNaN(Number(this.selectedMonthOrSeason.number))) {
           let y = this.timeseriesData.filter((value, index) => {
@@ -604,9 +603,9 @@ export default {
           monthFragment = monthFragment.substring(0, monthFragment.length - 2)
         }
         this.concentrationPlotLayout = {
-          title: `Sea Ice Concentration at ${this.latDeg}ºN, ${this.lngDeg}ºE, ${monthFragment}, 1850-2018`,
+          title: `Sea Ice Concentration at ${this.latDeg}ºN, ${this.lngDeg}ºE, ${monthFragment}, 1850-2019`,
           xaxis: {
-            range: [1850, 2018],
+            range: [1850, 2019],
             fixedrange: true
           },
           yaxis: {
@@ -626,6 +625,7 @@ export default {
         let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
         xrange.forEach(year => {
           months.forEach(month => {
+            console.log(year);
             let dataIndex = (year - 1850) * 12 + (month - 1);
             // Loop as many times as the %conc to fake the "histogram!"
             for (let i = 1; i <= this.timeseriesData[dataIndex]; ++i) {
@@ -635,7 +635,7 @@ export default {
           });
         });
         this.thresholdChartLayout = {
-          title: `Sea Ice Concentration at ${this.latDeg}ºN, ${this.lngDeg}ºE, 1850-2018`,
+          title: `Sea Ice Concentration at ${this.latDeg}ºN, ${this.lngDeg}ºE, 1850-2019`,
           height: 1500,
           yaxis: {
             type: "category",
