@@ -131,7 +131,7 @@
               <div class="form--controls">
                 <form>
                   <div class="field">
-                    <label class="label">Choose month or season</label>
+                    <label class="label">Choose any number of months</label>
                     <div class="control">
                       <div class="control--select">
                         <multiselect v-model="selectedMonthOrSeason" :options="multiselectOptions" :multiple="true" :close-on-select="false" :clear-on-select="false" :preserve-search="true" placeholder="Choose desired months" label="month" track-by="number" :preselect-first="false">
