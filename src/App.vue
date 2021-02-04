@@ -30,7 +30,7 @@
             provide useful historical context for future planning efforts.
           </p>
           <p>Choose a community from the selection below, or click anywhere on the map to show historical sea ice conditions at that place.</p>
-          <div class="location--drop-down">
+          <div class="location--drop-down" v-bind:class="{ hidden: foldoutActive }">
               <form>
                 <label class="label">Select a community</label>
                 <div class="select control">
@@ -43,7 +43,7 @@
                       <option value="58.6984670397717,-158.604182960483">Dillingham, AK</option>
                       <option value="65.7450538858085,-168.982175323199">Diomede, AK</option>
                       <option value="58.217525752542,-157.610129237119">Egegik, AK</option>
-                      <option value="58.6984670397717,-158.604182960483">Ekuk, AK</option>
+                      <option value="58.808756,-158.569142">Ekuk, AK</option>
                       <option value="64.55918135633,-162.105188401375">Elim, AK</option>
                       <option value="62.8222221972983,-164.936452924562">Emmonak, AK</option>
                       <option value="64.4814106580503,-165.422359375284">Fort Davis, AK</option>
@@ -945,6 +945,13 @@ section.foldout {
   width: 100vw;
 }
 
+.location--drop-down {
+
+  &.hidden {
+   display: none;
+  }
+}
+
 .map--section--wrapper {
   display: grid;
 
@@ -985,15 +992,6 @@ section.foldout {
         &.hidden {
           display: none;
         }
-      }
-
-      .location--drop-down {
-        background-color: white;
-        position: absolute;
-        top: 1.5rem;
-        right: 1.5rem;
-        z-index: 10000;
-        box-shadow: 0 0 1rem rgba(0,0,0,0.25);
       }
 
       .date--display {
