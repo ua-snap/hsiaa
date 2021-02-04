@@ -71,7 +71,7 @@
                 <i class="fas fa-arrow-right"></i>
               </span>
             </div>
-            
+
 
             <!-- Slider wrapper! -->
             <div class="date--display">
@@ -554,7 +554,7 @@ export default {
         minZoom: 0,
         maxZoom: 5,
         center: [64, -155],
-        maxBounds: [[35.87, -174.72], [72.29, -100.00]],
+        maxBounds: [[47.87, -174.72], [72.29, -100.00]],
         scrollWheelZoom: false,
         crs: proj,
         continuousWorld: true,
