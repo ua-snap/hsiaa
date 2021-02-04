@@ -29,6 +29,26 @@
             patterns. It is not designed for forecasting or prediction, but can
             provide useful historical context for future planning efforts.
           </p>
+          <p>Choose a community from the selection below, or click anywhere on the map to show historical sea ice conditions at that place.</p>
+          <div class="location--drop-down">
+              <form>
+                <label class="label">Select a community</label>
+                <div class="select control">
+                  <select v-model="community">
+                    <optgroup label="Alaska communities">
+                      <option value="54.2510646002121,-165.794520095568">Akutan, AK</option>
+                      <option value="62.730632,-164.971273">Alakanuk, AK</option>
+                      <option value="65.2839013106643,-166.543276878432">Brevig Mission, AK</option>
+                      <option value="54.8928703605601,-162.585689817175">Cold Bay, AK</option>
+                    </optgroup>
+                    <optgroup label="North West Territory communities">
+                      <option value="69.9610863947203,-123.661517656453">Paulatuak, NWT</option>
+                      <option value="69.6835584167738,-133.371989420137">Tuktoyaktuk, NWT</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </form>
+            </div>
         </div>
       </div>
     </section>
@@ -51,25 +71,7 @@
                 <i class="fas fa-arrow-right"></i>
               </span>
             </div>
-            <div class="location--drop-down">
-              <form>
-                <label class="label">Select a community</label>
-                <div class="select">
-                  <select v-model="community">
-                    <optgroup label="Alaskan communities">
-                      <option value="54.2510646002121,-165.794520095568">Akutan, AK</option>
-                      <option value="62.730632,-164.971273">Alakanuk, AK</option>
-                      <option value="65.2839013106643,-166.543276878432">Brevig Mission, AK</option>
-                      <option value="54.8928703605601,-162.585689817175">Cold Bay, AK</option>
-                    </optgroup>
-                    <optgroup label="North West Territory communities">
-                      <option value="69.9610863947203,-123.661517656453">Paulatuak, NWT</option>
-                      <option value="69.6835584167738,-133.371989420137">Tuktoyaktuk, NWT</option>
-                    </optgroup>
-                  </select>
-                </div>
-              </form>
-            </div>
+            
 
             <!-- Slider wrapper! -->
             <div class="date--display">
@@ -335,7 +337,7 @@ export default {
   },
   mounted() {
     this.map = L.map("map--main", this.getBaseMapAndLayers());
-
+    new L.Control.Zoom({ position: 'topright' }).addTo(this.map);
     this.updateAtlas();
 
     this.map.on("click", this.handleMapClick);
