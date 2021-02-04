@@ -51,6 +51,25 @@
                 <i class="fas fa-arrow-right"></i>
               </span>
             </div>
+            <div class="location--drop-down">
+              <form>
+                <label class="label">Select a community</label>
+                <div class="select">
+                  <select v-model="community">
+                    <optgroup label="Alaskan communities">
+                      <option value="54.2510646002121,-165.794520095568">Akutan, AK</option>
+                      <option value="62.730632,-164.971273">Alakanuk, AK</option>
+                      <option value="65.2839013106643,-166.543276878432">Brevig Mission, AK</option>
+                      <option value="54.8928703605601,-162.585689817175">Cold Bay, AK</option>
+                    </optgroup>
+                    <optgroup label="North West Territory communities">
+                      <option value="69.9610863947203,-123.661517656453">Paulatuak, NWT</option>
+                      <option value="69.6835584167738,-133.371989420137">Tuktoyaktuk, NWT</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </form>
+            </div>
 
             <!-- Slider wrapper! -->
             <div class="date--display">
@@ -325,13 +344,6 @@ export default {
   },
   data() {
     return {
-      mapOptions: {
-        zoom: 0,
-        minZoom: 0,
-        maxZoom: 5,
-        center: [64, -155],
-        scrollWheelZoom: false
-      },
       baseLayerOptions: {
         transparent: true,
         srs: "EPSG:3572",
@@ -348,6 +360,9 @@ export default {
 
       // Date displayed on the map.
       displayDate: "",
+
+      // Community select value
+      community: "",
 
       // Updated when we get a successful timeseries back.
       // Triggers repaint of Plotly charts.
@@ -486,8 +501,14 @@ export default {
     selectedMonthOrSeason() {
       this.updateConcentrationPlot();
     },
+    community() {
+      var lat = Number(this.community.split(",")[0])
+      var lng = Number(this.community.split(",")[1])
+      var latlng = new L.latLng(lat, lng);
+
+      this.pullData(latlng);
+    },
     timeseriesData() {
-      console.log(this.timeseriesData);
       this.updateConcentrationPlot();
       this.updateThresholdPlot();
     },
@@ -531,12 +552,13 @@ export default {
         minZoom: 0,
         maxZoom: 5,
         center: [64, -155],
-        maxBounds: [[47.87, -174.72], [72.29, -100.00]],
+        maxBounds: [[35.87, -174.72], [72.29, -100.00]],
         scrollWheelZoom: false,
         crs: proj,
         continuousWorld: true,
         worldCopyJump: false,
         zoomControl: false,
+        doubleClickZoom: false,
         attributionControl: false,
         layers: [baseLayer]
       };
@@ -625,7 +647,6 @@ export default {
         let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
         xrange.forEach(year => {
           months.forEach(month => {
-            console.log(year);
             let dataIndex = (year - 1850) * 12 + (month - 1);
             // Loop as many times as the %conc to fake the "histogram!"
             for (let i = 1; i <= this.timeseriesData[dataIndex]; ++i) {
@@ -698,7 +719,7 @@ export default {
     dateFormatter(dateVal) {
       return getDateFromInteger(dateVal).display;
     },
-    handleMapClick(event) {
+    pullData(latlng) {
       // If the foldout was active, then clicking on the exposed map
       // is the same as "go back" but won't fire a new load attempt.
       if (this.foldoutActive === true) {
@@ -712,7 +733,7 @@ export default {
       this.reportIsLoaded = false;
 
       // Set the current latlng in the app context
-      this.latlng = event.latlng;
+      this.latlng = latlng;
 
       // Set the month shown via the map to be the concentration map's initial selection
       this.selectedMonthOrSeason = [{number: this.monthOffset, month: months[this.monthOffset]}];
@@ -725,15 +746,15 @@ export default {
       }
 
       // Set the current lat/lng (in EPSG:3857), for display.
-      this.latDeg = Number.parseFloat(event.latlng.lat).toFixed(2);
-      this.lngDeg = Number.parseFloat(event.latlng.lng).toFixed(2);
+      this.latDeg = Number.parseFloat(latlng.lat).toFixed(2);
+      this.lngDeg = Number.parseFloat(latlng.lng).toFixed(2);
 
       // var latlng = event.latlng // preserve context for promise below
 
       // Define and perform Rasdaman query to get the data
       var coords = proj4("EPSG:4326", "EPSG:3572", [
-        event.latlng.lng,
-        event.latlng.lat
+        latlng.lng,
+        latlng.lat
       ]);
       var query =
         "http://apollo.snap.uaf.edu:8080/rasdaman/ows?&SERVICE=WCS&VERSION=2.0.1&REQUEST=GetCoverage&COVERAGEID=hsia_arctic&SUBSET=X(" +
@@ -751,22 +772,23 @@ export default {
               this.reportIsLoaded = true;
               this.timeseriesData = res.data;
 
+              // Put a marker / popup on the map to show the
+              // sidebar again.
+              this.marker = L.marker(latlng);
+              this.marker.addTo(this.map);
+
               // If returned data are all 0's, it's an invalid pixel
               // (or literally never sea ice).  Tell user, and don't
               // show the graphs.
               const reducer = (accumulator, currentValue) =>
                 accumulator + currentValue;
               let sum = this.timeseriesData.reduce(reducer);
+
               if (sum === 0) {
                 this.validMapPixel = false;
                 resolve();
                 return;
               }
-
-              // Put a marker / popup on the map to show the
-              // sidebar again.
-              this.marker = L.marker(event.latlng);
-              this.marker.addTo(this.map);
 
               // Show the reports.
               this.validMapPixel = true;
@@ -785,6 +807,9 @@ export default {
             return;
           });
       });
+    },
+    handleMapClick(event) {
+      return this.pullData(event.latlng);
     }
   }
 };
@@ -892,6 +917,15 @@ section.foldout {
         &.hidden {
           display: none;
         }
+      }
+
+      .location--drop-down {
+        background-color: white;
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        z-index: 10000;
+        box-shadow: 0 0 1rem rgba(0,0,0,0.25);
       }
 
       .date--display {
