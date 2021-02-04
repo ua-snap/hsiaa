@@ -535,7 +535,7 @@ export default {
       // Projection definition.
       var proj = new L.Proj.CRS(
         "EPSG:3572",
-        "+proj=laea +lat_0=87 +lon_0=-155 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
+        "+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
         {
           resolutions: [4096, 2048, 1024, 512, 256, 128, 64],
           origin: [-4889334.802954878, -4889334.802954878]
@@ -553,8 +553,8 @@ export default {
         zoom: 0,
         minZoom: 0,
         maxZoom: 5,
-        center: [64, -155],
-        maxBounds: [[47.87, -174.72], [72.29, -100.00]],
+        center: [67, -150],
+        maxBounds: [[47.87, -160], [80.29, -100.00]],
         scrollWheelZoom: false,
         crs: proj,
         continuousWorld: true,
@@ -875,7 +875,7 @@ section.foldout {
 #map--main {
   display: block;
   position: relative;
-  min-height: 100vh;
+  min-height: 90vh;
   width: 100vw;
 }
 
@@ -889,7 +889,7 @@ section.foldout {
 
   .map--direct-wrapper {
     position: relative;
-    height: 100vh;
+    height: 90vh;
     opacity: 1;
     transition: transform 0.5s ease;
 
@@ -906,7 +906,7 @@ section.foldout {
     }
 
     .map--wrapper {
-      height: 100vh;
+      height: 90vh;
       position: relative;
 
       .report--show-current-button {
