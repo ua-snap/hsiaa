@@ -49,7 +49,10 @@
         <p class="start">
           To begin, choose a community or click on the map.
         </p>
-        <div class="location--drop-down" v-bind:class="{ hidden: foldoutActive }">
+        <div
+          class="location--drop-down"
+          v-bind:class="{ hidden: foldoutActive }"
+        >
           <form>
             <label class="label">Choose a community</label>
             <div class="select control">
@@ -449,24 +452,27 @@
           This Atlas calculates and illustrates these sea ice measurements
         </h4>
         <h5>Sea ice concentration: Amount of sea ice covering an area.</h5>
-        <p>The ratio of sea ice to water, either a fraction (8/10) or percentage
-        (80%) of sea ice coverage.<br />
-        &lt;30% sea ice concentration = navigable by ship. <br />&gt;90% = solid
-        ice.</p>
+        <p>
+          The ratio of sea ice to water, either a fraction (8/10) or percentage
+          (80%) of sea ice coverage.<br />
+          &lt;30% sea ice concentration = navigable by ship. <br />&gt;90% =
+          solid ice.
+        </p>
         <h5>
           Sea ice extent: Total area covered by some amount of sea ice at a
           given time,<br />
           including open water between floes.
         </h5>
-        <p>The Atlas considers sea ice &ldquo;present&rdquo; if sea ice
-        concentration is &gt;15%.<br />
-        Thus, sea ice extent is the area of sea covered by at least 15% ice for
-        a specific date.<br />
-        The Atlas reports monthly averages, so sea ice extent for a given month
-        represents<br />
-        the measured or interpolated sea ice extent closest to the middle of
-        that month.
-</p>
+        <p>
+          The Atlas considers sea ice &ldquo;present&rdquo; if sea ice
+          concentration is &gt;15%.<br />
+          Thus, sea ice extent is the area of sea covered by at least 15% ice
+          for a specific date.<br />
+          The Atlas reports monthly averages, so sea ice extent for a given
+          month represents<br />
+          the measured or interpolated sea ice extent closest to the middle of
+          that month.
+        </p>
         <h5>
           Data animations
         </h5>
@@ -501,7 +507,12 @@
     </section>
     <section class="section">
       <div class="centered--wrapper">
-        <h4><a href="./assets/Historical-Sea-Ice-Extents-Octobers.pdf">Download a poster</a> that shows October 1850–October 2019 sea ice extent.</h4>
+        <h4>
+          <a href="./assets/Historical-Sea-Ice-Extents-Octobers.pdf"
+            >Download a poster</a
+          >
+          that shows October 1850–October 2019 sea ice extent.
+        </h4>
       </div>
     </section>
     <section class="section data-sources">
@@ -519,7 +530,8 @@
           Atlas data begin with sea ice observations extrapolated from whaling
           ship log books<br />
           in the Beaufort, Chukchi, and Bering seas starting in 1850.<br />
-          Analog-derived sea ice coverage and interpolation are used to fill gaps in log book data.<br />
+          Analog-derived sea ice coverage and interpolation are used to fill
+          gaps in log book data.<br />
           Other data sources are incorporated as they were developed over time.
         </p>
       </div>
@@ -527,15 +539,23 @@
       <div class="centered--wrapper">
         <h5>More information on sea ice data sources</h5>
         <p>
-          <a href="https://nsidc.org/sites/nsidc.org/files/G10010_V002.0.pdf">Detailed data source descriptions</a><br />
+          <a href="https://nsidc.org/sites/nsidc.org/files/G10010_V002.0.pdf"
+            >Detailed data source descriptions</a
+          ><br />
           and<br />
-          <a href="https://www.tandfonline.com/doi/abs/10.1111/j.1931-0846.2016.12195.x">Methodology used to synthesize data sources</a><br />
+          <a
+            href="https://www.tandfonline.com/doi/abs/10.1111/j.1931-0846.2016.12195.x"
+            >Methodology used to synthesize data sources</a
+          ><br />
         </p>
         <h5>Download data</h5>
         <p>
           Includes the entire Historical Sea Ice dataset compiled from the
           sources listed here.<br />
-          <a href="http://ckan.snap.uaf.edu/dataset/historical-sea-ice-atlas-observed-estimates-of-sea-ice-concentration-in-alaska-waters">Download the dataset.</a>
+          <a
+            href="http://ckan.snap.uaf.edu/dataset/historical-sea-ice-atlas-observed-estimates-of-sea-ice-concentration-in-alaska-waters"
+            >Download the dataset.</a
+          >
         </p>
         <h5>Get in touch</h5>
         <p>
@@ -543,8 +563,10 @@
             target="_new"
             href="https://uaf-iarc.typeform.com/to/mN7J5cCK#tool=Historical%20Sea Ice%20Atlas%20for%20Alaska%20&%20The%20Arctic"
             >Send us feedback</a
-          > or email <a href="mailto:nlfresco@alaska.edu">nlfresco@alaska.edu</a> if you have
-          questions.
+          >
+          or email
+          <a href="mailto:nlfresco@alaska.edu">nlfresco@alaska.edu</a> if you
+          have questions.
         </p>
       </div>
     </section>
@@ -1099,7 +1121,14 @@ export default {
 
 @import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap");
 
-p, h1, h2, h3, h4, h5, label, footer {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+label,
+footer {
   font-family: "Libre Caslon Text", serif;
   color: #1b3f7c;
 }
@@ -1110,7 +1139,7 @@ a {
 }
 
 a:hover {
-  background-color: #FFE598;
+  background-color: #ffe598;
 }
 
 section.lead {
