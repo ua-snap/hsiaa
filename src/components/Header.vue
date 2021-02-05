@@ -65,10 +65,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-nav {
-  border-bottom: 1px solid #aaa;
-}
-
 .navbar-brand img {
   height: 3rem;
   max-height: 3rem;
