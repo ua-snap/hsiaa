@@ -30,7 +30,7 @@
           research Arctic ecosystems<br />
           — OR —<br />
           are simply interested in<br />
-          Arctic sea ice data & climate change
+          Arctic sea ice data &nbsp; climate change
         </p>
         <p class="announce">This atlas is for you.</p>
       </div>
@@ -49,7 +49,7 @@
         <p class="start">
           To begin, choose a community or click on the map.
         </p>
-        <div class="location--drop-down">
+        <div class="location--drop-down" v-bind:class="{ hidden: foldoutActive }">
           <form>
             <label class="label">Choose a community</label>
             <div class="select control">
@@ -499,7 +499,12 @@
         </div>
       </div>
     </section>
-    <section class="data-sources">
+    <section class="section">
+      <div class="centered--wrapper">
+        <h4><a href="./assets/Historical-Sea-Ice-Extents-Octobers.pdf">Download a poster</a> that shows October 1850–October 2019 sea ice extent.</h4>
+      </div>
+    </section>
+    <section class="section data-sources">
       <div class="centered--wrapper">
         <h4>Data sources used in this Atlas</h4>
         <p>
@@ -517,16 +522,16 @@
           Analog-derived sea ice coverage and interpolation are used to fill gaps in log book data.<br />
           Other data sources are incorporated as they were developed over time.
         </p>
+      </div>
+      <img src="./assets/SourcesChart.svg" />
+      <div class="centered--wrapper">
         <h5>More information on sea ice data sources</h5>
         <p>
           <a href="https://nsidc.org/sites/nsidc.org/files/G10010_V002.0.pdf">Detailed data source descriptions</a><br />
           and<br />
           <a href="https://www.tandfonline.com/doi/abs/10.1111/j.1931-0846.2016.12195.x">Methodology used to synthesize data sources</a><br />
         </p>
-      </div>
-      <img src="./assets/SourcesChart.svg" />
-      <div class="centered--wrapper">
-        <h4>Download data</h4>
+        <h5>Download data</h5>
         <p>
           Includes the entire Historical Sea Ice dataset compiled from the
           sources listed here.<br />
@@ -538,7 +543,7 @@
             target="_new"
             href="https://uaf-iarc.typeform.com/to/mN7J5cCK#tool=Historical%20Sea Ice%20Atlas%20for%20Alaska%20&%20The%20Arctic"
             >Send us feedback</a
-          > or email us at <span class="email">snap@uaf.edu</span> if you have
+          > or email <a href="mailto:nlfresco@alaska.edu">nlfresco@alaska.edu</a> if you have
           questions.
         </p>
       </div>
@@ -1158,11 +1163,11 @@ section.lead {
 section.lede {
   text-align: center;
   div {
-    width: 50rem;
     margin: 0 auto;
+    padding-top: 1.5rem;
     border-top: 1px solid #eee;
     p {
-      margin-top: 3.5rem;
+      margin-top: 2rem;
       font-size: 22px;
       font-weight: 400;
       font-style: italic;
@@ -1229,7 +1234,6 @@ section.foldout {
 .youtube-videos {
   width: 100%;
   min-height: 350px;
-  min-width: 600px;
 }
 
 #map--main {
