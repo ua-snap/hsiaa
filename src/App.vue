@@ -54,24 +54,80 @@
             <div class="select control">
               <select v-model="community">
                 <optgroup label="Alaska communities">
-                  <option value="54.2510646002121,-165.794520095568"
-                    >Akutan, AK</option
-                  >
-                  <option value="62.730632,-164.971273">Alakanuk, AK</option>
-                  <option value="65.2839013106643,-166.543276878432"
-                    >Brevig Mission, AK</option
-                  >
-                  <option value="54.8928703605601,-162.585689817175"
-                    >Cold Bay, AK</option
-                  >
+                  <option value="62.6851300839551,-165.051458350888">Alakanuk, AK</option>
+                  <option value="65.2839013106643,-166.543276878432">Brevig Mission, AK</option>
+                  <option value="54.8928703605601,-162.585689817175">Cold Bay, AK</option>
+                  <option value="66.215846873033,-162.686018873669">Deering, AK</option>
+                  <option value="58.6984670397717,-158.604182960483">Dillingham, AK</option>
+                  <option value="65.7450538858085,-168.982175323199">Diomede, AK</option>
+                  <option value="58.217525752542,-157.610129237119">Egegik, AK</option>
+                  <option value="58.808756,-158.569142">Ekuk, AK</option>
+                  <option value="64.55918135633,-162.105188401375">Elim, AK</option>
+                  <option value="62.8222221972983,-164.936452924562">Emmonak, AK</option>
+                  <option value="64.4814106580503,-165.422359375284">Fort Davis, AK</option>
+                  <option value="63.8090755288085,-171.755535579505">Gambell, AK</option>
+                  <option value="64.3832176116423,-162.956763792118">Golovin, AK</option>
+                  <option value="59.1729106218548,-161.775521544658">Goodnews Bay, AK</option>
+                  <option value="61.5093172991055,-166.002724660499">Hooper Bay, AK</option>
+                  <option value="70.1927932513101,-143.639697294833">Kaktovik, AK</option>
+                  <option value="60.1052439609978,-164.479848278604">Kipnuk, AK</option>
+                  <option value="67.6417368319659,-164.673004082018">Kivalina, AK</option>
+                  <option value="59.9141493639226,-162.893349156378">Kongiganak, AK</option>
+                  <option value="63.1143882756083,-163.412739594096">Kotlik, AK</option>
+                  <option value="66.8287674399298,-162.784051401057">Kotzebue, AK</option>
+                  <option value="64.7047630607052,-161.161760498773">Koyuk, AK</option>
+                  <option value="59.8441824426393,-163.117809247724">Kwigillingok, AK</option>
+                  <option value="60.5077800612199,-166.277527564528">Mekoryuk, AK</option>
+                  <option value="58.6516550698052,-157.466986930608">Naknek, AK</option>
+                  <option value="56.0832824650499,-161.222756583751">Nelson Lagoon, AK</option>
+                  <option value="60.8843376204438,-165.15993447947">Newtok, AK</option>
+                  <option value="64.4814106580503,-165.452359375284">Nome, AK</option>
+                  <option value="62.5790920702393,-165.204312655182">Nunam Iqua, AK</option>
+                  <option value="57.59939366239,-157.833296426434">Pilot Point, AK</option>
+                  <option value="58.9871442717979,-161.950343490552">Platinum, AK</option>
+                  <option value="68.2884307616777,-166.876912959572">Point Hope, AK</option>
+                  <option value="69.7262618857318,-163.385572237574">Point Lay, AK</option>
+                  <option value="56.959948218085,-158.825768650723">Port Heiden, AK</option>
+                  <option value="70.4487179863218,-148.033321138673">Prudhoe Bay, AK</option>
+                  <option value="59.7347453630506,-162.003149760407">Quinhagak, AK</option>
+                  <option value="63.7325806762895,-169.470088541689">Savoonga, AK</option>
+                  <option value="61.8728846470491,-165.733313425583">Scammon Bay, AK</option>
+                  <option value="64.2601704074258,-161.45302011971">Shaktoolik, AK</option>
+                  <option value="66.217626405847,-166.227577594336">Shishmaref, AK</option>
+                  <option value="56.6332792236121,-169.530826798787">St. George, AK</option>
+                  <option value="63.5982681460881,-161.854029767968">St. Michael, AK</option>
+                  <option value="57.1088351477948,-170.254768664541">St. Paul, AK</option>
+                  <option value="63.5054317849543,-162.410429528882">Stebbins, AK</option>
+                  <option value="65.2839013106643,-166.543276878432">Teller, AK</option>
+                  <option value="58.9422727621214,-160.438188485022">Togiak, AK</option>
+                  <option value="60.4958384778163,-165.112175247689">Toksook Bay, AK</option>
+                  <option value="60.6948225298798,-165.356563870896">Tununak, AK</option>
+                  <option value="60.4958384778163,-165.112175247689">Umkumiut, AK</option>
+                  <option value="63.8501941017296,-161.260957590821">Unalakteet, AK</option>
+                  <option value="71.4713063075264,-156.665176932233">Utqiaġvik, AK</option>
+                  <option value="70.787461075763,-160.265186401037">Wainwright, AK</option>
+                  <option value="65.5785629514697,-168.28334108969">Wales, AK</option>
                 </optgroup>
                 <optgroup label="North West Territory communities">
-                  <option value="69.9610863947203,-123.661517656453"
-                    >Paulatuak, NWT</option
-                  >
-                  <option value="69.6835584167738,-133.371989420137"
-                    >Tuktoyaktuk, NWT</option
-                  >
+                  <option value="69.9610863947203,-123.661517656453">Paulatuak, NWT</option>
+                  <option value="71.8632712337163,-125.482112134379">Sachs Harbour, NWT</option>
+                  <option value="69.6835584167738,-133.371989420137">Tuktoyaktuk, NWT</option>
+                </optgroup>
+                <optgroup label="Russian communities">
+                  <option value="67.8909773649486,-175.614923904914">Ванкарем, RU</option>
+                  <option value="66.3529324921101,-170.27006503675">Инчоун, RU</option>
+                  <option value="65.8932829095358,-178.875266395884">Конергино, RU</option>
+                  <option value="65.3616386823124,-170.303365741367">Лаврентия, RU</option>
+                  <option value="65.4372201267222,-171.663454294326">Лорино, RU</option>
+                  <option value="67.0633662935393,-172.870441076511">Нешкан, RU</option>
+                  <option value="64.4275690840349,-172.14258985466">Новое Чаплино, RU</option>
+                  <option value="64.7547774117121,-175.486856576098">Нунлигран, RU</option>
+                  <option value="67.5528205102073,-174.700141908481">Нутэпэльмен, RU</option>
+                  <option value="64.3030720574871,-174.094925268185">Сиреники, RU</option>
+                  <option value="66.2173014811322,-169.734038988469">Уэлен, RU</option>
+                  <option value="65.0015999276741,-175.911858185307">Энмелен, RU</option>
+                  <option value="66.9733669397493,-171.808380256471">Энурмино, RU</option>
+                  <option value="64.88179603077,-172.345075328797">Янракыннот, RU</option>
                 </optgroup>
               </select>
             </div>
@@ -287,7 +343,7 @@
         <div class="column is-half">
           <iframe
             class="youtube-videos"
-            src="https://www.youtube.com/embed/IxtKVbKPMeo"
+            src="https://www.youtube.com/embed/XSa0iGU0uDY"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
