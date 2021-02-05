@@ -21,8 +21,9 @@
 
     <section class="section lede">
       <div>
+        <p class="announce">If</p>
         <p>
-          If you live in a northern Alaska coastal community<br />
+          you live in a northern Alaska coastal community<br />
           hunt or fish in a marine environment<br />
           work in shipping or oil and gas<br />
           serve with the Coast Guard<br />
@@ -50,84 +51,222 @@
         </p>
         <div class="location--drop-down">
           <form>
-            <label class="label">Select a community</label>
+            <label class="label">Choose a community</label>
             <div class="select control">
               <select v-model="community">
                 <optgroup label="Alaska communities">
-                  <option value="62.6851300839551,-165.051458350888">Alakanuk, AK</option>
-                  <option value="65.2839013106643,-166.543276878432">Brevig Mission, AK</option>
-                  <option value="54.8928703605601,-162.585689817175">Cold Bay, AK</option>
-                  <option value="66.215846873033,-162.686018873669">Deering, AK</option>
-                  <option value="58.6984670397717,-158.604182960483">Dillingham, AK</option>
-                  <option value="65.7450538858085,-168.982175323199">Diomede, AK</option>
-                  <option value="58.217525752542,-157.610129237119">Egegik, AK</option>
+                  <option value="62.6851300839551,-165.051458350888"
+                    >Alakanuk, AK</option
+                  >
+                  <option value="65.2839013106643,-166.543276878432"
+                    >Brevig Mission, AK</option
+                  >
+                  <option value="54.8928703605601,-162.585689817175"
+                    >Cold Bay, AK</option
+                  >
+                  <option value="66.215846873033,-162.686018873669"
+                    >Deering, AK</option
+                  >
+                  <option value="58.6984670397717,-158.604182960483"
+                    >Dillingham, AK</option
+                  >
+                  <option value="65.7450538858085,-168.982175323199"
+                    >Diomede, AK</option
+                  >
+                  <option value="58.217525752542,-157.610129237119"
+                    >Egegik, AK</option
+                  >
                   <option value="58.808756,-158.569142">Ekuk, AK</option>
-                  <option value="64.55918135633,-162.105188401375">Elim, AK</option>
-                  <option value="62.8222221972983,-164.936452924562">Emmonak, AK</option>
-                  <option value="64.4814106580503,-165.422359375284">Fort Davis, AK</option>
-                  <option value="63.8090755288085,-171.755535579505">Gambell, AK</option>
-                  <option value="64.3832176116423,-162.956763792118">Golovin, AK</option>
-                  <option value="59.1729106218548,-161.775521544658">Goodnews Bay, AK</option>
-                  <option value="61.5093172991055,-166.002724660499">Hooper Bay, AK</option>
-                  <option value="70.1927932513101,-143.639697294833">Kaktovik, AK</option>
-                  <option value="60.1052439609978,-164.479848278604">Kipnuk, AK</option>
-                  <option value="67.6417368319659,-164.673004082018">Kivalina, AK</option>
-                  <option value="59.9141493639226,-162.893349156378">Kongiganak, AK</option>
-                  <option value="63.1143882756083,-163.412739594096">Kotlik, AK</option>
-                  <option value="66.8287674399298,-162.784051401057">Kotzebue, AK</option>
-                  <option value="64.7047630607052,-161.161760498773">Koyuk, AK</option>
-                  <option value="59.8441824426393,-163.117809247724">Kwigillingok, AK</option>
-                  <option value="60.5077800612199,-166.277527564528">Mekoryuk, AK</option>
-                  <option value="58.6516550698052,-157.466986930608">Naknek, AK</option>
-                  <option value="56.0832824650499,-161.222756583751">Nelson Lagoon, AK</option>
-                  <option value="60.8843376204438,-165.15993447947">Newtok, AK</option>
-                  <option value="64.4814106580503,-165.452359375284">Nome, AK</option>
-                  <option value="62.5790920702393,-165.204312655182">Nunam Iqua, AK</option>
-                  <option value="57.59939366239,-157.833296426434">Pilot Point, AK</option>
-                  <option value="58.9871442717979,-161.950343490552">Platinum, AK</option>
-                  <option value="68.2884307616777,-166.876912959572">Point Hope, AK</option>
-                  <option value="69.7262618857318,-163.385572237574">Point Lay, AK</option>
-                  <option value="56.959948218085,-158.825768650723">Port Heiden, AK</option>
-                  <option value="70.4487179863218,-148.033321138673">Prudhoe Bay, AK</option>
-                  <option value="59.7347453630506,-162.003149760407">Quinhagak, AK</option>
-                  <option value="63.7325806762895,-169.470088541689">Savoonga, AK</option>
-                  <option value="61.8728846470491,-165.733313425583">Scammon Bay, AK</option>
-                  <option value="64.2601704074258,-161.45302011971">Shaktoolik, AK</option>
-                  <option value="66.217626405847,-166.227577594336">Shishmaref, AK</option>
-                  <option value="56.6332792236121,-169.530826798787">St. George, AK</option>
-                  <option value="63.5982681460881,-161.854029767968">St. Michael, AK</option>
-                  <option value="57.1088351477948,-170.254768664541">St. Paul, AK</option>
-                  <option value="63.5054317849543,-162.410429528882">Stebbins, AK</option>
-                  <option value="65.2839013106643,-166.543276878432">Teller, AK</option>
-                  <option value="58.9422727621214,-160.438188485022">Togiak, AK</option>
-                  <option value="60.4958384778163,-165.112175247689">Toksook Bay, AK</option>
-                  <option value="60.6948225298798,-165.356563870896">Tununak, AK</option>
-                  <option value="60.4958384778163,-165.112175247689">Umkumiut, AK</option>
-                  <option value="63.8501941017296,-161.260957590821">Unalakteet, AK</option>
-                  <option value="71.4713063075264,-156.665176932233">Utqiaġvik, AK</option>
-                  <option value="70.787461075763,-160.265186401037">Wainwright, AK</option>
-                  <option value="65.5785629514697,-168.28334108969">Wales, AK</option>
+                  <option value="64.55918135633,-162.105188401375"
+                    >Elim, AK</option
+                  >
+                  <option value="62.8222221972983,-164.936452924562"
+                    >Emmonak, AK</option
+                  >
+                  <option value="64.4814106580503,-165.422359375284"
+                    >Fort Davis, AK</option
+                  >
+                  <option value="63.8090755288085,-171.755535579505"
+                    >Gambell, AK</option
+                  >
+                  <option value="64.3832176116423,-162.956763792118"
+                    >Golovin, AK</option
+                  >
+                  <option value="59.1729106218548,-161.775521544658"
+                    >Goodnews Bay, AK</option
+                  >
+                  <option value="61.5093172991055,-166.002724660499"
+                    >Hooper Bay, AK</option
+                  >
+                  <option value="70.1927932513101,-143.639697294833"
+                    >Kaktovik, AK</option
+                  >
+                  <option value="60.1052439609978,-164.479848278604"
+                    >Kipnuk, AK</option
+                  >
+                  <option value="67.6417368319659,-164.673004082018"
+                    >Kivalina, AK</option
+                  >
+                  <option value="59.9141493639226,-162.893349156378"
+                    >Kongiganak, AK</option
+                  >
+                  <option value="63.1143882756083,-163.412739594096"
+                    >Kotlik, AK</option
+                  >
+                  <option value="66.8287674399298,-162.784051401057"
+                    >Kotzebue, AK</option
+                  >
+                  <option value="64.7047630607052,-161.161760498773"
+                    >Koyuk, AK</option
+                  >
+                  <option value="59.8441824426393,-163.117809247724"
+                    >Kwigillingok, AK</option
+                  >
+                  <option value="60.5077800612199,-166.277527564528"
+                    >Mekoryuk, AK</option
+                  >
+                  <option value="58.6516550698052,-157.466986930608"
+                    >Naknek, AK</option
+                  >
+                  <option value="56.0832824650499,-161.222756583751"
+                    >Nelson Lagoon, AK</option
+                  >
+                  <option value="60.8843376204438,-165.15993447947"
+                    >Newtok, AK</option
+                  >
+                  <option value="64.4814106580503,-165.452359375284"
+                    >Nome, AK</option
+                  >
+                  <option value="62.5790920702393,-165.204312655182"
+                    >Nunam Iqua, AK</option
+                  >
+                  <option value="57.59939366239,-157.833296426434"
+                    >Pilot Point, AK</option
+                  >
+                  <option value="58.9871442717979,-161.950343490552"
+                    >Platinum, AK</option
+                  >
+                  <option value="68.2884307616777,-166.876912959572"
+                    >Point Hope, AK</option
+                  >
+                  <option value="69.7262618857318,-163.385572237574"
+                    >Point Lay, AK</option
+                  >
+                  <option value="56.959948218085,-158.825768650723"
+                    >Port Heiden, AK</option
+                  >
+                  <option value="70.4487179863218,-148.033321138673"
+                    >Prudhoe Bay, AK</option
+                  >
+                  <option value="59.7347453630506,-162.003149760407"
+                    >Quinhagak, AK</option
+                  >
+                  <option value="63.7325806762895,-169.470088541689"
+                    >Savoonga, AK</option
+                  >
+                  <option value="61.8728846470491,-165.733313425583"
+                    >Scammon Bay, AK</option
+                  >
+                  <option value="64.2601704074258,-161.45302011971"
+                    >Shaktoolik, AK</option
+                  >
+                  <option value="66.217626405847,-166.227577594336"
+                    >Shishmaref, AK</option
+                  >
+                  <option value="56.6332792236121,-169.530826798787"
+                    >St. George, AK</option
+                  >
+                  <option value="63.5982681460881,-161.854029767968"
+                    >St. Michael, AK</option
+                  >
+                  <option value="57.1088351477948,-170.254768664541"
+                    >St. Paul, AK</option
+                  >
+                  <option value="63.5054317849543,-162.410429528882"
+                    >Stebbins, AK</option
+                  >
+                  <option value="65.2839013106643,-166.543276878432"
+                    >Teller, AK</option
+                  >
+                  <option value="58.9422727621214,-160.438188485022"
+                    >Togiak, AK</option
+                  >
+                  <option value="60.4958384778163,-165.112175247689"
+                    >Toksook Bay, AK</option
+                  >
+                  <option value="60.6948225298798,-165.356563870896"
+                    >Tununak, AK</option
+                  >
+                  <option value="60.4958384778163,-165.112175247689"
+                    >Umkumiut, AK</option
+                  >
+                  <option value="63.8501941017296,-161.260957590821"
+                    >Unalakteet, AK</option
+                  >
+                  <option value="71.4713063075264,-156.665176932233"
+                    >Utqiaġvik, AK</option
+                  >
+                  <option value="70.787461075763,-160.265186401037"
+                    >Wainwright, AK</option
+                  >
+                  <option value="65.5785629514697,-168.28334108969"
+                    >Wales, AK</option
+                  >
                 </optgroup>
                 <optgroup label="North West Territory communities">
-                  <option value="69.9610863947203,-123.661517656453">Paulatuak, NWT</option>
-                  <option value="71.8632712337163,-125.482112134379">Sachs Harbour, NWT</option>
-                  <option value="69.6835584167738,-133.371989420137">Tuktoyaktuk, NWT</option>
+                  <option value="69.9610863947203,-123.661517656453"
+                    >Paulatuak, NWT</option
+                  >
+                  <option value="71.8632712337163,-125.482112134379"
+                    >Sachs Harbour, NWT</option
+                  >
+                  <option value="69.6835584167738,-133.371989420137"
+                    >Tuktoyaktuk, NWT</option
+                  >
                 </optgroup>
                 <optgroup label="Russian communities">
-                  <option value="67.8909773649486,-175.614923904914">Ванкарем, RU</option>
-                  <option value="66.3529324921101,-170.27006503675">Инчоун, RU</option>
-                  <option value="65.8932829095358,-178.875266395884">Конергино, RU</option>
-                  <option value="65.3616386823124,-170.303365741367">Лаврентия, RU</option>
-                  <option value="65.4372201267222,-171.663454294326">Лорино, RU</option>
-                  <option value="67.0633662935393,-172.870441076511">Нешкан, RU</option>
-                  <option value="64.4275690840349,-172.14258985466">Новое Чаплино, RU</option>
-                  <option value="64.7547774117121,-175.486856576098">Нунлигран, RU</option>
-                  <option value="67.5528205102073,-174.700141908481">Нутэпэльмен, RU</option>
-                  <option value="64.3030720574871,-174.094925268185">Сиреники, RU</option>
-                  <option value="66.2173014811322,-169.734038988469">Уэлен, RU</option>
-                  <option value="65.0015999276741,-175.911858185307">Энмелен, RU</option>
-                  <option value="66.9733669397493,-171.808380256471">Энурмино, RU</option>
-                  <option value="64.88179603077,-172.345075328797">Янракыннот, RU</option>
+                  <option value="67.8909773649486,-175.614923904914"
+                    >Ванкарем, RU</option
+                  >
+                  <option value="66.3529324921101,-170.27006503675"
+                    >Инчоун, RU</option
+                  >
+                  <option value="65.8932829095358,-178.875266395884"
+                    >Конергино, RU</option
+                  >
+                  <option value="65.3616386823124,-170.303365741367"
+                    >Лаврентия, RU</option
+                  >
+                  <option value="65.4372201267222,-171.663454294326"
+                    >Лорино, RU</option
+                  >
+                  <option value="67.0633662935393,-172.870441076511"
+                    >Нешкан, RU</option
+                  >
+                  <option value="64.4275690840349,-172.14258985466"
+                    >Новое Чаплино, RU</option
+                  >
+                  <option value="64.7547774117121,-175.486856576098"
+                    >Нунлигран, RU</option
+                  >
+                  <option value="67.5528205102073,-174.700141908481"
+                    >Нутэпэльмен, RU</option
+                  >
+                  <option value="64.3030720574871,-174.094925268185"
+                    >Сиреники, RU</option
+                  >
+                  <option value="66.2173014811322,-169.734038988469"
+                    >Уэлен, RU</option
+                  >
+                  <option value="65.0015999276741,-175.911858185307"
+                    >Энмелен, RU</option
+                  >
+                  <option value="66.9733669397493,-171.808380256471"
+                    >Энурмино, RU</option
+                  >
+                  <option value="64.88179603077,-172.345075328797"
+                    >Янракыннот, RU</option
+                  >
                 </optgroup>
               </select>
             </div>
@@ -166,7 +305,7 @@
                 :max="2019"
                 :hide-label="true"
               />
-              <span v-on:click="decrementMonth" class="button is-small">
+              <span v-on:click="decrementMonth" class="button">
                 <i class="fas fa-arrow-alt-circle-left" /><span
                   class="month-indicator"
                   >Past Month</span
@@ -174,7 +313,7 @@
               </span>
               <span
                 v-on:click="incrementMonth"
-                class="button is-small"
+                class="button"
                 style="margin-left: 5px;"
               >
                 <i class="fas fa-arrow-alt-circle-right" /><span
@@ -310,16 +449,16 @@
           This Atlas calculates and illustrates these sea ice measurements
         </h4>
         <h5>Sea ice concentration: Amount of sea ice covering an area.</h5>
-        The ratio of sea ice to water, either a fraction (8/10) or percentage
+        <p>The ratio of sea ice to water, either a fraction (8/10) or percentage
         (80%) of sea ice coverage.<br />
         &lt;30% sea ice concentration = navigable by ship. <br />&gt;90% = solid
-        ice.
+        ice.</p>
         <h5>
           Sea ice extent: Total area covered by some amount of sea ice at a
           given time,<br />
           including open water between floes.
         </h5>
-        The Atlas considers sea ice &ldquo;present&rdquo; if sea ice
+        <p>The Atlas considers sea ice &ldquo;present&rdquo; if sea ice
         concentration is &gt;15%.<br />
         Thus, sea ice extent is the area of sea covered by at least 15% ice for
         a specific date.<br />
@@ -327,13 +466,13 @@
         represents<br />
         the measured or interpolated sea ice extent closest to the middle of
         that month.
-
+</p>
         <h5>
           Data animations
         </h5>
         <p>
           View animations of sea ice extent across the entire dataset:<br />
-          either every month from January 1850 to December 2019 or for
+          either every month from January 1850 to December 2019, or for
           individual months.
         </p>
       </div>
@@ -363,21 +502,27 @@
     <section class="data-sources">
       <div class="centered--wrapper">
         <h4>Data sources used in this Atlas</h4>
-        Collecting and interpreting sea ice data has always been challenging.<br />
-        Charting conventions and interpretations of ice concentration have
-        changed over time.<br />
-        Observing tools&ndash;ships (1800s), airplanes (early 1900s), satellites
-        (1970s)&ndash;have evolved as well.<br />
-        Atlas data begin with sea ice observations extrapolated from whaling
-        ship log books<br />
-        in the Beaufort, Chukchi, and Bering seas starting in 1850.<br />
-        Log book data gaps are filled with analog-derived sea ice coverage or
-        interpolation.<br />
-        Other data sources are incorporated as they were developed over time.
+        <p>
+          Collecting and interpreting sea ice data has always been
+          challenging.<br />
+          Charting conventions and interpretations of ice concentration have
+          changed over time.<br />
+          Observing tools&mdash;ships (1800s), airplanes (early 1900s),
+          satellites (1970s)&mdash;have evolved as well.<br />
+        </p>
+        <p>
+          Atlas data begin with sea ice observations extrapolated from whaling
+          ship log books<br />
+          in the Beaufort, Chukchi, and Bering seas starting in 1850.<br />
+          Analog-derived sea ice coverage and interpolation are used to fill gaps in log book data.<br />
+          Other data sources are incorporated as they were developed over time.
+        </p>
         <h5>More information on sea ice data sources</h5>
-        Detailed data source descriptions<br />
-        and<br />
-        Methodology used to synthesize data sources<br />
+        <p>
+          <a href="https://nsidc.org/sites/nsidc.org/files/G10010_V002.0.pdf">Detailed data source descriptions</a><br />
+          and<br />
+          <a href="https://www.tandfonline.com/doi/abs/10.1111/j.1931-0846.2016.12195.x">Methodology used to synthesize data sources</a><br />
+        </p>
       </div>
       <img src="./assets/SourcesChart.svg" />
       <div class="centered--wrapper">
@@ -385,7 +530,7 @@
         <p>
           Includes the entire Historical Sea Ice dataset compiled from the
           sources listed here.<br />
-          Download the dataset. This link will open in a new tab.
+          <a href="http://ckan.snap.uaf.edu/dataset/historical-sea-ice-atlas-observed-estimates-of-sea-ice-concentration-in-alaska-waters">Download the dataset.</a>
         </p>
         <h5>Get in touch</h5>
         <p>
@@ -393,7 +538,7 @@
             target="_new"
             href="https://uaf-iarc.typeform.com/to/mN7J5cCK#tool=Historical%20Sea Ice%20Atlas%20for%20Alaska%20&%20The%20Arctic"
             >Send us feedback</a
-          >, or email us at <span class="email">snap@uaf.edu</span> if you have
+          > or email us at <span class="email">snap@uaf.edu</span> if you have
           questions.
         </p>
       </div>
@@ -426,7 +571,7 @@ import Footer from "./components/Footer";
 var getDateFromInteger = function(year, month) {
   var dateObj = moment({ day: 1, month: month, year: year });
   return {
-    display: dateObj.format("MMMM, YYYY"),
+    display: dateObj.format("MMMM YYYY"),
     wms: '"' + dateObj.format("YYYY-MM-DDT00:00:00.000[Z]") + '"'
   };
 };
@@ -947,11 +1092,20 @@ export default {
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Imbue:wght@600&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap");
 
-* {
+p, h1, h2, h3, h4, h5, label, footer {
   font-family: "Libre Caslon Text", serif;
   color: #1b3f7c;
+}
+
+a {
+  text-decoration: underline;
+  display: inline-block;
+}
+
+a:hover {
+  background-color: #FFE598;
 }
 
 section.lead {
@@ -1004,7 +1158,7 @@ section.lead {
 section.lede {
   text-align: center;
   div {
-    width: 30rem;
+    width: 50rem;
     margin: 0 auto;
     border-top: 1px solid #eee;
     p {
@@ -1050,6 +1204,10 @@ section.about .start {
     font-weight: 700;
     font-size: 1.5rem;
   }
+}
+
+.explainer {
+  margin-top: 3rem;
 }
 
 section.data-sources {
@@ -1141,11 +1299,6 @@ section.foldout {
       .slider-wrapper {
         width: 55rem;
         margin: 1rem auto;
-
-        ::v-deep .vue-slider-rail {
-          background-color: #fff !important;
-          box-shadow: 0 2px 6px #888;
-        }
 
         p.date--display--date {
           font-size: 2rem;

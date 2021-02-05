@@ -10,24 +10,20 @@
             (AOOS), the
             <a href="https://uaf-accap.org"
               >Alaska Center for Climate Assessment and Policy</a
-            >
-            (ACCAP), and the
+            >, and the
             <a href="https://www.snap.uaf.edu/" title="👍"
               >Scenarios Network for Alaska and Arctic Planning</a
-            >
-            (SNAP).
+            >.
           </p>
 
           <p>
             Funded by the National Ocean Service at the
             <a href="http://www.noaa.gov"
               >National Oceanic and Atmospheric Administration</a
-            >
-            (NOAA) through AOOS grant #NA11NOS0120020. Work was performed at the
+            > through AOOS grant #NA11NOS0120020. Work was performed at the
             <a href="https://uaf-iarc.org/"
               >International Arctic Research Center</a
-            >
-            (IARC), at the
+            >, at the
             <a href="https://uaf.edu/uaf/">University of Alaska Fairbanks</a>,
             with assistance from the
             <a href="https://illinois.edu/"
@@ -71,7 +67,7 @@ export default {
 <style lang="scss" scoped>
 .footer {
   box-shadow: inset 0 7px 9px -7px rgba(0, 0, 0, 0.4);
-  margin-bottom: 3rem;
+  min-height: 26rem;
 }
 
 .footer div.wrapper {
