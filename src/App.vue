@@ -3,118 +3,79 @@
     <div class="header-wrapper">
       <mv-header logo="accap" :buttons="navbuttons"></mv-header>
     </div>
-    <section class="section lead">
-      <div class="container">
-        <div class="titles">
-          <h1 class="title">Historical Sea Ice Atlas</h1>
-          <h2 class="subtitle">
-            Alaska &amp; Arctic sea ice, mid&ndash;1800s to the present.
-          </h2>
+
+    <section class="lead section">
+      <div class="columns is-vcentered">
+        <div class="column intro is-half">
+          <h1>
+            Historical<br />
+            Sea Ice Atlas
+          </h1>
+          <h2>for <span>Alaska</span> &amp; the <span>Arctic</span></h2>
+          <h3>1850 to present</h3>
         </div>
-        <div class="content">
-          <h2 class="title is-4">
-            About the HSIA
-          </h2>
-          <p class="is-size-6">
-            <strong>If you live in an Arctic or sub-Arctic coastal community,
-            hunt or fish in a marine environment</strong>, work in shipping or
-            oil and gas, serve with the Coast Guard, research Arctic
-            ecosystems or are otherwise interested in Arctic sea ice data and
-            climate change, <strong>this atlas is for you.</strong>
-          </p>
-          <p class="is-size-6">
-            View historical sea ice data from the seas around the circumpolar
-            north and discover how ice extent and concentration have changed
-            over time. This atlas shows snapshots in time as well as long term
-            patterns. It is not designed for forecasting or prediction, but can
-            provide useful historical context for future planning efforts.
-          </p>
-          <p>Choose a community from the selection below, or click anywhere on the map to show historical sea ice conditions at that place.</p>
-          <div class="location--drop-down" v-bind:class="{ hidden: foldoutActive }">
-              <form>
-                <label class="label">Select a community</label>
-                <div class="select control">
-                  <select v-model="community">
-                    <optgroup label="Alaska communities">
-                      <option value="62.6851300839551,-165.051458350888">Alakanuk, AK</option>
-                      <option value="65.2839013106643,-166.543276878432">Brevig Mission, AK</option>
-                      <option value="54.8928703605601,-162.585689817175">Cold Bay, AK</option>
-                      <option value="66.215846873033,-162.686018873669">Deering, AK</option>
-                      <option value="58.6984670397717,-158.604182960483">Dillingham, AK</option>
-                      <option value="65.7450538858085,-168.982175323199">Diomede, AK</option>
-                      <option value="58.217525752542,-157.610129237119">Egegik, AK</option>
-                      <option value="58.808756,-158.569142">Ekuk, AK</option>
-                      <option value="64.55918135633,-162.105188401375">Elim, AK</option>
-                      <option value="62.8222221972983,-164.936452924562">Emmonak, AK</option>
-                      <option value="64.4814106580503,-165.422359375284">Fort Davis, AK</option>
-                      <option value="63.8090755288085,-171.755535579505">Gambell, AK</option>
-                      <option value="64.3832176116423,-162.956763792118">Golovin, AK</option>
-                      <option value="59.1729106218548,-161.775521544658">Goodnews Bay, AK</option>
-                      <option value="61.5093172991055,-166.002724660499">Hooper Bay, AK</option>
-                      <option value="70.1927932513101,-143.639697294833">Kaktovik, AK</option>
-                      <option value="60.1052439609978,-164.479848278604">Kipnuk, AK</option>
-                      <option value="67.6417368319659,-164.673004082018">Kivalina, AK</option>
-                      <option value="59.9141493639226,-162.893349156378">Kongiganak, AK</option>
-                      <option value="63.1143882756083,-163.412739594096">Kotlik, AK</option>
-                      <option value="66.8287674399298,-162.784051401057">Kotzebue, AK</option>
-                      <option value="64.7047630607052,-161.161760498773">Koyuk, AK</option>
-                      <option value="59.8441824426393,-163.117809247724">Kwigillingok, AK</option>
-                      <option value="60.5077800612199,-166.277527564528">Mekoryuk, AK</option>
-                      <option value="58.6516550698052,-157.466986930608">Naknek, AK</option>
-                      <option value="56.0832824650499,-161.222756583751">Nelson Lagoon, AK</option>
-                      <option value="60.8843376204438,-165.15993447947">Newtok, AK</option>
-                      <option value="64.4814106580503,-165.452359375284">Nome, AK</option>
-                      <option value="62.5790920702393,-165.204312655182">Nunam Iqua, AK</option>
-                      <option value="57.59939366239,-157.833296426434">Pilot Point, AK</option>
-                      <option value="58.9871442717979,-161.950343490552">Platinum, AK</option>
-                      <option value="68.2884307616777,-166.876912959572">Point Hope, AK</option>
-                      <option value="69.7262618857318,-163.385572237574">Point Lay, AK</option>
-                      <option value="56.959948218085,-158.825768650723">Port Heiden, AK</option>
-                      <option value="70.4487179863218,-148.033321138673">Prudhoe Bay, AK</option>
-                      <option value="59.7347453630506,-162.003149760407">Quinhagak, AK</option>
-                      <option value="63.7325806762895,-169.470088541689">Savoonga, AK</option>
-                      <option value="61.8728846470491,-165.733313425583">Scammon Bay, AK</option>
-                      <option value="64.2601704074258,-161.45302011971">Shaktoolik, AK</option>
-                      <option value="66.217626405847,-166.227577594336">Shishmaref, AK</option>
-                      <option value="56.6332792236121,-169.530826798787">St. George, AK</option>
-                      <option value="63.5982681460881,-161.854029767968">St. Michael, AK</option>
-                      <option value="57.1088351477948,-170.254768664541">St. Paul, AK</option>
-                      <option value="63.5054317849543,-162.410429528882">Stebbins, AK</option>
-                      <option value="65.2839013106643,-166.543276878432">Teller, AK</option>
-                      <option value="58.9422727621214,-160.438188485022">Togiak, AK</option>
-                      <option value="60.4958384778163,-165.112175247689">Toksook Bay, AK</option>
-                      <option value="60.6948225298798,-165.356563870896">Tununak, AK</option>
-                      <option value="60.4958384778163,-165.112175247689">Umkumiut, AK</option>
-                      <option value="63.8501941017296,-161.260957590821">Unalakteet, AK</option>
-                      <option value="71.4713063075264,-156.665176932233">Utqiaġvik, AK</option>
-                      <option value="70.787461075763,-160.265186401037">Wainwright, AK</option>
-                      <option value="65.5785629514697,-168.28334108969">Wales, AK</option>
-                    </optgroup>
-                    <optgroup label="North West Territory communities">
-                      <option value="69.9610863947203,-123.661517656453">Paulatuak, NWT</option>
-                      <option value="71.8632712337163,-125.482112134379">Sachs Harbour, NWT</option>
-                      <option value="69.6835584167738,-133.371989420137">Tuktoyaktuk, NWT</option>
-                    </optgroup>
-                    <optgroup label="Russian communities">
-                      <option value="67.8909773649486,-175.614923904914">Ванкарем, RU</option>
-                      <option value="66.3529324921101,-170.27006503675">Инчоун, RU</option>
-                      <option value="65.8932829095358,-178.875266395884">Конергино, RU</option>
-                      <option value="65.3616386823124,-170.303365741367">Лаврентия, RU</option>
-                      <option value="65.4372201267222,-171.663454294326">Лорино, RU</option>
-                      <option value="67.0633662935393,-172.870441076511">Нешкан, RU</option>
-                      <option value="64.4275690840349,-172.14258985466">Новое Чаплино, RU</option>
-                      <option value="64.7547774117121,-175.486856576098">Нунлигран, RU</option>
-                      <option value="67.5528205102073,-174.700141908481">Нутэпэльмен, RU</option>
-                      <option value="64.3030720574871,-174.094925268185">Сиреники, RU</option>
-                      <option value="66.2173014811322,-169.734038988469">Уэлен, RU</option>
-                      <option value="65.0015999276741,-175.911858185307">Энмелен, RU</option>
-                      <option value="66.9733669397493,-171.808380256471">Энурмино, RU</option>
-                      <option value="64.88179603077,-172.345075328797">Янракыннот, RU</option>
-                    </optgroup>
-                  </select>
-                </div>
-              </form>
+
+        <div class="column splash is-half"></div>
+      </div>
+    </section>
+
+    <section class="section lede">
+      <div>
+        <p>
+          If you live in a northern Alaska coastal community<br />
+          hunt or fish in a marine environment<br />
+          work in shipping or oil and gas<br />
+          serve with the Coast Guard<br />
+          research Arctic ecosystems<br />
+          — OR —<br />
+          are simply interested in<br />
+          Arctic sea ice data & climate change
+        </p>
+        <p class="announce">This atlas is for you.</p>
+      </div>
+    </section>
+    <section class="section about">
+      <div class="centered--wrapper">
+        <p class="overview">
+          View historical sea ice data from the seas around the circumpolar
+          North<br />
+          and discover how ice extent and concentration have changed over
+          time.<br />
+          This Atlas shows snapshots in time, as well as long term patterns.<br />
+          It is not designed for forecasting or prediction,<br />
+          but can provide historical context for planning efforts.
+        </p>
+        <p class="start">
+          To begin, choose a community or click on the map.
+        </p>
+        <div class="location--drop-down">
+          <form>
+            <label class="label">Select a community</label>
+            <div class="select control">
+              <select v-model="community">
+                <optgroup label="Alaska communities">
+                  <option value="54.2510646002121,-165.794520095568"
+                    >Akutan, AK</option
+                  >
+                  <option value="62.730632,-164.971273">Alakanuk, AK</option>
+                  <option value="65.2839013106643,-166.543276878432"
+                    >Brevig Mission, AK</option
+                  >
+                  <option value="54.8928703605601,-162.585689817175"
+                    >Cold Bay, AK</option
+                  >
+                </optgroup>
+                <optgroup label="North West Territory communities">
+                  <option value="69.9610863947203,-123.661517656453"
+                    >Paulatuak, NWT</option
+                  >
+                  <option value="69.6835584167738,-133.371989420137"
+                    >Tuktoyaktuk, NWT</option
+                  >
+                </optgroup>
+              </select>
             </div>
+          </form>
         </div>
       </div>
     </section>
@@ -138,22 +99,37 @@
               </span>
             </div>
 
-
+            <div id="map--main"></div>
             <!-- Slider wrapper! -->
-            <div class="date--display">
+            <div class="slider-wrapper">
               <p class="date--display--date">{{ displayDate }}</p>
-              <vue-slider v-model="selectedDate" :height="20" :min="1850" :max="2019" :hide-label="true" />
+              <vue-slider
+                v-model="selectedDate"
+                :height="20"
+                :min="1850"
+                :max="2019"
+                :hide-label="true"
+              />
               <span v-on:click="decrementMonth" class="button is-small">
-                <i class="fas fa-arrow-alt-circle-left" /><span class="month-indicator">Past Month</span>
+                <i class="fas fa-arrow-alt-circle-left" /><span
+                  class="month-indicator"
+                  >Past Month</span
+                >
               </span>
-              <span v-on:click="incrementMonth" class="button is-small" style="margin-left: 5px;">
-                <i class="fas fa-arrow-alt-circle-right" /><span class="month-indicator">Next Month</span>
+              <span
+                v-on:click="incrementMonth"
+                class="button is-small"
+                style="margin-left: 5px;"
+              >
+                <i class="fas fa-arrow-alt-circle-right" /><span
+                  class="month-indicator"
+                  >Next Month</span
+                >
               </span>
             </div>
-
-            <div id="map--main"></div>
           </div>
         </div>
+
         <div
           v-bind:class="{ sidelined: foldoutActive }"
           class="report--section"
@@ -221,8 +197,27 @@
                     <label class="label">Choose any number of months</label>
                     <div class="control">
                       <div class="control--select">
-                        <multiselect v-model="selectedMonthOrSeason" :options="multiselectOptions" :multiple="true" :close-on-select="false" :clear-on-select="false" :preserve-search="true" placeholder="Choose desired months" label="month" track-by="number" :preselect-first="false">
-                          <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ values.length }} month(s) selected</span></template>
+                        <multiselect
+                          v-model="selectedMonthOrSeason"
+                          :options="multiselectOptions"
+                          :multiple="true"
+                          :close-on-select="false"
+                          :clear-on-select="false"
+                          :preserve-search="true"
+                          placeholder="Choose desired months"
+                          label="month"
+                          track-by="number"
+                          :preselect-first="false"
+                        >
+                          <template
+                            slot="selection"
+                            slot-scope="{ values, search, isOpen }"
+                            ><span
+                              class="multiselect__single"
+                              v-if="values.length &amp;&amp; !isOpen"
+                              >{{ values.length }} month(s) selected</span
+                            ></template
+                          >
                         </multiselect>
                       </div>
                     </div>
@@ -252,86 +247,99 @@
         </div>
       </div>
     </section>
-    <section style="padding: 2rem 0;">
-      <div class="container">
-        <div class="content">
-          <h2 class="title is-5">
-            Data animation
-          </h2>
-          <p>
-            View animations of sea ice extent below either across the entire
-            dataset &lpar;Every month from January 1850 to December 2019&rpar; or for
-            individual months.
-          </p>
-          <iframe class="youtube-videos" width="450" height="300" src="https://www.youtube.com/embed/XSa0iGU0uDY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <iframe class="youtube-videos" width="450" height="300" src="https://www.youtube.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <h2 class="title is-5">Data collection and interpretation</h2>
-          <p>
-            Collecting and interpreting sea ice data has always been difficult
-            work. Challenges stem from differences in historic interpretations
-            of ice concentration, different charting conventions, and especially
-            changes in available observing tools &lpar;ships, airplanes starting in
-            the early 1900s, satellites starting in the 1970s&rpar;
-          </p>
-          <p>
-            Data included in this atlas begins with sea ice observations
-            extrapolated from whaling ship log books in the Beaufort, Chukchi,
-            and Bering seas starting in 1850.
-          </p>
-          <p>
-            Data gaps from those logs are filled with analog-derived sea
-            ice coverage &lpar;longer gaps&rpar; or interpolation &lpar;short gaps&rpar;.
-            Other sea ice data sources are incorporated as they came into being
-            beginning with information from the Danish Meteorological Institute
-            sea ice charts dating back to 1893, through the satellite microwave
-            sensor products that became routine in 1978. Find more details on
-            the methodology involved in the synthesis of the various data
-            sources in this
-            <a href="https://www.tandfonline.com/doi/abs/10.1111/j.1931-0846.2016.12195.x" target="_blank">2017 paper in the Journal Arctic</a>.
-          </p>
-          <p>
-            In addition to historical sea ice data covering the seas around the
-            state of Alaska, the Atlas features the
-            <a href="https://nsidc.org/the-drift/data-update/gridded-monthly-arctic-sea-ice-back-to-1850-for-analysis-or-browsing/" target="_blank">Pan-Arctic SIBT1850 Sea Ice Dataset</a>.
-          </p>
-          <img src="./assets/SourcesChart.svg" width="1000px" height="500px" />
-          <p>
-            <br/>
-            <a href="https://nsidc.org/sites/nsidc.org/files/G10010_V002.0.pdf" target="_blank">See more information on the data sources comprising this atlas.</a>
-          </p>
-          <h2 class="title is-5">Download data</h2>
-          <p>
-            Your download will include the entire Historical Sea Ice dataset compiled from the sources listed here, not a subset of selected dates.
-          </p>
-          <p>
-            <a href="http://ckan.snap.uaf.edu/dataset/historical-sea-ice-atlas-observed-estimates-of-sea-ice-concentration-in-alaska-waters" target="_blank">Download this dataset</a>.
-          </p>
-          <h2 class="title is-5">This Atlas calculates and illustrates these sea ice measurements</h2>
-          <dl>
-            <dt>Sea ice concentration</dt>
-            <dd>
-              Amount of sea ice covering an area. Written as the ratio of sea
-              ice to water, either a fraction &lpar;8/10&rpar; or percentage &lpar;80&percnt;&rpar; of sea
-              ice coverage. &lt;30&percnt; sea ice concentration &equals; navigable by ship. >90&percnt;
-              is considered solid ice.
 
-            </dd>
-            <dt>Sea ice extent</dt>
-            <dd>
-              Total area covered by some amount of sea ice at a given time,
-              including open water between floes. The Atlas considers sea ice
-              &quot;present&quot; if sea ice concentration is &gt;15&percnt;.
-              Thus, sea ice extent is the area of sea covered by at least
-              15&percnt; ice for a specific date. The Atlas reports monthly averages,
-              so the sea ice extent for a given month represents the measured
-              or interpolated sea ice extent closest to the middle of that month.
-            </dd>
-          </dl>
-          <p>
-            For information about other measurements of sea ice not covered in this atlas see
-            <a href="https://nsidc.org/cryosphere/glossary-terms/sea-ice" target="_blank">the National Snow and Ice Data Center’s glossary of terms</a>.
-          </p>
+    <section class="section">
+      <div class="centered--wrapper explainer">
+        <h4>
+          This Atlas calculates and illustrates these sea ice measurements
+        </h4>
+        <h5>Sea ice concentration: Amount of sea ice covering an area.</h5>
+        The ratio of sea ice to water, either a fraction (8/10) or percentage
+        (80%) of sea ice coverage.<br />
+        &lt;30% sea ice concentration = navigable by ship. <br />&gt;90% = solid
+        ice.
+        <h5>
+          Sea ice extent: Total area covered by some amount of sea ice at a
+          given time,<br />
+          including open water between floes.
+        </h5>
+        The Atlas considers sea ice &ldquo;present&rdquo; if sea ice
+        concentration is &gt;15%.<br />
+        Thus, sea ice extent is the area of sea covered by at least 15% ice for
+        a specific date.<br />
+        The Atlas reports monthly averages, so sea ice extent for a given month
+        represents<br />
+        the measured or interpolated sea ice extent closest to the middle of
+        that month.
+
+        <h5>
+          Data animations
+        </h5>
+        <p>
+          View animations of sea ice extent across the entire dataset:<br />
+          either every month from January 1850 to December 2019 or for
+          individual months.
+        </p>
+      </div>
+    </section>
+    <section class="section videos">
+      <div class="columns">
+        <div class="column is-half">
+          <iframe
+            class="youtube-videos"
+            src="https://www.youtube.com/embed/IxtKVbKPMeo"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
+        <div class="column is-half">
+          <iframe
+            class="youtube-videos"
+            src="https://www.youtube.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+    <section class="data-sources">
+      <div class="centered--wrapper">
+        <h4>Data sources used in this Atlas</h4>
+        Collecting and interpreting sea ice data has always been challenging.<br />
+        Charting conventions and interpretations of ice concentration have
+        changed over time.<br />
+        Observing tools&ndash;ships (1800s), airplanes (early 1900s), satellites
+        (1970s)&ndash;have evolved as well.<br />
+        Atlas data begin with sea ice observations extrapolated from whaling
+        ship log books<br />
+        in the Beaufort, Chukchi, and Bering seas starting in 1850.<br />
+        Log book data gaps are filled with analog-derived sea ice coverage or
+        interpolation.<br />
+        Other data sources are incorporated as they were developed over time.
+        <h5>More information on sea ice data sources</h5>
+        Detailed data source descriptions<br />
+        and<br />
+        Methodology used to synthesize data sources<br />
+      </div>
+      <img src="./assets/SourcesChart.svg" />
+      <div class="centered--wrapper">
+        <h4>Download data</h4>
+        <p>
+          Includes the entire Historical Sea Ice dataset compiled from the
+          sources listed here.<br />
+          Download the dataset. This link will open in a new tab.
+        </p>
+        <h5>Get in touch</h5>
+        <p>
+          <a
+            target="_new"
+            href="https://uaf-iarc.typeform.com/to/mN7J5cCK#tool=Historical%20Sea Ice%20Atlas%20for%20Alaska%20&%20The%20Arctic"
+            >Send us feedback</a
+          >, or email us at <span class="email">snap@uaf.edu</span> if you have
+          questions.
+        </p>
       </div>
     </section>
     <mv-footer></mv-footer>
@@ -351,7 +359,7 @@ import moment from "moment";
 import { Plotly } from "vue-plotly";
 import "@fortawesome/fontawesome-free/css/all.css";
 import axios from "axios";
-import Multiselect from 'vue-multiselect';
+import Multiselect from "vue-multiselect";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -388,7 +396,6 @@ var months = {
   11: "December"
 };
 
-
 export default {
   name: "HSIAA",
   components: {
@@ -403,7 +410,7 @@ export default {
   },
   mounted() {
     this.map = L.map("map--main", this.getBaseMapAndLayers());
-    new L.Control.Zoom({ position: 'topright' }).addTo(this.map);
+    new L.Control.Zoom({ position: "topright" }).addTo(this.map);
     this.updateAtlas();
 
     this.map.on("click", this.handleMapClick);
@@ -437,21 +444,21 @@ export default {
       timeseriesData: undefined,
 
       // Actively selected month for concentration chart (0-11, ...)
-      selectedMonthOrSeason: [{number: 0, month: "January"}],
+      selectedMonthOrSeason: [{ number: 0, month: "January" }],
 
       multiselectOptions: [
-        { number: 0, month: "January"},
-        { number: 1, month: "February"},
-        { number: 2, month: "March"},
-        { number: 3, month: "April"},
-        { number: 4, month: "May"},
-        { number: 5, month: "June"},
-        { number: 6, month: "July"},
-        { number: 7, month: "August"},
-        { number: 8, month: "September"},
-        { number: 9, month: "October"},
-        { number: 10, month: "November"},
-        { number: 11, month: "December"}
+        { number: 0, month: "January" },
+        { number: 1, month: "February" },
+        { number: 2, month: "March" },
+        { number: 3, month: "April" },
+        { number: 4, month: "May" },
+        { number: 5, month: "June" },
+        { number: 6, month: "July" },
+        { number: 7, month: "August" },
+        { number: 8, month: "September" },
+        { number: 9, month: "October" },
+        { number: 10, month: "November" },
+        { number: 11, month: "December" }
       ],
 
       // Plotly layout objects
@@ -469,33 +476,33 @@ export default {
         legend: { orientation: "h" }
       },
       modebarbuttonstoremove: [
-        'zoom2d',
-        'pan2d',
-        'select2d',
-        'lasso2d',
-        'zoomIn2d',
-        'zoomOut2d',
-        'autoScale2d',
-        'resetScale2d',
-        'hoverClosestCartesian',
-        'hoverCompareCartesian',
-        'hoverClosestPie',
-        'hoverClosest3d',
-        'hoverClosestGl2d',
-        'hoverClosestGeo',
-        'toggleHover',
-        'toggleSpikelines',
+        "zoom2d",
+        "pan2d",
+        "select2d",
+        "lasso2d",
+        "zoomIn2d",
+        "zoomOut2d",
+        "autoScale2d",
+        "resetScale2d",
+        "hoverClosestCartesian",
+        "hoverCompareCartesian",
+        "hoverClosestPie",
+        "hoverClosest3d",
+        "hoverClosestGl2d",
+        "hoverClosestGeo",
+        "toggleHover",
+        "toggleSpikelines"
       ],
       monthlyToImageButtonOptions: {
-        format: 'png',
-        filename: 'sea_ice_concentration_plot',
+        format: "png",
+        filename: "sea_ice_concentration_plot",
         height: 800,
         width: 1200,
         scale: 1 // Multiply title/legend/axis/canvas sizes by this factor
       },
       histogramToImageButtonOptions: {
-        format: 'png',
-        filename: 'sea_ice_concentration_histogram',
+        format: "png",
+        filename: "sea_ice_concentration_histogram",
         height: 800,
         width: 1200,
         scale: 1 // Multiply title/legend/axis/canvas sizes by this factor
@@ -570,8 +577,8 @@ export default {
       this.updateConcentrationPlot();
     },
     community() {
-      var lat = Number(this.community.split(",")[0])
-      var lng = Number(this.community.split(",")[1])
+      var lat = Number(this.community.split(",")[0]);
+      var lng = Number(this.community.split(",")[1]);
       var latlng = new L.latLng(lat, lng);
 
       this.pullData(latlng);
@@ -670,14 +677,14 @@ export default {
             {
               x: xrange,
               y: y,
-              type: "scatter",
-            },
+              type: "scatter"
+            }
           ];
           monthFragment = months[this.selectedMonthOrSeason.number];
         } else {
           // Add a series of traces for the season
-          traces = this.selectedMonthOrSeason.map((month) => {
-            monthFragment = monthFragment + months[month.number] + ", "
+          traces = this.selectedMonthOrSeason.map(month => {
+            monthFragment = monthFragment + months[month.number] + ", ";
             let y = this.timeseriesData.filter((value, index) => {
               return index % 12 === Number(month.number);
             });
@@ -685,11 +692,11 @@ export default {
               x: xrange,
               y: y,
               type: "scatter",
-              name: months[month.number],
+              name: months[month.number]
             };
           });
           // Removes additional space and comma from title of month's chosen
-          monthFragment = monthFragment.substring(0, monthFragment.length - 2)
+          monthFragment = monthFragment.substring(0, monthFragment.length - 2);
         }
         this.concentrationPlotLayout = {
           title: `Sea Ice Concentration at ${this.latDeg}ºN, ${this.lngDeg}ºE, ${monthFragment}, 1850-2019`,
@@ -699,9 +706,9 @@ export default {
           },
           yaxis: {
             range: [0, 105],
-            fixedrange: true,
+            fixedrange: true
           },
-          legend: { orientation: "h" },
+          legend: { orientation: "h" }
         };
         this.concentrationPlotData = traces;
       }
@@ -717,8 +724,8 @@ export default {
             let dataIndex = (year - 1850) * 12 + (month - 1);
             // Loop as many times as the %conc to fake the "histogram!"
             for (let i = 1; i <= this.timeseriesData[dataIndex]; ++i) {
-                x.push(month);
-                y.push(year);
+              x.push(month);
+              y.push(year);
             }
           });
         });
@@ -731,7 +738,7 @@ export default {
             range: xrange,
             autotick: false,
             tick0: 1850,
-            dtick: 5,
+            dtick: 5
           },
           xaxis: {
             tickmode: "array",
@@ -756,7 +763,8 @@ export default {
           {
             x: x,
             y: y,
-            hovertemplate: "Month: %{x}</br></br>Year: %{y}</br>Concentration Percentage: %{z}%<extra></extra>",
+            hovertemplate:
+              "Month: %{x}</br></br>Year: %{y}</br>Concentration Percentage: %{z}%<extra></extra>",
             type: "histogram2d",
             autocolorscale: false,
             colorscale: "YlGnBu",
@@ -803,7 +811,9 @@ export default {
       this.latlng = latlng;
 
       // Set the month shown via the map to be the concentration map's initial selection
-      this.selectedMonthOrSeason = [{number: this.monthOffset, month: months[this.monthOffset]}];
+      this.selectedMonthOrSeason = [
+        { number: this.monthOffset, month: months[this.monthOffset] }
+      ];
 
       // If we've already got a point on the map, clear it out
       // until we know if this point is valid or not.
@@ -819,10 +829,7 @@ export default {
       // var latlng = event.latlng // preserve context for promise below
 
       // Define and perform Rasdaman query to get the data
-      var coords = proj4("EPSG:4326", "EPSG:3572", [
-        latlng.lng,
-        latlng.lat
-      ]);
+      var coords = proj4("EPSG:4326", "EPSG:3572", [latlng.lng, latlng.lat]);
       var query =
         "http://apollo.snap.uaf.edu:8080/rasdaman/ows?&SERVICE=WCS&VERSION=2.0.1&REQUEST=GetCoverage&COVERAGEID=hsia_arctic&SUBSET=X(" +
         coords[0] +
@@ -882,49 +889,121 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.lead,
-.content,
-p,
-span {
-  font-family: "Open Sans", "Helvetica Neue", Calibri, Arial, sans-serif;
-}
+@import url("https://fonts.googleapis.com/css2?family=Imbue:wght@600&display=swap");
 
-.header-wrapper {
-  background-color: #ebebeb;
-  ::v-deep nav {
-    background-color: #ebebeb;
-  }
-}
+@import url("https://@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');");
 
-.date--display {
-  ::v-deep .vue-slider-dot-tooltip-inner {
-    font-family: "Open Sans", "Helvetica Neue", Calibri, Arial, sans-serif;
-    background-color: rgba(25, 25, 25, 0.5);
-    font-weight: 700;
-  }
+* {
+  font-family: "Libre Caslon Text", serif;
+  color: #1b3f7c;
 }
 
 section.lead {
-  background: no-repeat top left
-    url("assets/ice_montage_1900_satellite_duo.jpg");
-  .titles {
-    margin: -2rem 0 300px 6.5rem;
-    h1 {
-      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-      color: rgb(255, 246, 229);
-      font-weight: 500;
-      font-size: 2.75rem;
+  margin-top: 5px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+
+  .columns {
+    width: 100vw;
+    height: 90vh;
+    .column.intro {
+      text-align: center;
+      h1 {
+        font-family: "Imbue", serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 3.8rem;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+      h2,
+      h3 {
+        font-weight: 400;
+        font-style: italic;
+        font-size: 1.7rem;
+        span {
+          font-size: 1.7rem;
+          text-transform: uppercase;
+          font-weight: 400;
+          font-style: italic;
+        }
+        line-height: 1;
+      }
+      h2 {
+        margin-top: 1rem;
+      }
+      h3 {
+        margin-top: 0.5rem;
+      }
     }
-    h2 {
-      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-      color: rgb(255, 246, 229);
-      font-size: 1.25rem;
+    .column.splash {
+      height: 100%;
+      background: no-repeat top left
+        url("./assets/hsia-splash_150dpi_square.jpg");
+      background-size: cover;
     }
   }
 }
 
+section.lede {
+  text-align: center;
+  div {
+    width: 30rem;
+    margin: 0 auto;
+    border-top: 1px solid #eee;
+    p {
+      margin-top: 3.5rem;
+      font-size: 22px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.6;
+    }
+    p.announce {
+      font-family: "Imbue", serif;
+      font-weight: 600;
+      font-style: normal;
+      font-size: 3.8rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.centered--wrapper {
+  margin: 0 auto;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+section.about .start {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.explainer,
+.data-sources {
+  h4 {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  h5 {
+    margin-top: 2rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+}
+
+section.data-sources {
+  margin-bottom: 3rem;
+}
+
 section.foldout {
-  padding: 3rem 0;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 3rem;
   position: relative;
 }
 
@@ -934,7 +1013,9 @@ section.foldout {
 }
 
 .youtube-videos {
-  margin-left: 25px;
+  width: 100%;
+  min-height: 350px;
+  min-width: 600px;
 }
 
 #map--main {
@@ -993,23 +1074,26 @@ section.foldout {
         }
       }
 
-      .date--display {
+      .location--drop-down {
+        background-color: white;
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        z-index: 10000;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+      }
+
+      .slider-wrapper {
+        width: 55rem;
+        margin: 1rem auto;
+
         ::v-deep .vue-slider-rail {
           background-color: #fff !important;
           box-shadow: 0 2px 6px #888;
         }
 
-        width: 80%;
-        z-index: 5000;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        padding: 0 0 2rem 3rem;
-
         p.date--display--date {
-          font-family: "Open Sans";
           font-size: 2rem;
-          font-weight: 900;
         }
       }
     }
@@ -1073,11 +1157,4 @@ section.foldout {
   text-align: justify;
 }
 
-dt {
-  font-weight: bold;
-}
-
-dd {
-  padding-bottom: 1rem;
-}
 </style>

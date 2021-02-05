@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <div class="wrapper is-size-6">
+      <div class="wrapper is-size-5">
         <img src="../assets/UAF.svg" />
         <div class="wrapped">
           <p>
@@ -29,7 +29,10 @@
             >
             (IARC), at the
             <a href="https://uaf.edu/uaf/">University of Alaska Fairbanks</a>,
-            with assistance from the <a href="https://illinois.edu/">University of Illinois, Urbana-Champaign</a>.
+            with assistance from the
+            <a href="https://illinois.edu/"
+              >University of Illinois, Urbana-Champaign</a
+            >.
           </p>
 
           <p>
@@ -41,6 +44,11 @@
             illegal discrimination against any individual.
             <a href="https://www.alaska.edu/nondiscrimination/"
               >Statement of Nondiscrimination</a
+            >
+            and
+            <a
+              href="https://www.alaska.edu/records/records/compliance/gdpr/ua-privacy-statement/"
+              >Privacy Statement</a
             >
           </p>
         </div>
@@ -63,7 +71,7 @@ export default {
 <style lang="scss" scoped>
 .footer {
   box-shadow: inset 0 7px 9px -7px rgba(0, 0, 0, 0.4);
-  font-family: "Open Sans";
+  margin-bottom: 3rem;
 }
 
 .footer div.wrapper {
@@ -71,6 +79,7 @@ export default {
   display: flex;
   height: 8rem;
   max-height: 8rem;
+  width: 60rem;
 }
 
 .footer img {
