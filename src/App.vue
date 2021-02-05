@@ -508,7 +508,7 @@
     <section class="section">
       <div class="centered--wrapper">
         <h4>
-          <a href="./assets/Historical-Sea-Ice-Extents-Octobers.pdf"
+          <a href="Historical-Sea-Ice-Extents-Octobers.pdf"
             >Download a poster</a
           >
           that shows October 1850–October 2019 sea ice extent.
