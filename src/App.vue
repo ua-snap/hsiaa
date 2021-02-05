@@ -1026,9 +1026,8 @@ section.foldout {
 }
 
 .location--drop-down {
-
   &.hidden {
-   display: none;
+    display: none;
   }
 }
 
@@ -1156,5 +1155,4 @@ section.foldout {
   padding: 0 10vw;
   text-align: justify;
 }
-
 </style>
