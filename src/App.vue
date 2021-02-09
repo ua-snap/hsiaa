@@ -218,7 +218,7 @@
                 </optgroup>
                 <optgroup label="North West Territory communities">
                   <option value="69.9610863947203,-123.661517656453"
-                    >Paulatuak, NWT</option
+                    >Paultuak, NWT</option
                   >
                   <option value="71.8632712337163,-125.482112134379"
                     >Sachs Harbour, NWT</option
@@ -369,10 +369,10 @@
               class="report--invalid"
               v-bind:class="{ hidden: validMapPixel }"
             >
-              <p class="content is-size-5">
+              <p class="is-size-5">
                 Sorry, but the place you clicked on the map doesn&rsquo;t have
                 any data! This means it was either on land or otherwise outside
-                of the dataset itself.
+                of the dataset itself.  Zooming in on the map can make it easier to choose a location.
                 <a v-on:click.prevent.stop="foldoutActive = false" href="#"
                   >Go back and pick another place on the map</a
                 >.
@@ -1182,8 +1182,7 @@ section.lead {
     }
     .column.splash {
       height: 100%;
-      background: no-repeat top left
-        url("./assets/hsia-splash_150dpi_square.jpg");
+      background: no-repeat top left url("./assets/hsia-splash.jpg");
       background-size: cover;
     }
   }
@@ -1393,8 +1392,13 @@ section.foldout {
   width: 25vw;
 }
 
-.content {
-  padding: 0 10vw;
-  text-align: justify;
+.report--invalid p {
+  width: 50rem;
+
+  a {
+    display: block;
+    margin-top: 1rem;
+  }
 }
+
 </style>
