@@ -62,13 +62,14 @@
             >
           </h5>
         </div>
-        <p class="start">
-          To begin, choose a community or click on the map.
-        </p>
+
         <div
           class="location--drop-down"
           v-bind:class="{ hidden: foldoutActive }"
         >
+          <p class="start">
+            To begin, choose a community or click on the map.
+          </p>
           <form>
             <div class="select control is-medium">
               <select v-model="community">
@@ -204,9 +205,11 @@
             >
               <p class="is-size-5">
                 Sorry, but the place you clicked on the map doesn&rsquo;t have
-                any data! This means it was either on land or otherwise outside
-                of the dataset itself. Zooming in on the map can make it easier
-                to choose a location.
+                any data! <br />This means it was either on land or otherwise
+                outside of the dataset itself. <br />Zooming in on the map can
+                make it easier to choose a location.
+              </p>
+              <p>
                 <a v-on:click.prevent.stop="foldoutActive = false" href="#"
                   >Go back and pick another place on the map</a
                 >.
@@ -218,9 +221,7 @@
               class="report--charts"
               v-bind:class="{ hidden: !validMapPixel }"
             >
-              <h3 class="title is-4">
-                {{ foldoutTitle }}, 1850&ndash;2019
-              </h3>
+              <h3 class="title is-4">{{ foldoutTitle }}, 1850&ndash;2019</h3>
               <p class="lead">
                 These charts show two different ways of seeing changes in sea
                 ice concentration over time.
@@ -242,7 +243,7 @@
                           :close-on-select="false"
                           :clear-on-select="false"
                           :preserve-search="true"
-                          placeholder="Choose desired months"
+                          placeholder="Choose months to show on chart"
                           label="month"
                           track-by="number"
                           :preselect-first="false"
@@ -271,7 +272,7 @@
                 :display-mode-bar="true"
                 :displaylogo="false"
               ></Plotly>
-              <p>
+              <p class="between">
                 The chart below shows the same information as the one above, but
                 uses color instead of lines. It shows every month for every year
                 in the Atlas.
@@ -524,18 +525,7 @@ export default {
 
       // Plotly layout objects
       concentrationPlotData: [], // default empty
-      concentrationPlotLayout: {
-        title: "Sea Ice Concentration, 1850-2019, January",
-        xaxis: {
-          range: [1850, 2019],
-          fixedrange: true
-        },
-        yaxis: {
-          range: [0, 105],
-          fixedrange: true
-        },
-        legend: { orientation: "h" }
-      },
+      concentrationPlotLayout: {},
       modebarbuttonstoremove: [
         "zoom2d",
         "pan2d",
@@ -569,36 +559,7 @@ export default {
         scale: 1 // Multiply title/legend/axis/canvas sizes by this factor
       },
       thresholdChartData: [],
-      thresholdChartLayout: {
-        title: "Sea Ice Concentration, 1850-2019",
-        height: 1500,
-        yaxis: {
-          type: "category",
-          fixedrange: true,
-          range: xrange,
-          autotick: false,
-          tick0: 1850,
-          dtick: 5
-        },
-        xaxis: {
-          tickmode: "array",
-          tickvals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-          ticktext: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-          ]
-        }
-      },
+      thresholdChartLayout: {},
 
       // Lat, lng of current point in EPSG:3857
       latDeg: 0,
@@ -784,7 +745,7 @@ export default {
         let title = this.getChartTitlePlaceFragment();
 
         this.concentrationPlotLayout = {
-          title: `${title}, ${monthFragment}, 1850-2019`,
+          title: `<b>${title}, ${monthFragment}, 1850-2019</b>`,
           xaxis: {
             range: [1850, 2019],
             fixedrange: true
@@ -818,7 +779,7 @@ export default {
         let title = this.getChartTitlePlaceFragment();
 
         this.thresholdChartLayout = {
-          title: `${title}, 1850-2019`,
+          title: `<b>${title}, 1850-2019</b>`,
           height: 1500,
           legend: { orientation: "h" },
           yaxis: {
@@ -957,9 +918,6 @@ export default {
               // Show the reports.
               this.validMapPixel = true;
 
-              // Maybe?  Draw a mini-map zoomed in around the point,
-              // with a place marker.
-
               resolve();
             }
           })
@@ -973,6 +931,8 @@ export default {
       });
     },
     handleMapClick(event) {
+      // Unset the community value (to "" gives it the right value)
+      this.community = "";
       return this.pullData(event.latlng);
     }
   }
@@ -1257,6 +1217,7 @@ section.videos {
 
   .report--section {
     position: relative;
+    text-align: center;
 
     // When the report is not shown (no `sideline` class)
     // we need to clip it.
@@ -1298,7 +1259,11 @@ section.videos {
         p {
           font-size: 1.25rem;
           width: 40rem;
-          margin: 1rem 0;
+          margin: 1rem auto;
+
+          &.between {
+            margin: 2rem auto 3rem;
+          }
         }
 
         .threshold--legend {
@@ -1345,6 +1310,7 @@ section.videos {
 
 .control--select {
   width: 25vw;
+  margin: 0 auto;
 }
 
 .report--invalid p {
