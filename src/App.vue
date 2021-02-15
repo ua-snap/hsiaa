@@ -40,12 +40,28 @@
         <p class="overview">
           View historical sea ice data from the seas around the circumpolar
           North<br />
-          and discover how ice extent and concentration have changed over
-          time.<br />
+          and discover how ice concentration have changed over time.
+        </p>
+        <p class="overview">
           This Atlas shows snapshots in time, as well as long term patterns.<br />
           It is not designed for forecasting or prediction,<br />
           but can provide historical context for planning efforts.
         </p>
+        <div class="explainer">
+          <h4>
+            This Atlas shows sea ice concentration
+          </h4>
+          <h5>Sea ice concentration = ratio of sea ice to water</h5>
+          <p>
+            &lt;30% sea ice concentration = navigable by ship. <br />&gt;90% =
+            solid ice.
+          </p>
+          <h5>
+            <a href="https://nsidc.org/cryosphere/quickfacts/seaice.html"
+              >Learn more about sea ice</a
+            >
+          </h5>
+        </div>
         <p class="start">
           To begin, choose a community or click on the map.
         </p>
@@ -54,9 +70,9 @@
           v-bind:class="{ hidden: foldoutActive }"
         >
           <form>
-            <label class="label">Choose a community</label>
-            <div class="select control">
+            <div class="select control is-medium">
               <select v-model="community">
+                <option value="">Choose a community&hellip;</option>
                 <optgroup label="Alaska communities">
                   <option value="62.6851300839551,-165.051458350888"
                     >Alakanuk, AK</option
@@ -284,6 +300,27 @@
           v-bind:class="{ sidelined: foldoutActive }"
         >
           <div class="map--wrapper">
+            <table class="map--legend">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    Sea Ice<br>Concentration (&#37;)
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="conc--90">
+                  <td>&gt;90&#37;</td>
+                </tr>
+                <tr class="conc--30">
+                  <td>30&#37;&ndash;90&#37;</td>
+                </tr>
+                <tr class="conc--1">
+                  <td>&lt;30&#37;</td>
+                </tr>
+              </tbody>
+            </table>
+
             <div
               class="report--show-current-button button"
               v-on:click="foldoutActive = true"
@@ -372,7 +409,8 @@
               <p class="is-size-5">
                 Sorry, but the place you clicked on the map doesn&rsquo;t have
                 any data! This means it was either on land or otherwise outside
-                of the dataset itself.  Zooming in on the map can make it easier to choose a location.
+                of the dataset itself. Zooming in on the map can make it easier
+                to choose a location.
                 <a v-on:click.prevent.stop="foldoutActive = false" href="#"
                   >Go back and pick another place on the map</a
                 >.
@@ -445,47 +483,26 @@
         </div>
       </div>
     </section>
-
+    <h1>LEGENDDDDDDDD</h1>
     <section class="section">
       <div class="centered--wrapper explainer">
         <h4>
-          This Atlas calculates and illustrates these sea ice measurements
+          Other ways to view sea ice data
         </h4>
-        <h5>Sea ice concentration: Amount of sea ice covering an area.</h5>
-        <p>
-          The ratio of sea ice to water, either a fraction (8/10) or percentage
-          (80%) of sea ice coverage.<br />
-          &lt;30% sea ice concentration = navigable by ship. <br />&gt;90% =
-          solid ice.
-        </p>
         <h5>
-          Sea ice extent: Total area covered by some amount of sea ice at a
-          given time,<br />
-          including open water between floes.
+          <a href="Historical-Sea-Ice-Extents-Octobers.pdf">Download a poster</a
+          ><br /><span
+            >that shows 170 images of sea ice concentration for October,
+            1850&ndash;2019.</span
+          >
         </h5>
-        <p>
-          The Atlas considers sea ice &ldquo;present&rdquo; if sea ice
-          concentration is &gt;15%.<br />
-          Thus, sea ice extent is the area of sea covered by at least 15% ice
-          for a specific date.<br />
-          The Atlas reports monthly averages, so sea ice extent for a given
-          month represents<br />
-          the measured or interpolated sea ice extent closest to the middle of
-          that month.
-        </p>
-        <h5>
-          Data animations
-        </h5>
-        <p>
-          View animations of sea ice extent across the entire dataset:<br />
-          either every month from January 1850 to December 2019, or for
-          individual months.
-        </p>
+        <h5>Watch sea ice concentration animations</h5>
       </div>
     </section>
     <section class="section videos">
       <div class="columns">
         <div class="column is-half">
+          <h5>Every month, 1850&ndash;2019</h5>
           <iframe
             class="youtube-videos"
             src="https://www.youtube.com/embed/XSa0iGU0uDY"
@@ -495,6 +512,7 @@
           ></iframe>
         </div>
         <div class="column is-half">
+          <h5>By month, i.e. each January, 1850&ndash;2019</h5>
           <iframe
             class="youtube-videos"
             src="https://www.youtube.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW"
@@ -503,16 +521,6 @@
             allowfullscreen
           ></iframe>
         </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="centered--wrapper">
-        <h4>
-          <a href="Historical-Sea-Ice-Extents-Octobers.pdf"
-            >Download a poster</a
-          >
-          that shows October 1850–October 2019 sea ice extent.
-        </h4>
       </div>
     </section>
     <section class="section data-sources">
@@ -530,8 +538,7 @@
           Atlas data begin with sea ice observations extrapolated from whaling
           ship log books<br />
           in the Beaufort, Chukchi, and Bering seas starting in 1850.<br />
-          Analog-derived sea ice coverage and interpolation are used to fill
-          gaps in log book data.<br />
+          Estimates are used to fill gaps in log book data.<br />
           Other data sources are incorporated as they were developed over time.
         </p>
       </div>
@@ -805,11 +812,14 @@ export default {
       this.updateConcentrationPlot();
     },
     community() {
-      var lat = Number(this.community.split(",")[0]);
-      var lng = Number(this.community.split(",")[1]);
-      var latlng = new L.latLng(lat, lng);
-
-      this.pullData(latlng);
+      // Guard so if user switches back to "Choose a community..."
+      // it doesn't fail.
+      if (this.community) {
+        var lat = Number(this.community.split(",")[0]);
+        var lng = Number(this.community.split(",")[1]);
+        var latlng = new L.latLng(lat, lng);
+        this.pullData(latlng);
+      }
     },
     timeseriesData() {
       this.updateConcentrationPlot();
@@ -1239,6 +1249,10 @@ section.about .start {
   }
 }
 
+.explainer h5 span {
+  font-size: 1.25rem;
+}
+
 .explainer {
   margin-top: 3rem;
 }
@@ -1259,9 +1273,23 @@ section.foldout {
   font-weight: 500;
 }
 
+section.videos {
+  margin-top: -6.5rem;
+  h5 {
+    text-align: center;
+    margin: 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+}
+
 .youtube-videos {
   width: 100%;
   min-height: 350px;
+}
+
+.overview {
+  margin-bottom: 1rem;
 }
 
 #map--main {
@@ -1306,6 +1334,36 @@ section.foldout {
     .map--wrapper {
       height: 90vh;
       position: relative;
+
+      .map--legend {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+        height: 10vh;
+        background-color: #fff;
+        margin: 1rem;
+        thead th {
+          padding: .5rem;
+        }
+        tbody tr {
+          color: #fff;
+          font-weight: 700;
+          text-align: center;
+          & td {
+            padding: .5rem;
+          }
+          &.conc--1 td {
+            background-color: rgba(180, 180, 180, 1) !important;
+          }
+          &.conc--30 td {
+            background-color: rgba(100, 100, 100, 1) !important;
+          }
+          &.conc--90 td {
+            background-color: rgba(30, 30, 30, 1) !important;
+          }
+        }
+      }
 
       .report--show-current-button {
         position: absolute;
@@ -1400,5 +1458,4 @@ section.foldout {
     margin-top: 1rem;
   }
 }
-
 </style>
