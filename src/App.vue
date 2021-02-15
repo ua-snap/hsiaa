@@ -646,7 +646,6 @@ export default {
         // but works.
         let placeName = "";
         _.forEach(communities, region => {
-          console.log(region);
           let placeObj = _.find(region.places, { place: this.community });
           if (placeObj) {
             placeName = placeObj.name;
