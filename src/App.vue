@@ -300,38 +300,38 @@
           v-bind:class="{ sidelined: foldoutActive }"
         >
           <div class="map--wrapper">
-            <table class="map--legend">
-              <thead>
-                <tr>
-                  <th scope="col">
-                    Sea Ice<br>Concentration (&#37;)
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="conc--90">
-                  <td>&gt;90&#37;</td>
-                </tr>
-                <tr class="conc--30">
-                  <td>30&#37;&ndash;90&#37;</td>
-                </tr>
-                <tr class="conc--1">
-                  <td>&lt;30&#37;</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="map--overlay-wrapper">
+              <div
+                class="report--show-current-button button is-link"
+                v-on:click="foldoutActive = true"
+                v-bind:class="{ hidden: !validMapPixel }"
+              >
+                <span class="text">
+                  Show report for selected location
+                </span>
+                <span class="icon is-large">
+                  <i class="fas fa-arrow-right"></i>
+                </span>
+              </div>
 
-            <div
-              class="report--show-current-button button"
-              v-on:click="foldoutActive = true"
-              v-bind:class="{ hidden: !validMapPixel }"
-            >
-              <span class="text">
-                Show report for selected location
-              </span>
-              <span class="icon is-large">
-                <i class="fas fa-arrow-right"></i>
-              </span>
+              <table class="map--legend">
+                <thead>
+                  <tr>
+                    <th scope="col">Sea Ice<br />Concentration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="conc--90">
+                    <td>&gt;90&#37;</td>
+                  </tr>
+                  <tr class="conc--30">
+                    <td>30&#37;&ndash;90&#37;</td>
+                  </tr>
+                  <tr class="conc--1">
+                    <td>&lt;30&#37;</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
             <div id="map--main"></div>
@@ -423,14 +423,21 @@
               v-bind:class="{ hidden: !validMapPixel }"
             >
               <h3 class="title is-4">
-                Sea ice, 1850&ndash;2019 at {{ latDeg }}&deg;N,
+                Sea ice concentation, 1850&ndash;2019 at {{ latDeg }}&deg;N,
                 {{ lngDeg }}&deg;E
               </h3>
-
+              <p class="lead">
+                These charts show two different ways of seeing changes in sea
+                ice concentration over time.
+              </p>
+              <p>
+                The first chart lets you pick months, and see sea ice changes
+                over time for this place.
+              </p>
               <div class="form--controls">
                 <form>
                   <div class="field">
-                    <label class="label">Choose any number of months</label>
+                    <label class="label">Choose months</label>
                     <div class="control">
                       <div class="control--select">
                         <multiselect
@@ -469,7 +476,25 @@
                 :display-mode-bar="true"
                 :displaylogo="false"
               ></Plotly>
-
+              <p>
+                The chart below shows the same information as the one above, but
+                uses color instead of lines. It shows every month for every year
+                in the Atlas.
+              </p>
+              <table class="threshold--legend">
+                <thead>
+                  <tr>
+                    <td colspan="3">Color shows sea ice concentration %</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="th--1">0&#37; open water</td>
+                    <td class="th--50">50&#37;</td>
+                    <td class="th--100">solid ice 100&#37;</td>
+                  </tr>
+                </tbody>
+              </table>
               <Plotly
                 :data="thresholdChartData"
                 :layout="thresholdChartLayout"
@@ -483,7 +508,6 @@
         </div>
       </div>
     </section>
-    <h1>LEGENDDDDDDDD</h1>
     <section class="section">
       <div class="centered--wrapper explainer">
         <h4>
@@ -970,6 +994,7 @@ export default {
         this.thresholdChartLayout = {
           title: `Sea Ice Concentration at ${this.latDeg}ºN, ${this.lngDeg}ºE, 1850-2019`,
           height: 1500,
+          legend: { orientation: "h" },
           yaxis: {
             type: "category",
             fixedrange: true,
@@ -979,6 +1004,7 @@ export default {
             dtick: 5
           },
           xaxis: {
+            side: "top",
             tickmode: "array",
             tickvals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
             ticktext: [
@@ -1335,45 +1361,44 @@ section.videos {
       height: 90vh;
       position: relative;
 
-      .map--legend {
+      .map--overlay-wrapper {
         position: absolute;
         top: 0;
         left: 0;
+        margin: 1.5rem;
         z-index: 10000;
-        height: 10vh;
-        background-color: #fff;
-        margin: 1rem;
-        thead th {
-          padding: .5rem;
-        }
-        tbody tr {
-          color: #fff;
-          font-weight: 700;
-          text-align: center;
-          & td {
-            padding: .5rem;
-          }
-          &.conc--1 td {
-            background-color: rgba(180, 180, 180, 1) !important;
-          }
-          &.conc--30 td {
-            background-color: rgba(100, 100, 100, 1) !important;
-          }
-          &.conc--90 td {
-            background-color: rgba(30, 30, 30, 1) !important;
-          }
-        }
-      }
 
-      .report--show-current-button {
-        position: absolute;
-        top: 1.5rem;
-        left: 1.5rem;
-        z-index: 10000;
-        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+        .map--legend {
+          background-color: #fff;
+          thead th {
+            padding: 0.5rem;
+          }
+          tbody tr {
+            color: #fff;
+            font-weight: 700;
+            text-align: center;
+            & td {
+              padding: 0.5rem;
+            }
+            &.conc--1 td {
+              background-color: rgba(180, 180, 180, 1) !important;
+              color: #000;
+            }
+            &.conc--30 td {
+              background-color: rgba(100, 100, 100, 1) !important;
+            }
+            &.conc--90 td {
+              background-color: rgba(30, 30, 30, 1) !important;
+            }
+          }
+        }
 
-        &.hidden {
-          display: none;
+        .report--show-current-button {
+          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+          margin-bottom: 1rem;
+          &.hidden {
+            display: none;
+          }
         }
       }
 
@@ -1437,6 +1462,43 @@ section.videos {
       }
 
       .report--charts {
+        p {
+          font-size: 1.25rem;
+          width: 40rem;
+          margin: 1rem 0;
+        }
+
+        .threshold--legend {
+          margin: 1rem auto;
+          width: 50rem;
+          thead {
+            td {
+              font-size: 1rem;
+              font-weight: 700;
+            }
+          }
+          tbody {
+            font-weight: 700;
+            tr {
+              background: url("./assets/hsia-tapestry-legend.png");
+              background-size: cover;
+              td {
+                width: 33%;
+                padding: .25rem;
+              }
+              td.th--1 {
+                color: #fff;
+              }
+              td.th--50 {
+                text-align: center;
+                text-shadow: 0 0 3px #fff;
+              }
+              td.th--100 {
+                text-align: right;
+              }
+            }
+          }
+        }
       }
 
       .report--invalid {
