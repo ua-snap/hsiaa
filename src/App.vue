@@ -313,7 +313,6 @@
                   <i class="fas fa-arrow-right"></i>
                 </span>
               </div>
-
               <table class="map--legend">
                 <thead>
                   <tr>
@@ -333,7 +332,6 @@
                 </tbody>
               </table>
             </div>
-
             <div id="map--main"></div>
             <!-- Slider wrapper! -->
             <div class="slider-wrapper">
@@ -547,6 +545,7 @@
         </div>
       </div>
     </section>
+
     <section class="section data-sources">
       <div class="centered--wrapper">
         <h4>Data sources used in this Atlas</h4>
@@ -1157,6 +1156,8 @@ export default {
 
 @import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+
 p,
 h1,
 h2,
@@ -1176,6 +1177,14 @@ a {
 
 a:hover {
   background-color: #ffe598;
+}
+
+a.button,
+.button,
+select,
+div.button > span,
+.multiselect * {
+  font-family: "Open Sans", sans-serif !important;
 }
 
 section.lead {
@@ -1279,10 +1288,6 @@ section.about .start {
   font-size: 1.25rem;
 }
 
-.explainer {
-  margin-top: 3rem;
-}
-
 section.data-sources {
   margin-bottom: 3rem;
 }
@@ -1369,6 +1374,7 @@ section.videos {
         z-index: 10000;
 
         .map--legend {
+          font-family: "Open Sans", sans-serif;
           background-color: #fff;
           thead th {
             padding: 0.5rem;
@@ -1469,6 +1475,7 @@ section.videos {
         }
 
         .threshold--legend {
+          font-family: "Open Sans", sans-serif;
           margin: 1rem auto;
           width: 50rem;
           thead {
@@ -1490,8 +1497,9 @@ section.videos {
                 color: #fff;
               }
               td.th--50 {
+                color: #fff;
                 text-align: center;
-                text-shadow: 0 0 3px #fff;
+                text-shadow: 0 0 3px #000;
               }
               td.th--100 {
                 text-align: right;
