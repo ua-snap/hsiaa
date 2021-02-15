@@ -53,7 +53,7 @@
           </h4>
           <h5>Sea ice concentration = ratio of sea ice to water</h5>
           <p>
-            &lt;30% sea ice concentration = navigable by ship. <br />&gt;90% =
+            &lt;30% sea ice concentration = ships can sail here. <br />&gt;90% =
             solid ice.
           </p>
           <h5>
@@ -1484,7 +1484,7 @@ section.videos {
               background-size: cover;
               td {
                 width: 33%;
-                padding: .25rem;
+                padding: 0.25rem;
               }
               td.th--1 {
                 color: #fff;
