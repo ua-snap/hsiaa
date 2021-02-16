@@ -1300,10 +1300,6 @@ section.videos {
           }
         }
       }
-
-      .report--invalid {
-        margin: 3rem 0;
-      }
     }
   }
 }
@@ -1314,6 +1310,7 @@ section.videos {
 }
 
 .report--invalid p {
+  margin: 3rem auto;
   width: 50rem;
 
   a {
