@@ -139,7 +139,7 @@
                 v-model="selectedDate"
                 :height="20"
                 :min="1850"
-                :max="2019"
+                :max="2017"
                 :hide-label="true"
               />
               <span v-on:click="decrementMonth" class="button">
@@ -221,7 +221,7 @@
               class="report--charts"
               v-bind:class="{ hidden: !validMapPixel }"
             >
-              <h3 class="title is-4">{{ foldoutTitle }}, 1850&ndash;2019</h3>
+              <h3 class="title is-4">{{ foldoutTitle }}, 1850&ndash;2017</h3>
               <p class="lead">
                 These charts show two different ways of seeing changes in sea
                 ice concentration over time.
@@ -435,7 +435,7 @@ var getDateFromInteger = function(year, month) {
 
 // Range of years
 var xrange = [];
-for (let x = 1850; x <= 2019; x++) {
+for (let x = 1850; x <= 2017; x++) {
   xrange.push(x);
 }
 
@@ -692,8 +692,8 @@ export default {
       if (this.monthOffset > 11) {
         this.monthOffset = 0;
         var newDate = this.selectedDate + 1;
-        if (newDate > 2019) {
-          newDate = 2019;
+        if (newDate > 2017) {
+          newDate = 2017;
           this.monthOffset = 11;
         }
         this.selectedDate = newDate;
@@ -747,7 +747,7 @@ export default {
         this.concentrationPlotLayout = {
           title: `<b>${title}, ${monthFragment}, 1850-2019</b>`,
           xaxis: {
-            range: [1850, 2019],
+            range: [1850, 2017],
             fixedrange: true
           },
           yaxis: {
@@ -779,7 +779,7 @@ export default {
         let title = this.getChartTitlePlaceFragment();
 
         this.thresholdChartLayout = {
-          title: `<b>${title}, 1850-2019</b>`,
+          title: `<b>${title}, 1850-2017</b>`,
           height: 1500,
           legend: { orientation: "h" },
           yaxis: {
