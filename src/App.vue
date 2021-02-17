@@ -1163,6 +1163,9 @@ section.videos {
         .map--legend {
           font-family: "Open Sans", sans-serif;
           background-color: #fff;
+
+          box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
+
           thead th {
             padding: 0.5rem;
           }
