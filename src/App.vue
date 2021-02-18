@@ -100,6 +100,36 @@
         >
           <div class="map--wrapper">
             <div class="map--overlay-wrapper">
+              <!-- Slider wrapper! -->
+              <div class="slider-wrapper">
+                <p class="date--display--date">
+                  Sea Ice Concentration, {{ displayDate }}
+                </p>
+                <vue-slider
+                  v-model="selectedDate"
+                  :height="20"
+                  :min="1850"
+                  :max="2017"
+                  :hide-label="true"
+                />
+                <span v-on:click="decrementMonth" class="button">
+                  <i class="fas fa-arrow-alt-circle-left" /><span
+                    class="month-indicator"
+                    >Past Month</span
+                  >
+                </span>
+                <span
+                  v-on:click="incrementMonth"
+                  class="button"
+                  style="margin-left: 5px;"
+                >
+                  <span class="month-indicator">Next Month</span>
+                  <i class="fas fa-arrow-alt-circle-right" />
+                </span>
+
+                <span class="hint">Use scroll bar to change year</span>
+              </div>
+
               <div
                 class="report--show-current-button button is-link"
                 v-on:click="foldoutActive = true"
@@ -113,52 +143,22 @@
                 </span>
               </div>
               <table class="map--legend">
-                <thead>
-                  <tr>
-                    <th scope="col">Sea Ice<br />Concentration</th>
-                  </tr>
-                </thead>
                 <tbody>
-                  <tr class="conc--90">
-                    <td>&gt;90&#37;</td>
-                  </tr>
-                  <tr class="conc--30">
-                    <td>30&#37;&ndash;90&#37;</td>
-                  </tr>
-                  <tr class="conc--1">
-                    <td>&lt;30&#37;</td>
+                  <tr>
+                    <td class="conc--1">0&ndash;30 %</td>
+                    <td class="conc--2">31&ndash;40 %</td>
+                    <td class="conc--3">41&ndash;50 %</td>
+                    <td class="conc--4">51&ndash;60 %</td>
+                    <td class="conc--5">61&ndash;70 %</td>
+                    <td class="conc--6">71&ndash;80 %</td>
+                    <td class="conc--7">81&ndash;90 %</td>
+                    <td class="conc--8">91&ndash;100 %</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+
             <div id="map--main"></div>
-            <!-- Slider wrapper! -->
-            <div class="slider-wrapper">
-              <p class="date--display--date">{{ displayDate }}</p>
-              <vue-slider
-                v-model="selectedDate"
-                :height="20"
-                :min="1850"
-                :max="2017"
-                :hide-label="true"
-              />
-              <span v-on:click="decrementMonth" class="button">
-                <i class="fas fa-arrow-alt-circle-left" /><span
-                  class="month-indicator"
-                  >Past Month</span
-                >
-              </span>
-              <span
-                v-on:click="incrementMonth"
-                class="button"
-                style="margin-left: 5px;"
-              >
-                <i class="fas fa-arrow-alt-circle-right" /><span
-                  class="month-indicator"
-                  >Next Month</span
-                >
-              </span>
-            </div>
           </div>
         </div>
 
@@ -662,7 +662,7 @@ export default {
         zoom: 0,
         minZoom: 0,
         maxZoom: 5,
-        center: [67, -150],
+        center: [67, -170],
         scrollWheelZoom: false,
         crs: proj,
         continuousWorld: true,
@@ -834,7 +834,7 @@ export default {
       this.layer = L.tileLayer.wms(
         "http://apollo.snap.uaf.edu:8080/rasdaman/ows?",
         _.extend(this.baseLayerOptions, {
-          layers: ["hsia_panarctic"],
+          layers: ["hsia_panarctic2"],
           styles: "hsia",
           version: "1.3.0",
           time: dates.wms
@@ -1101,6 +1101,11 @@ section.videos {
   }
 }
 
+span.hint {
+  margin: 1ex;
+  display: inline-block;
+}
+
 .youtube-videos {
   width: 100%;
   min-height: 350px;
@@ -1113,7 +1118,7 @@ section.videos {
 #map--main {
   display: block;
   position: relative;
-  min-height: 90vh;
+  min-height: 100vh;
   width: 100vw;
 }
 
@@ -1121,6 +1126,11 @@ section.videos {
   &.hidden {
     display: none;
   }
+}
+
+.button i.fas {
+  display: inline-block;
+  margin: 0.5rem;
 }
 
 .map--section--wrapper {
@@ -1155,36 +1165,54 @@ section.videos {
 
       .map--overlay-wrapper {
         position: absolute;
+        background-color: rgba(255, 255, 255, 0.8);
         top: 0;
         left: 0;
-        margin: 1.5rem;
+        padding: 0 1rem 1rem 1rem;
         z-index: 10000;
+        width: 50vw;
 
         .map--legend {
           font-family: "Open Sans", sans-serif;
           background-color: #fff;
-
+          margin: 0 auto;
           box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
-
-          thead th {
-            padding: 0.5rem;
-          }
+          width: 100%;
           tbody tr {
             color: #fff;
             font-weight: 700;
             text-align: center;
             & td {
               padding: 0.5rem;
-            }
-            &.conc--1 td {
-              background-color: rgba(180, 180, 180, 1) !important;
-              color: #000;
-            }
-            &.conc--30 td {
-              background-color: rgba(100, 100, 100, 1) !important;
-            }
-            &.conc--90 td {
-              background-color: rgba(30, 30, 30, 1) !important;
+              &.conc--1 {
+                background-color: rgba(8, 29, 88, 255) !important;
+              }
+              &.conc--2 {
+                background-color: rgba(37, 52, 148, 255) !important;
+              }
+              &.conc--3 {
+                background-color: rgba(34, 94, 168, 255) !important;
+              }
+              &.conc--4 {
+                background-color: rgba(29, 145, 192, 255) !important;
+                text-shadow: 0 0 3px #000;
+              }
+              &.conc--5 {
+                background-color: rgba(65, 182, 196, 255) !important;
+                text-shadow: 0 0 3px #000;
+              }
+              &.conc--6 {
+                background-color: rgba(127, 205, 187, 255) !important;
+                color: rgba(8, 29, 88, 255);
+              }
+              &.conc--7 {
+                background-color: rgba(199, 233, 180, 255) !important;
+                color: rgba(8, 29, 88, 255);
+              }
+              &.conc--8 {
+                background-color: rgba(237, 248, 217, 255) !important;
+                color: rgba(8, 29, 88, 255);
+              }
             }
           }
         }
@@ -1208,11 +1236,12 @@ section.videos {
       }
 
       .slider-wrapper {
-        width: 55rem;
         margin: 1rem auto;
 
         p.date--display--date {
-          font-size: 2rem;
+          margin: 0;
+          font-size: 1.25rem;
+          font-weight: 700;
         }
       }
     }
