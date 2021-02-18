@@ -143,14 +143,14 @@
               <table class="map--legend">
                 <tbody>
                   <tr>
-                    <td class="conc--1">0&ndash;30 %</td>
-                    <td class="conc--2">31&ndash;40 %</td>
-                    <td class="conc--3">41&ndash;50 %</td>
-                    <td class="conc--4">51&ndash;60 %</td>
-                    <td class="conc--5">61&ndash;70 %</td>
-                    <td class="conc--6">71&ndash;80 %</td>
-                    <td class="conc--7">81&ndash;90 %</td>
-                    <td class="conc--8">91&ndash;100 %</td>
+                    <td class="conc--1">0&ndash;30&nbsp;%</td>
+                    <td class="conc--2">31&ndash;40&nbsp;%</td>
+                    <td class="conc--3">41&ndash;50&nbsp;%</td>
+                    <td class="conc--4">51&ndash;60&nbsp;%</td>
+                    <td class="conc--5">61&ndash;70&nbsp;%</td>
+                    <td class="conc--6">71&ndash;80&nbsp;%</td>
+                    <td class="conc--7">81&ndash;90&nbsp;%</td>
+                    <td class="conc--8">91&ndash;100&nbsp;%</td>
                   </tr>
                 </tbody>
               </table>
@@ -1179,8 +1179,10 @@ span.hint {
             font-weight: 700;
             text-align: center;
             & td {
-              padding: 0.5rem;
+              font-size: 0.7rem;
+              padding: 0.25rem;
               &.conc--1 {
+                width: 33%;
                 background-color: rgba(8, 29, 88, 255) !important;
               }
               &.conc--2 {
