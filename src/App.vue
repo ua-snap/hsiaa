@@ -107,27 +107,25 @@
                 </p>
                 <vue-slider
                   v-model="selectedDate"
-                  :height="20"
                   :min="1850"
                   :max="2017"
-                  :hide-label="true"
+                  :marks="marks"
+                  :tooltip-placement="'bottom'"
                 />
-                <span v-on:click="decrementMonth" class="button">
-                  <i class="fas fa-arrow-alt-circle-left" /><span
-                    class="month-indicator"
-                    >Past Month</span
-                  >
-                </span>
-                <span
-                  v-on:click="incrementMonth"
-                  class="button"
-                  style="margin-left: 5px;"
-                >
-                  <span class="month-indicator">Next Month</span>
-                  <i class="fas fa-arrow-alt-circle-right" />
-                </span>
+                <div class="slider-wrapper--button-wrapper">
+                  <span v-on:click="decrementMonth" class="button">
+                    <i class="fas fa-arrow-alt-circle-left" /><span
+                      class="month-indicator"
+                      >Past Month</span
+                    >
+                  </span>
+                  <span v-on:click="incrementMonth" class="button">
+                    <span class="month-indicator">Next Month</span>
+                    <i class="fas fa-arrow-alt-circle-right" />
+                  </span>
 
-                <span class="hint">Use scroll bar to change year</span>
+                  <span class="hint">Use slider above to change year</span>
+                </div>
               </div>
 
               <div
@@ -313,7 +311,7 @@
           <a href="Historical-Sea-Ice-Extents-Octobers.pdf">Download a poster</a
           ><br /><span
             >that shows 170 images of sea ice concentration for October,
-            1850&ndash;2019.</span
+            1850&ndash;2017.</span
           >
         </h5>
         <h5>Watch sea ice concentration animations</h5>
@@ -322,7 +320,7 @@
     <section class="section videos">
       <div class="columns">
         <div class="column is-half">
-          <h5>Every month, 1850&ndash;2019</h5>
+          <h5>Every month, 1850&ndash;2017</h5>
           <iframe
             class="youtube-videos"
             src="https://www.youtube.com/embed/XSa0iGU0uDY"
@@ -332,7 +330,7 @@
           ></iframe>
         </div>
         <div class="column is-half">
-          <h5>By month, i.e. each January, 1850&ndash;2019</h5>
+          <h5>By month, i.e. each January, 1850&ndash;2017</h5>
           <iframe
             class="youtube-videos"
             src="https://www.youtube.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW"
@@ -478,6 +476,8 @@ export default {
   },
   data() {
     return {
+      // Corresponds to marks on the vue-slider-component
+      marks: [1850, 1875, 1900, 1925, 1950, 1975, 2000, 2017],
       baseLayerOptions: {
         transparent: true,
         srs: "EPSG:3572",
@@ -1104,6 +1104,7 @@ section.videos {
 span.hint {
   margin: 1ex;
   display: inline-block;
+  font-family: "Open Sans", sans-serif;
 }
 
 .youtube-videos {
@@ -1126,11 +1127,6 @@ span.hint {
   &.hidden {
     display: none;
   }
-}
-
-.button i.fas {
-  display: inline-block;
-  margin: 0.5rem;
 }
 
 .map--section--wrapper {
@@ -1236,12 +1232,30 @@ span.hint {
       }
 
       .slider-wrapper {
-        margin: 1rem auto;
+        margin: 1rem auto 0;
+        padding: 1rem;
 
         p.date--display--date {
-          margin: 0;
-          font-size: 1.25rem;
+          margin: -1rem 0 0 -0.5rem;
+          font-size: 1.75rem;
           font-weight: 700;
+        }
+
+        .slider-wrapper--button-wrapper {
+          margin: 2rem -1rem 0;
+          .button {
+            margin-right: 1rem;
+            & i.fas {
+              display: inline-block;
+
+              &.fa-arrow-alt-circle-left {
+                margin-right: 0.5rem;
+              }
+              &.fa-arrow-alt-circle-right {
+                margin-left: 0.5rem;
+              }
+            }
+          }
         }
       }
     }
