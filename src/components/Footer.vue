@@ -20,7 +20,8 @@
             Funded by the National Ocean Service at the
             <a href="http://www.noaa.gov"
               >National Oceanic and Atmospheric Administration</a
-            > through AOOS grant #NA11NOS0120020. Work was performed at the
+            >
+            through AOOS grant #NA11NOS0120020. Work was performed at the
             <a href="https://uaf-iarc.org/"
               >International Arctic Research Center</a
             >, at the
