@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="header-wrapper">
-      <mv-header logo="accap" :buttons="navbuttons"></mv-header>
-    </div>
-
+    <header>
+      UNIVERSITY OF ALASKA FAIRBANKS | ALASKA CENTER FOR CLIMATE ASSESSMENT AND
+      POLICY
+    </header>
     <section class="lead section">
       <div class="columns is-vcentered">
         <div class="column intro is-half">
@@ -37,6 +37,11 @@
     </section>
     <section class="section about">
       <div class="centered--wrapper">
+        <div class="explainer">
+          <h4>
+            This Atlas shows sea ice concentration.
+          </h4>
+        </div>
         <p class="overview">
           View historical sea ice data from the seas around the circumpolar
           North<br />
@@ -48,9 +53,6 @@
           but can provide historical context for planning efforts.
         </p>
         <div class="explainer">
-          <h4>
-            This Atlas shows sea ice concentration.
-          </h4>
           <h5>Sea ice concentration = ratio of sea ice to water</h5>
           <p>
             &lt;30% sea ice concentration = ships can travel here. <br />&gt;90%
@@ -271,8 +273,9 @@
                 :displaylogo="false"
               ></Plotly>
               <p class="between">
-                The chart below shows the same information as the one above,
-                <br />but uses color instead of lines.
+                The chart below also shows sea ice concentration,
+                <br />but uses color instead of lines,
+                <br />and shows every month for every year.
               </p>
               <table class="threshold--legend">
                 <thead>
@@ -329,7 +332,7 @@
           ></iframe>
         </div>
         <div class="column is-half">
-          <h5>Monthly playlist, ie. each January, 1850&mdash;2019</h5>
+          <h5>Monthly playlist, e.g. each January, 1850&ndash;2019</h5>
           <iframe
             class="youtube-videos"
             src="https://www.youtube.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW"
@@ -414,7 +417,6 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import axios from "axios";
 import Multiselect from "vue-multiselect";
 
-import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 import communities from "./communities.js";
@@ -457,8 +459,7 @@ export default {
     VueSlider,
     Plotly,
     Multiselect,
-    "mv-footer": Footer,
-    "mv-header": Header
+    "mv-footer": Footer
   },
   created() {
     this.communities = communities;
@@ -577,17 +578,7 @@ export default {
       reportIsLoaded: false,
 
       // If true, the selected pixel on the map has data.
-      validMapPixel: false,
-
-      // Nav buttons at top of screen used in header component.
-      navbuttons: [
-        {
-          title: "Download data",
-          href:
-            "http://ckan.snap.uaf.edu/dataset/historical-sea-ice-atlas-observed-estimates-of-sea-ice-concentration-in-alaska-waters",
-          class: "is-default"
-        }
-      ]
+      validMapPixel: false
     };
   },
   watch: {
@@ -976,14 +967,24 @@ div.button > span,
   font-family: "Open Sans", sans-serif !important;
 }
 
+header {
+  background-color: #0c2342;
+  color: white;
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.17rem;
+  padding: 0.4rem;
+  height: 5vh;
+}
+
 section.lead {
-  margin-top: 5px;
+  margin-top: 0;
+  border-top: 3px solid #fff;
   padding-top: 10px;
-  border-top: 1px solid #eee;
 
   .columns {
     width: 100vw;
-    height: 90vh;
+    height: 95vh;
     .column.intro {
       text-align: center;
       h1 {
@@ -1016,7 +1017,7 @@ section.lead {
     }
     .column.splash {
       height: 100%;
-      background: no-repeat top left url("./assets/hsia-splash.jpg");
+      background: no-repeat bottom left url("./assets/hsia-splash.jpg");
       background-size: cover;
     }
   }
@@ -1311,6 +1312,9 @@ span.hint {
       }
 
       .report--charts {
+        label {
+          display: none;
+        }
         p {
           font-size: 1.25rem;
           width: 40rem;
