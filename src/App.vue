@@ -330,7 +330,7 @@
           ></iframe>
         </div>
         <div class="column is-half">
-          <h5>By month, i.e. each January, 1850&ndash;2017</h5>
+          <h5>Monthly playlist, ie. each January, 1850&mdash;2019</h5>
           <iframe
             class="youtube-videos"
             src="https://www.youtube.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW"
