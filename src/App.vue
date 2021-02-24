@@ -40,7 +40,7 @@
         <p class="overview">
           View historical sea ice data from the seas around the circumpolar
           North<br />
-          and discover how ice concentration have changed over time.
+          and discover how ice concentrations have changed over time.
         </p>
         <p class="overview">
           This Atlas shows snapshots in time, as well as long term patterns.<br />
@@ -49,18 +49,18 @@
         </p>
         <div class="explainer">
           <h4>
-            This Atlas shows sea ice concentration
+            This Atlas shows sea ice concentration.
           </h4>
           <h5>Sea ice concentration = ratio of sea ice to water</h5>
           <p>
-            &lt;30% sea ice concentration = ships can travel here. <br />&gt;90% =
-            solid ice.
+            &lt;30% sea ice concentration = ships can travel here. <br />&gt;90%
+            = solid ice.
           </p>
-          <h5>
+          <p>
             <a href="https://nsidc.org/cryosphere/quickfacts/seaice.html"
               >Learn more about sea ice</a
             >
-          </h5>
+          </p>
         </div>
 
         <div
@@ -221,12 +221,12 @@
             >
               <h3 class="title is-4">{{ foldoutTitle }}, 1850&ndash;2017</h3>
               <p class="lead">
-                These charts show two different ways of seeing changes in sea
-                ice concentration over time.
+                These charts show two different ways of seeing changes<br />in
+                sea ice concentration over time.
               </p>
               <p>
-                The first chart lets you pick months, and see sea ice changes
-                over time for this place.
+                Choose months<br />and view sea ice changes over time for this
+                place.
               </p>
               <div class="form--controls">
                 <form>
@@ -271,9 +271,8 @@
                 :displaylogo="false"
               ></Plotly>
               <p class="between">
-                The chart below shows the same information as the one above, but
-                uses color instead of lines. It shows every month for every year
-                in the Atlas.
+                The chart below shows the same information as the one above,
+                <br />but uses color instead of lines.
               </p>
               <table class="threshold--legend">
                 <thead>
@@ -307,7 +306,7 @@
         <h4>
           Other ways to view sea ice data
         </h4>
-        <h5>
+        <h5 class="closer">
           <a href="Historical-Sea-Ice-Extents-Octobers.pdf">Download a poster</a
           ><br /><span
             >that shows 170 images of sea ice concentration for October,
@@ -1074,8 +1073,13 @@ section.about .start {
   }
 }
 
+.explainer h5.closer {
+  margin-top: 1rem;
+}
+
 .explainer h5 span {
   font-size: 1.25rem;
+  font-weight: 400;
 }
 
 section.data-sources {
