@@ -53,7 +53,7 @@
           </h4>
           <h5>Sea ice concentration = ratio of sea ice to water</h5>
           <p>
-            &lt;30% sea ice concentration = ships can sail here. <br />&gt;90% =
+            &lt;30% sea ice concentration = ships can travel here. <br />&gt;90% =
             solid ice.
           </p>
           <h5>
@@ -846,6 +846,9 @@ export default {
       return getDateFromInteger(dateVal).display;
     },
     pullData(latlng) {
+      // Recenter the map to this place.
+      this.map.panTo(latlng);
+
       // If the foldout was active, then clicking on the exposed map
       // is the same as "go back" but won't fire a new load attempt.
       if (this.foldoutActive === true) {
