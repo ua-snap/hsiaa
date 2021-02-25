@@ -274,8 +274,8 @@
               ></Plotly>
               <p class="between">
                 The chart below also shows sea ice concentration,
-                <br />but uses color instead of lines,
-                <br />and shows every month for every year.
+                <br />but uses color instead of lines, <br />and shows every
+                month for every year.
               </p>
               <table class="threshold--legend">
                 <thead>
