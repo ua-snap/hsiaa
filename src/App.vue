@@ -974,7 +974,7 @@ header {
   font-size: 0.75rem;
   letter-spacing: 0.17rem;
   padding: 0.4rem;
-  height: 5vh;
+  height: 2rem;
 }
 
 section.lead {
@@ -984,7 +984,7 @@ section.lead {
 
   .columns {
     width: 100vw;
-    height: 95vh;
+    height: calc(100vh - 2rem);
     .column.intro {
       text-align: center;
       h1 {
