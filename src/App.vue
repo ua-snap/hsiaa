@@ -366,23 +366,26 @@
       <img src="./assets/SourcesChart.svg" />
       <div class="centered--wrapper">
         <h5>More information on sea ice data sources</h5>
+        <p class="disclaimer">
+          While the Atlas data captures much of the historical sea ice variability,<br>scientific confidence decreases for records further in the past.</p>
+        <p>Find out more by investigating</p>
         <p>
           <a href="https://nsidc.org/sites/nsidc.org/files/G10010_V002.0.pdf"
-            >Detailed data source descriptions</a
+            >detailed data source descriptions</a
           ><br />
           and<br />
           <a
             href="https://www.tandfonline.com/doi/abs/10.1111/j.1931-0846.2016.12195.x"
-            >Methodology used to synthesize data sources</a
+            >methodology used to synthesize data sources</a
           ><br />
         </p>
-        <h5>Download data</h5>
+        <h5>Download data for Alaska</h5>
         <p>
-          Includes the entire Historical Sea Ice dataset compiled from the
-          sources listed here.<br />
+          Includes only the Alaska portion of the Historical Sea Ice Atlas,<br> compiled from the sources listed here.
+          <br />
           <a
             href="http://ckan.snap.uaf.edu/dataset/historical-sea-ice-atlas-observed-estimates-of-sea-ice-concentration-in-alaska-waters"
-            >Download the dataset.</a
+            >Download the dataset</a
           >
         </p>
         <h5>Get in touch</h5>
@@ -1052,6 +1055,10 @@ section.lede {
   font-size: 1.2rem;
   text-align: center;
   line-height: 1.6;
+}
+
+.disclaimer {
+  margin-bottom: 0.75rem;
 }
 
 section.about .start {
