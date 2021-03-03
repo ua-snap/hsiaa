@@ -992,7 +992,7 @@ section.lead {
         font-family: "Imbue", serif;
         font-weight: 600;
         font-style: normal;
-        font-size: 3.8rem;
+        font-size: 4.5rem;
         line-height: 1;
         text-transform: uppercase;
       }
@@ -1000,9 +1000,9 @@ section.lead {
       h3 {
         font-weight: 400;
         font-style: italic;
-        font-size: 1.7rem;
+        font-size: 2.25rem;
         span {
-          font-size: 1.7rem;
+          font-size: 2.25rem;
           text-transform: uppercase;
           font-weight: 400;
           font-style: italic;
@@ -1034,7 +1034,6 @@ section.lede {
       margin-top: 2rem;
       font-size: 22px;
       font-weight: 400;
-      font-style: italic;
       line-height: 1.6;
     }
     p.announce {
