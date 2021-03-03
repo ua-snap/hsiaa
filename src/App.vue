@@ -310,7 +310,7 @@
           Other ways to view sea ice data
         </h4>
         <h5 class="closer">
-          <a href="Historical-Sea-Ice-Extents-Octobers.pdf">Download a poster</a
+          <a v-bind:href="baseURL + 'Historical-Sea-Ice-Extents-Octobers.pdf'">Download a poster</a
           ><br /><span
             >that shows 170 images of sea ice concentration for October,
             1850&ndash;2017.</span
@@ -472,10 +472,11 @@ export default {
 
     this.map.on("click", this.handleMapClick);
     // Necessary to see the markers .
-    L.Icon.Default.imagePath = "/";
+    L.Icon.Default.imagePath = this.baseURL;
   },
   data() {
     return {
+      baseURL: process.env.BASE_URL,
       // Corresponds to marks on the vue-slider-component
       marks: [1850, 1875, 1900, 1925, 1950, 1975, 2000, 2017],
       baseLayerOptions: {
