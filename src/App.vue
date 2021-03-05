@@ -226,6 +226,23 @@
                 These charts show two different ways of seeing changes<br />in
                 sea ice concentration over time.
               </p>
+              <p class="content is-size-5 camera-icon">
+                Click the
+                <span>
+                  <svg
+                    viewBox="0 0 1000 1000"
+                    class="icon"
+                    height="1em"
+                    width="1em"
+                  >
+                    <path
+                      d="m500 450c-83 0-150-67-150-150 0-83 67-150 150-150 83 0 150 67 150 150 0 83-67 150-150 150z m400 150h-120c-16 0-34 13-39 29l-31 93c-6 15-23 28-40 28h-340c-16 0-34-13-39-28l-31-94c-6-15-23-28-40-28h-120c-55 0-100-45-100-100v-450c0-55 45-100 100-100h800c55 0 100 45 100 100v450c0 55-45 100-100 100z m-400-550c-138 0-250 112-250 250 0 138 112 250 250 250 138 0 250-112 250-250 0-138-112-250-250-250z m365 380c-19 0-35 16-35 35 0 19 16 35 35 35 19 0 35-16 35-35 0-19-16-35-35-35z"
+                      transform="matrix(1 0 0 -1 0 850)"
+                    ></path>
+                  </svg>
+                </span>
+                icon in the upper-right of each chart to download it.
+              </p>
               <p>
                 Choose months<br />and view sea ice changes over time for this
                 place.
@@ -310,7 +327,8 @@
           Other ways to view sea ice data
         </h4>
         <h5 class="closer">
-          <a v-bind:href="baseURL + 'Historical-Sea-Ice-Extents-Octobers.pdf'">Download a poster</a
+          <a v-bind:href="baseURL + 'Historical-Sea-Ice-Extents-Octobers.pdf'"
+            >Download a poster</a
           ><br /><span
             >that shows 170 images of sea ice concentration for October,
             1850&ndash;2017.</span
@@ -367,7 +385,10 @@
       <div class="centered--wrapper">
         <h5>More information on sea ice data sources</h5>
         <p class="disclaimer">
-          While the Atlas data captures much of the historical sea ice variability,<br>scientific confidence decreases for records further in the past.</p>
+          While the Atlas data captures much of the historical sea ice
+          variability,<br />scientific confidence decreases for records further
+          in the past.
+        </p>
         <p>Find out more by investigating</p>
         <p>
           <a href="https://nsidc.org/sites/nsidc.org/files/G10010_V002.0.pdf"
@@ -381,7 +402,8 @@
         </p>
         <h5>Download data for Alaska</h5>
         <p>
-          Includes only the Alaska portion of the Historical Sea Ice Atlas,<br> compiled from the sources listed here.
+          Includes only the Alaska portion of the Historical Sea Ice Atlas,<br />
+          compiled from the sources listed here.
           <br />
           <a
             href="http://ckan.snap.uaf.edu/dataset/historical-sea-ice-atlas-observed-estimates-of-sea-ice-concentration-in-alaska-waters"
@@ -1027,6 +1049,16 @@ section.lead {
   }
 }
 
+.camera-icon span {
+  display: inline-block;
+  position: relative;
+  top: 0.25rem;
+  padding: 0 3px;
+}
+.camera-icon span path {
+  fill: #ccc;
+}
+
 section.lede {
   text-align: center;
   div {
@@ -1038,6 +1070,7 @@ section.lede {
       font-size: 22px;
       font-weight: 400;
       line-height: 1.6;
+      font-style: italic;
     }
     p.announce {
       font-family: "Imbue", serif;
