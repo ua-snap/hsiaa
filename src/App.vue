@@ -295,11 +295,6 @@
                 month for every year.
               </p>
               <table class="threshold--legend">
-                <thead>
-                  <tr>
-                    <td colspan="3">Color shows sea ice concentration %</td>
-                  </tr>
-                </thead>
                 <tbody>
                   <tr>
                     <td class="th--1">0&#37; open water</td>
@@ -1365,10 +1360,13 @@ span.hint {
           }
         }
 
-        .threshold--legend {
+        table.threshold--legend {
           font-family: "Open Sans", sans-serif;
           margin: 1rem auto;
           width: 50rem;
+          background: url("./assets/hsia-tapestry-legend.png");
+          background-size: cover;
+
           thead {
             td {
               font-size: 1rem;
@@ -1378,14 +1376,13 @@ span.hint {
           tbody {
             font-weight: 700;
             tr {
-              background: url("./assets/hsia-tapestry-legend.png");
-              background-size: cover;
               td {
                 width: 33%;
                 padding: 0.25rem;
               }
               td.th--1 {
                 color: #fff;
+                text-align: left;
               }
               td.th--50 {
                 color: #fff;
