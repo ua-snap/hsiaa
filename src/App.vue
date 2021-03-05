@@ -495,7 +495,7 @@ export default {
     new L.Control.Zoom({ position: "topright" }).addTo(this.map);
     this.updateAtlas();
 
-    this.map.on("click", this.handleMapClick);
+    this.map.on("click", _.debounce(this.handleMapClick, 200));
     // Necessary to see the markers .
     L.Icon.Default.imagePath = this.baseURL;
   },
