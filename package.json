@@ -17,7 +17,6 @@
     "proj4": "^2.7.0",
     "proj4leaflet": "^1.0.2",
     "vue": "^2.6.11",
-    "vue-analytics": "^5.22.1",
     "vue-mobile-detection": "^1.0.0",
     "vue-multiselect": "^2.1.6",
     "vue-plotly": "^1.1.0",

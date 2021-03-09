@@ -1442,7 +1442,8 @@ span.hint {
   padding: 1rem;
   max-width: 40rem;
 
-  &.portrait, &.landscape {
+  &.portrait,
+  &.landscape {
     display: none;
   }
 }
@@ -1458,7 +1459,7 @@ span.hint {
       height: 0;
       .map--wrapper {
         display: none;
-      }  
+      }
     }
     .report--section {
       margin: -1rem 0 -8rem -2rem !important;

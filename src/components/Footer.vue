@@ -3,7 +3,7 @@
     <div class="container">
       <div class="columns">
         <div class="logo column is-one-fifth">
-          <img src="../assets/UAF.svg" alt="UAF Logo"/>
+          <img src="../assets/UAF.svg" alt="UAF Logo" />
         </div>
         <div class="column is-four-fifths">
           <p>
@@ -75,7 +75,7 @@ export default {
     text-align: center;
     img {
       position: relative;
-      top: .25rem;
+      top: 0.25rem;
       width: 75%;
       max-width: 40vw;
     }

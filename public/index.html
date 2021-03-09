@@ -11,7 +11,15 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <!-- TODO this stylesheet should be imported as a module dependency -->
     <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
-    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3978613-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-3978613-6');
+    </script>
     <title>Historical Sea Ice Atlas</title>
   </head>
   <body>
