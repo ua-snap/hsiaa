@@ -1,8 +1,8 @@
 <template>
   <div>
     <header>
-      UNIVERSITY OF ALASKA FAIRBANKS | ALASKA CENTER FOR CLIMATE ASSESSMENT AND
-      POLICY
+      University of Alaska Fairbanks | Alaska Center for Climate Assessment and
+      Policy
     </header>
     <section class="lead section">
       <div class="columns is-vcentered">
@@ -15,7 +15,9 @@
           <h3>1850 to present</h3>
         </div>
 
-        <div class="column splash is-half"></div>
+        <div class="column splash is-half">
+          <img src="@/assets/hsia-splash.jpg" />
+        </div>
       </div>
     </section>
 
@@ -62,6 +64,17 @@
             <a href="https://nsidc.org/cryosphere/quickfacts/seaice.html"
               >Learn more about sea ice</a
             >
+          </p>
+
+          <p class="mobile--warnings landscape">
+            <span class="alarm">😓 We&rsquo;re sorry!</span> The interactive map
+            doesn&rsquo;t work on a screen this size, but you can still pick a
+            community to see visualizations.
+          </p>
+          <p class="mobile--warnings portrait">
+            <span class="alarm">⚠️ Oh no!</span> The interactive tools on this
+            site don&rsquo;t work on a phone in portrait mode. Turn your phone
+            sideways to pick a community, or try using this site on a computer!
           </p>
         </div>
 
@@ -163,7 +176,7 @@
         </div>
 
         <div
-          v-bind:class="{ sidelined: foldoutActive }"
+          v-bind:class="{ sidelined: foldoutActive, hidden: foldoutActive }"
           class="report--section"
         >
           <!-- Go back to the map -->
@@ -989,26 +1002,28 @@ div.button > span,
 }
 
 header {
+  text-transform: uppercase;
   background-color: #0c2342;
   color: white;
   text-align: center;
   font-size: 0.75rem;
   letter-spacing: 0.17rem;
   padding: 0.4rem;
-  height: 2rem;
+  min-height: 2rem;
 }
 
 section.lead {
   margin-top: 0;
-  border-top: 3px solid #fff;
-  padding-top: 10px;
-
+  border-top: 1px solid #fff;
+  padding-top: 0;
   .columns {
-    width: 100vw;
-    height: calc(100vh - 2rem);
+    margin: -0.75rem -2.25rem;
     .column.intro {
       text-align: center;
       h1 {
+        margin-top: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
         font-family: "Imbue", serif;
         font-weight: 600;
         font-style: normal;
@@ -1021,6 +1036,8 @@ section.lead {
         font-weight: 400;
         font-style: italic;
         font-size: 2.25rem;
+        margin-right: 1rem;
+        margin-left: 1rem;
         span {
           font-size: 2.25rem;
           text-transform: uppercase;
@@ -1035,11 +1052,6 @@ section.lead {
       h3 {
         margin-top: 0.5rem;
       }
-    }
-    .column.splash {
-      height: 100%;
-      background: no-repeat bottom left url("./assets/hsia-splash.jpg");
-      background-size: cover;
     }
   }
 }
@@ -1313,7 +1325,6 @@ span.hint {
     // When the report is not shown (no `sideline` class)
     // we need to clip it.
     overflow-y: hidden;
-    height: 100vh;
     padding-left: 1.5rem;
 
     &.sidelined {
@@ -1352,7 +1363,7 @@ span.hint {
         }
         p {
           font-size: 1.25rem;
-          width: 40rem;
+          max-width: 40rem;
           margin: 1rem auto;
 
           &.between {
@@ -1363,9 +1374,18 @@ span.hint {
         table.threshold--legend {
           font-family: "Open Sans", sans-serif;
           margin: 1rem auto;
-          width: 50rem;
-          background: url("./assets/hsia-tapestry-legend.png");
-          background-size: cover;
+          max-width: 50rem;
+          background-image: linear-gradient(
+            to right,
+            rgba(8, 29, 88, 255),
+            rgba(37, 52, 148, 255),
+            rgba(34, 94, 168, 255),
+            rgba(29, 145, 192, 255),
+            rgba(65, 182, 196, 255),
+            rgba(127, 205, 187, 255),
+            rgba(199, 233, 180, 255),
+            rgba(237, 248, 217, 255)
+          );
 
           thead {
             td {
@@ -1412,6 +1432,54 @@ span.hint {
   a {
     display: block;
     margin-top: 1rem;
+  }
+}
+
+/* Putting these at the end to override other stuff */
+.mobile--warnings {
+  background-color: #ffffcc;
+  margin: 1rem auto;
+  padding: 1rem;
+  max-width: 40rem;
+
+  &.portrait, &.landscape {
+    display: none;
+  }
+}
+
+@media (max-width: 784px) {
+  // Show the mobile warning for landscape.
+  .mobile--warnings.landscape {
+    display: block;
+  }
+  // Hide the map, but allow the reports to be shown.
+  .map--section--wrapper {
+    .map--direct-wrapper {
+      height: 0;
+      .map--wrapper {
+        display: none;
+      }  
+    }
+    .report--section {
+      margin: -1rem 0 -8rem -2rem !important;
+      padding: 0 !important;
+      .back {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 315px) {
+  .mobile--warnings.landscape {
+    display: none !important;
+  }
+  // Show the mobile warning for landscape.
+  .mobile--warnings.portrait {
+    display: block;
+  }
+  .map--section--wrapper {
+    display: none;
   }
 }
 </style>
