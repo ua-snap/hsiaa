@@ -1,9 +1,11 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <div class="wrapper is-size-5">
-        <img src="../assets/UAF.svg" />
-        <div class="wrapped">
+      <div class="columns">
+        <div class="logo column is-one-fifth">
+          <img src="../assets/UAF.svg" alt="UAF Logo"/>
+        </div>
+        <div class="column is-four-fifths">
           <p>
             This tool was developed by the
             <a href="http://www.aoos.org/">Alaska Ocean Observing System</a>
@@ -68,35 +70,19 @@ export default {
 <style lang="scss" scoped>
 .footer {
   box-shadow: inset 0 7px 9px -7px rgba(0, 0, 0, 0.4);
-  min-height: 26rem;
-}
 
-.footer div.wrapper {
-  margin: 2rem auto;
-  display: flex;
-  height: 8rem;
-  max-height: 8rem;
-  width: 60rem;
-}
+  .logo {
+    text-align: center;
+    img {
+      position: relative;
+      top: .25rem;
+      width: 75%;
+      max-width: 40vw;
+    }
+  }
 
-.footer img {
-  min-width: 12.5vw;
-  max-width: 150px;
-  padding: 0 1rem;
-  display: block;
-  position: relative;
-  top: 0.25rem;
-  object-fit: contain;
-  align-self: flex-start;
-}
-
-.footer p {
-  text-align: left;
-  font-size: 0.95rem;
-  margin: 0 1rem 1rem;
-}
-
-.footer div.wrapped {
-  flex: 1 1 auto;
+  p {
+    margin: 1rem;
+  }
 }
 </style>
