@@ -257,6 +257,14 @@
                 icon in the upper-right of each chart to download it.
               </p>
               <p>
+                Or,
+                <a
+                  :href="downloadButtonData"
+                  :download="downloadButtonFilename"
+                  >download data for this place (CSV).</a
+                >
+              </p>
+              <p>
                 Choose months<br />and view sea ice changes over time for this
                 place.
               </p>
@@ -534,6 +542,9 @@ export default {
       communityName: "",
       communities: {}, // loaded from external file
       foldoutTitle: "", // set when the community or place is picked
+
+      downloadButtonData: "",
+      downloadButtonFilename: "",
 
       // Updated when we get a successful timeseries back.
       // Triggers repaint of Plotly charts.
@@ -941,6 +952,21 @@ export default {
                 resolve();
                 return;
               }
+
+              // Prepare the data download payload
+              var csvData = "year,month,%conc\n";
+              // 0 = January, 1850.
+              let monthToDate = function(month) {
+                let year = Math.floor(month / 12) + 1850;
+                month = (month % 12) + 1;
+                return `${year},${month}`;
+              }
+              _.forEach(this.timeseriesData, (conc, index) => {
+                csvData += `${monthToDate(index)},${conc}\n`;
+              });
+              this.downloadButtonData =
+                "data:text/csv;charset=utf-8," + encodeURI(csvData);
+              this.downloadButtonFilename = this.getChartTitlePlaceFragment()+".csv";
 
               // Show the reports.
               this.validMapPixel = true;
