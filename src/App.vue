@@ -258,9 +258,7 @@
               </p>
               <p>
                 Or,
-                <a
-                  :href="downloadButtonData"
-                  :download="downloadButtonFilename"
+                <a :href="downloadButtonData" :download="downloadButtonFilename"
                   >download data for this place (CSV).</a
                 >
               </p>
@@ -960,13 +958,14 @@ export default {
                 let year = Math.floor(month / 12) + 1850;
                 month = (month % 12) + 1;
                 return `${year},${month}`;
-              }
+              };
               _.forEach(this.timeseriesData, (conc, index) => {
                 csvData += `${monthToDate(index)},${conc}\n`;
               });
               this.downloadButtonData =
                 "data:text/csv;charset=utf-8," + encodeURI(csvData);
-              this.downloadButtonFilename = this.getChartTitlePlaceFragment()+".csv";
+              this.downloadButtonFilename =
+                this.getChartTitlePlaceFragment() + ".csv";
 
               // Show the reports.
               this.validMapPixel = true;
