@@ -200,7 +200,7 @@ export default {
       },
       {
         place: "63.85,-161.26",
-        name: "Unalakteet, AK"
+        name: "Unalakleet, AK"
       },
       {
         place: "71.47,-156.67",
