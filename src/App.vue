@@ -663,7 +663,7 @@ export default {
   methods: {
     getBaseMapAndLayers() {
       var baseLayer = new L.tileLayer.wms(
-        "http://54.190.34.177:8080/geoserver/wms",
+        "https://gs.mapventure.org/geoserver/wms",
         {
           transparent: true,
           srs: "EPSG:3572",
