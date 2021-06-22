@@ -865,7 +865,7 @@ export default {
         this.map.removeLayer(this.layer);
       }
       this.layer = L.tileLayer.wms(
-        "http://apollo.snap.uaf.edu:8080/rasdaman/ows?",
+        "https://apollo.snap.uaf.edu/rasdaman/ows?",
         _.extend(this.baseLayerOptions, {
           layers: ["hsia_arctic_production"],
           styles: "hsia",
@@ -918,7 +918,7 @@ export default {
       // Define and perform Rasdaman query to get the data
       var coords = proj4("EPSG:4326", "EPSG:3572", [latlng.lng, latlng.lat]);
       var query =
-        "http://apollo.snap.uaf.edu:8080/rasdaman/ows?&SERVICE=WCS&VERSION=2.0.1&REQUEST=GetCoverage&COVERAGEID=hsia_arctic_production&SUBSET=X(" +
+        "https://apollo.snap.uaf.edu/rasdaman/ows?&SERVICE=WCS&VERSION=2.0.1&REQUEST=GetCoverage&COVERAGEID=hsia_arctic_production&SUBSET=X(" +
         coords[0] +
         ")&SUBSET=Y(" +
         coords[1] +
