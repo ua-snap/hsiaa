@@ -1012,10 +1012,7 @@ footer {
 a {
   text-decoration: underline;
   display: inline-block;
-}
-
-a:hover {
-  background-color: #ffe598;
+  color: #0033CC;
 }
 
 a.button,
