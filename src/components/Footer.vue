@@ -33,7 +33,13 @@
               >University of Illinois, Urbana-Champaign</a
             >.
           </p>
-
+          <p>
+            This tool uses the
+            <a href="https://doi.org/10.5281/zenodo.1040170"
+              >Rasdaman raster database</a
+            >
+            for data storage, processing, and web services.
+          </p>
           <p>
             Copyright &copy; {{ year }} University of Alaska Fairbanks. All
             rights reserved.
@@ -69,15 +75,25 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
+  a {
+    text-decoration: underline;
+    color: #0033cc;
+  }
+
   box-shadow: inset 0 7px 9px -7px rgba(0, 0, 0, 0.4);
 
   .logo {
-    text-align: center;
+    text-align: right;
+
+    @media screen and (max-width: 768px) {
+      text-align: center;
+    }
+
     img {
       position: relative;
-      top: 0.25rem;
-      width: 75%;
-      max-width: 40vw;
+      top: 1.2rem;
+      width: 60%;
+      max-width: 30vw;
     }
   }
 
