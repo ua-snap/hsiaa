@@ -43,10 +43,6 @@ export default {
         name: "Emmonak, AK"
       },
       {
-        place: "64.48,-165.42",
-        name: "Fort Davis, AK"
-      },
-      {
         place: "63.81,-171.76",
         name: "Gambell, AK"
       },
@@ -111,7 +107,7 @@ export default {
         name: "Newtok, AK"
       },
       {
-        place: "64.48,-165.42",
+        place: "64.38,-165.42",
         name: "Nome, AK"
       },
       {
