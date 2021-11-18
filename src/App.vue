@@ -1012,7 +1012,7 @@ footer {
 a {
   text-decoration: underline;
   display: inline-block;
-  color: #0033CC;
+  color: #0033cc;
 }
 
 a.button,
