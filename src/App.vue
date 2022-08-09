@@ -123,7 +123,7 @@
                 <vue-slider
                   v-model="selectedDate"
                   :min="1850"
-                  :max="2017"
+                  :max="2021"
                   :marks="marks"
                   :tooltip-placement="'bottom'"
                 />
@@ -234,7 +234,7 @@
               class="report--charts"
               v-bind:class="{ hidden: !validMapPixel }"
             >
-              <h3 class="title is-4">{{ foldoutTitle }}, 1850&ndash;2017</h3>
+              <h3 class="title is-4">{{ foldoutTitle }}, 1850&ndash;2021</h3>
               <p class="lead">
                 These charts show two different ways of seeing changes<br />in
                 sea ice concentration over time.
@@ -345,7 +345,7 @@
             >Download a poster</a
           ><br /><span
             >that shows 170 images of sea ice concentration for October,
-            1850&ndash;2017.</span
+            1850&ndash;2021.</span
           >
         </h5>
         <h5>Watch sea ice concentration animations</h5>
@@ -354,7 +354,7 @@
     <section class="section videos">
       <div class="columns">
         <div class="column is-half">
-          <h5>Every month, 1850&ndash;2017</h5>
+          <h5>Every month, 1850&ndash;2021</h5>
           <iframe
             class="youtube-videos"
             src="https://www.youtube.com/embed/XSa0iGU0uDY"
@@ -364,7 +364,7 @@
           ></iframe>
         </div>
         <div class="column is-half">
-          <h5>Monthly playlist, e.g. each January, 1850&ndash;2017</h5>
+          <h5>Monthly playlist, e.g. each January, 1850&ndash;2021</h5>
           <iframe
             class="youtube-videos"
             src="https://www.youtube.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW"
@@ -445,7 +445,6 @@
 
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import proj4 from "proj4";
 import p4l from "proj4leaflet"; /* eslint-disable-line */
 import _ from "lodash";
 import VueSlider from "vue-slider-component";
@@ -473,7 +472,7 @@ var getDateFromInteger = function(year, month) {
 
 // Range of years
 var xrange = [];
-for (let x = 1850; x <= 2017; x++) {
+for (let x = 1850; x <= 2021; x++) {
   xrange.push(x);
 }
 
@@ -517,7 +516,7 @@ export default {
     return {
       baseURL: process.env.BASE_URL,
       // Corresponds to marks on the vue-slider-component
-      marks: [1850, 1875, 1900, 1925, 1950, 1975, 2000, 2017],
+      marks: [1850, 1875, 1900, 1925, 1950, 1975, 2000, 2021],
       baseLayerOptions: {
         transparent: true,
         srs: "EPSG:3572",
@@ -725,9 +724,9 @@ export default {
       if (this.monthOffset > 11) {
         this.monthOffset = 0;
         var newDate = this.selectedDate + 1;
-        if (newDate > 2017) {
-          newDate = 2017;
-          this.monthOffset = 11;
+        if (newDate > 2021) {
+          newDate = 2021;
+          this.monthOffset = 12;
         }
         this.selectedDate = newDate;
       }
@@ -778,9 +777,9 @@ export default {
         let title = this.getChartTitlePlaceFragment();
 
         this.concentrationPlotLayout = {
-          title: `<b>${title}, ${monthFragment}, 1850-2017</b>`,
+          title: `<b>${title}, ${monthFragment}, 1850-2021</b>`,
           xaxis: {
-            range: [1850, 2017],
+            range: [1850, 2021],
             fixedrange: true
           },
           yaxis: {
@@ -812,7 +811,7 @@ export default {
         let title = this.getChartTitlePlaceFragment();
 
         this.thresholdChartLayout = {
-          title: `<b>${title}, 1850-2017</b>`,
+          title: `<b>${title}, 1850-2022</b>`,
           height: 1500,
           legend: { orientation: "h" },
           yaxis: {
@@ -865,7 +864,7 @@ export default {
         this.map.removeLayer(this.layer);
       }
       this.layer = L.tileLayer.wms(
-        "https://zeus.snap.uaf.edu/rasdaman/ows?",
+        process.env.VUE_APP_WMS_URL + "?",
         _.extend(this.baseLayerOptions, {
           layers: ["hsia_arctic_production"],
           styles: "hsia",
@@ -916,13 +915,13 @@ export default {
       this.foldoutTitle = `${titleFragment}`;
 
       // Define and perform Rasdaman query to get the data
-      var coords = proj4("EPSG:4326", "EPSG:3572", [latlng.lng, latlng.lat]);
       var query =
-        "https://zeus.snap.uaf.edu/rasdaman/ows?&SERVICE=WCS&VERSION=2.0.1&REQUEST=GetCoverage&COVERAGEID=hsia_arctic_production&SUBSET=X(" +
-        coords[0] +
-        ")&SUBSET=Y(" +
-        coords[1] +
-        ")&FORMAT=application/json";
+        process.env.VUE_APP_SNAP_API_URL +
+        "/seaice/point/" +
+        latlng.lat +
+        "/" +
+        latlng.lng +
+        "/hsia";
 
       return new Promise(resolve => {
         axios
