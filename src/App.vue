@@ -726,7 +726,7 @@ export default {
         var newDate = this.selectedDate + 1;
         if (newDate > 2021) {
           newDate = 2021;
-          this.monthOffset = 12;
+          this.monthOffset = 11;
         }
         this.selectedDate = newDate;
       }
@@ -920,8 +920,7 @@ export default {
         "/seaice/point/" +
         latlng.lat +
         "/" +
-        latlng.lng +
-        "/hsia";
+        latlng.lng;
 
       return new Promise(resolve => {
         axios
@@ -930,7 +929,7 @@ export default {
             if (res) {
               // Set the report as loaded.
               this.reportIsLoaded = true;
-              this.timeseriesData = res.data;
+              this.timeseriesData = Object.values(res.data);
 
               // Put a marker / popup on the map to show the
               // sidebar again.
