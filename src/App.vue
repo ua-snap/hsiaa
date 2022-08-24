@@ -258,7 +258,7 @@
               </p>
               <p>
                 Or,
-                <a :href="downloadButtonData" :download="downloadButtonFilename"
+                <a :href="downloadButtonData"
                   >download data for this place (CSV).</a
                 >
               </p>
@@ -825,7 +825,7 @@ export default {
           xaxis: {
             side: "top",
             tickmode: "array",
-            tickvals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            tickvals: months,
             ticktext: [
               "January",
               "February",
@@ -949,21 +949,7 @@ export default {
                 return;
               }
 
-              // Prepare the data download payload
-              var csvData = "year,month,%conc\n";
-              // 0 = January, 1850.
-              let monthToDate = function(month) {
-                let year = Math.floor(month / 12) + 1850;
-                month = (month % 12) + 1;
-                return `${year},${month}`;
-              };
-              _.forEach(this.timeseriesData, (conc, index) => {
-                csvData += `${monthToDate(index)},${conc}\n`;
-              });
-              this.downloadButtonData =
-                "data:text/csv;charset=utf-8," + encodeURI(csvData);
-              this.downloadButtonFilename =
-                this.getChartTitlePlaceFragment() + ".csv";
+              this.downloadButtonData = query + "?format=csv";
 
               // Show the reports.
               this.validMapPixel = true;
