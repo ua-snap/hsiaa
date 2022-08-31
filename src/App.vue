@@ -811,7 +811,7 @@ export default {
         let title = this.getChartTitlePlaceFragment();
 
         this.thresholdChartLayout = {
-          title: `<b>${title}, 1850-2022</b>`,
+          title: `<b>${title}, 1850-2021</b>`,
           height: 1500,
           legend: { orientation: "h" },
           yaxis: {
