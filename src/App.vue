@@ -541,7 +541,6 @@ export default {
       foldoutTitle: "", // set when the community or place is picked
 
       downloadButtonData: "",
-      downloadButtonFilename: "",
 
       // Updated when we get a successful timeseries back.
       // Triggers repaint of Plotly charts.
@@ -918,9 +917,9 @@ export default {
       var query =
         process.env.VUE_APP_SNAP_API_URL +
         "/seaice/point/" +
-        latlng.lat +
+        this.latDeg +
         "/" +
-        latlng.lng;
+        this.lngDeg;
 
       return new Promise(resolve => {
         axios
