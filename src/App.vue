@@ -128,13 +128,21 @@
                   :tooltip-placement="'bottom'"
                 />
                 <div class="slider-wrapper--button-wrapper">
-                  <span v-on:click="decrementMonth" class="button">
+                  <span
+                    v-on:click="decrementMonth"
+                    :disabled="pastButtonDisabled"
+                    class="button"
+                  >
                     <i class="fas fa-arrow-alt-circle-left" /><span
                       class="month-indicator"
                       >Past Month</span
                     >
                   </span>
-                  <span v-on:click="incrementMonth" class="button">
+                  <span
+                    v-on:click="incrementMonth"
+                    :disabled="nextButtonDisabled"
+                    class="button"
+                  >
                     <span class="month-indicator">Next Month</span>
                     <i class="fas fa-arrow-alt-circle-right" />
                   </span>
@@ -527,6 +535,12 @@ export default {
         continuousWorld: true // needed for non-3857 projs
       },
 
+      // is past month button disabled?
+      pastButtonDisabled: true,
+
+      // is next month button disabled?
+      nextButtonDisabled: false,
+
       // What year?
       selectedDate: 1850,
 
@@ -626,6 +640,7 @@ export default {
   },
   watch: {
     selectedDate() {
+      this.disableButtons();
       this.debouncedUpdateAtlas();
     },
     selectedMonthOrSeason() {
@@ -708,6 +723,15 @@ export default {
 
       return config;
     },
+    disableButtons() {
+      if (this.selectedDate == 1850 && this.monthOffset == 0) {
+        this.pastButtonDisabled = true;
+      } else if (this.selectedDate == 2021 && this.monthOffset == 11) {
+        this.nextButtonDisabled = true;
+      } else {
+        this.pastButtonDisabled = this.nextButtonDisabled = false;
+      }
+    },
     decrementMonth() {
       this.monthOffset -= 1;
       if (this.monthOffset < 0) {
@@ -719,6 +743,7 @@ export default {
         }
         this.selectedDate = newDate;
       }
+      this.disableButtons();
     },
     incrementMonth() {
       this.monthOffset += 1;
@@ -731,6 +756,7 @@ export default {
         }
         this.selectedDate = newDate;
       }
+      this.disableButtons();
     },
     getChartTitlePlaceFragment() {
       if (!this.community) {
