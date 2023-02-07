@@ -432,8 +432,10 @@
             >Send us feedback</a
           >
           or email
-          <a href="mailto:nlfresco@alaska.edu">nlfresco@alaska.edu</a> if you
-          have questions.
+          <a href="mailto:uaf-snap-data-tools@alaska.edu"
+            >uaf-snap-data-tools@alaska.edu</a
+          >
+          if you have questions.
         </p>
       </div>
     </section>
