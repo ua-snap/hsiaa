@@ -11,10 +11,6 @@ export default {
         name: "Brevig Mission, AK"
       },
       {
-        place: "54.89,-162.59",
-        name: "Cold Bay, AK"
-      },
-      {
         place: "66.22,-162.69",
         name: "Deering, AK"
       },
