@@ -1,16 +1,14 @@
-import Vue from "vue";
-import App from "./App.vue";
+import './assets/main.css'
 
-import VueMobileDetection from "vue-mobile-detection";
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 
-// Move... somewhere?
-import "bulma/css/bulma.css";
+import App from './App.vue'
+import router from './router'
 
-// Exposes Vue.$isMobile()
-Vue.use(VueMobileDetection);
+const app = createApp(App)
 
-Vue.config.productionTip = false;
+app.use(createPinia())
+app.use(router)
 
-new Vue({
-  render: h => h(App)
-}).$mount("#app");
+app.mount('#app')
