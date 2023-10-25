@@ -2,7 +2,7 @@
   <main>
     <div class="controls">
       <MapTitle/>
-      <DateSlider/>
+      <YearSlider/>
       <MonthSelectors/>
       <span class="hint">Use slider above to change year</span>
       <MapLegend />
@@ -16,6 +16,6 @@ import Map from '../components/Map.vue'
 import MapLegend from '../components/MapLegend.vue'
 import MapTitle from '../components/MapTitle.vue'
 import MonthSelectors from '../components/MonthSelectors.vue'
-import DateSlider from '../components/DateSlider.vue'
+import YearSlider from '../components/YearSlider.vue'
 </script>
 
