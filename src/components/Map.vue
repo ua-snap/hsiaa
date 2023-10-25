@@ -1,44 +1,70 @@
 <template>
-	<div class="map--section--wrapper">
-		<div class="map--direct-wrapper" v-bind:class="{ sidelined: foldoutActive }">
-			<div class="map--wrapper">
-				<div class="map--overlay-wrapper">
-					<!-- Slider wrapper! -->
-					
-
-					<div
-						class="report--show-current-button button is-link"
-						v-on:click="foldoutActive = true"
-						v-bind:class="{ hidden: !validMapPixel }"
-					>
-						<span class="text"> Show report for selected location </span>
-						<span class="icon is-large">
-							<i class="fas fa-arrow-right"></i>
-						</span>
-					</div>
-					
-				</div>
-				
-				<div id="map--main"></div>
-			</div>
-		</div>
-	</div>
+	<div id="map"></div>
 </template>
 
 <script setup>
+import _ from 'lodash'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import p4l from 'proj4leaflet'
 import MapLegend from './MapLegend.vue'
 import { onMounted } from 'vue'
+import moment from 'moment'
 
-// Leaflet map object
+const VUE_APP_SNAP_API_URL = 'https://earthmaps.io'
+const VUE_APP_WMS_URL = 'https://maps.earthmaps.io/rasdaman/ows'
+
+// Leaflet map objects
 var map
+var layer // currently active layer
+
+// Move to store
+var year = 1950
+var month = 0
+
+const baseLayerOptions = {
+	transparent: true,
+	srs: 'EPSG:3572',
+	format: 'image/png',
+	version: '1.3.0',
+	continuousWorld: true // needed for non-3857 projs
+}
 
 onMounted(() => {
-	map = L.map('map--main', getBaseMapAndLayers())
+	map = L.map('map', getBaseMapAndLayers())
 	new L.Control.Zoom({ position: 'topright' }).addTo(map)
+	updateAtlas()
 })
+
+// Convert an integer (0 - end of data series)
+// into two strings: one for display,
+// and the other for the WMS request.
+const getDateFromInteger = function (year, month) {
+	var dateObj = moment({ day: 1, month: month, year: year })
+	return {
+		display: dateObj.format('MMMM YYYY'),
+		wms: '"' + dateObj.format('YYYY-MM-DDT00:00:00.000[Z]') + '"'
+	}
+}
+
+const updateAtlas = function () {
+	var dates = getDateFromInteger(year, month)
+	console.log(dates)
+	// this.displayDate = dates.display
+	if (layer) {
+		map.removeLayer(layer)
+	}
+	layer = L.tileLayer.wms(
+		VUE_APP_WMS_URL + '?',
+		_.extend(baseLayerOptions, {
+			layers: ['hsia_arctic_production'],
+			styles: 'hsia',
+			version: '1.3.0',
+			time: dates.wms
+		})
+	)
+	map.addLayer(layer)
+}
 
 const getBaseMapAndLayers = function () {
 	var baseLayer = new L.tileLayer.wms('https://gs.mapventure.org/geoserver/wms', {
@@ -87,71 +113,7 @@ const getBaseMapAndLayers = function () {
 </script>
 
 <style lang="scss" scoped>
-.map--section--wrapper {
-	.map--wrapper {
-		border: 1px solid red;
-		height: 90vh;
-		position: relative;
-
-		#map--main {
-			height: 90vh;
-		}
-
-		.map--overlay-wrapper {
-			position: absolute;
-			background-color: rgba(255, 255, 255, 0.8);
-			top: 0;
-			left: 0;
-			padding: 0 1rem 1rem 1rem;
-			z-index: 10000;
-			width: 50vw;
-
-			
-			.report--show-current-button {
-				box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
-				margin-bottom: 1rem;
-				&.hidden {
-					display: none;
-				}
-			}
-		}
-
-		.location--drop-down {
-			background-color: white;
-			position: absolute;
-			top: 1.5rem;
-			right: 1.5rem;
-			z-index: 10000;
-			box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
-		}
-
-		.slider-wrapper {
-			margin: 1rem auto 0;
-			padding: 1rem;
-
-			p.date--display--date {
-				margin: -1rem 0 0 -0.5rem;
-				font-size: 1.75rem;
-				font-weight: 700;
-			}
-
-			.slider-wrapper--button-wrapper {
-				margin: 2rem -1rem 0;
-				.button {
-					margin-right: 1rem;
-					& i.fas {
-						display: inline-block;
-
-						&.fa-arrow-alt-circle-left {
-							margin-right: 0.5rem;
-						}
-						&.fa-arrow-alt-circle-right {
-							margin-left: 0.5rem;
-						}
-					}
-				}
-			}
-		}
-	}
+#map {
+	height: 90vh;
 }
 </style>

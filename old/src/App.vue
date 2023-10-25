@@ -205,16 +205,16 @@ import Multiselect from "vue-multiselect";
 
 import communities from "./communities.js";
 
-// Convert an integer (0 - end of data series)
-// into two strings: one for display,
-// and the other for the WMS request.
-var getDateFromInteger = function(year, month) {
-  var dateObj = moment({ day: 1, month: month, year: year });
-  return {
-    display: dateObj.format("MMMM YYYY"),
-    wms: '"' + dateObj.format("YYYY-MM-DDT00:00:00.000[Z]") + '"'
-  };
-};
+// // Convert an integer (0 - end of data series)
+// // into two strings: one for display,
+// // and the other for the WMS request.
+// var getDateFromInteger = function(year, month) {
+//   var dateObj = moment({ day: 1, month: month, year: year });
+//   return {
+//     display: dateObj.format("MMMM YYYY"),
+//     wms: '"' + dateObj.format("YYYY-MM-DDT00:00:00.000[Z]") + '"'
+//   };
+// };
 
 // Range of years
 var xrange = [];
@@ -262,13 +262,13 @@ export default {
     return {
       baseURL: process.env.BASE_URL,
       // Corresponds to marks on the vue-slider-component
-      baseLayerOptions: {
-        transparent: true,
-        srs: "EPSG:3572",
-        format: "image/png",
-        version: "1.3.0",
-        continuousWorld: true // needed for non-3857 projs
-      },
+      // baseLayerOptions: {
+      //   transparent: true,
+      //   srs: "EPSG:3572",
+      //   format: "image/png",
+      //   version: "1.3.0",
+      //   continuousWorld: true // needed for non-3857 projs
+      // },
 
       // is past month button disabled?
       pastButtonDisabled: true,
@@ -281,6 +281,7 @@ export default {
 
       // Increments/decrements month.
       monthOffset: 0,
+      
 
       // Date displayed on the map.
       displayDate: "",
@@ -411,53 +412,53 @@ export default {
     }
   },
   methods: {
-    getBaseMapAndLayers() {
-      var baseLayer = new L.tileLayer.wms(
-        "https://gs.mapventure.org/geoserver/wms",
-        {
-          transparent: true,
-          srs: "EPSG:3572",
-          format: "image/png",
-          version: "1.3.0",
-          continuousWorld: true, // needed for non-3857 projs
-          layers: ["arctic_osm_3572"]
-        }
-      );
+    // getBaseMapAndLayers() {
+    //   var baseLayer = new L.tileLayer.wms(
+    //     "https://gs.mapventure.org/geoserver/wms",
+    //     {
+    //       transparent: true,
+    //       srs: "EPSG:3572",
+    //       format: "image/png",
+    //       version: "1.3.0",
+    //       continuousWorld: true, // needed for non-3857 projs
+    //       layers: ["arctic_osm_3572"]
+    //     }
+    //   );
 
-      // Projection definition.
-      var proj = new L.Proj.CRS(
-        "EPSG:3572",
-        "+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
-        {
-          resolutions: [4096, 2048, 1024, 512, 256, 128, 64],
-          origin: [-4889334.802954878, -4889334.802954878]
-        }
-      );
+    //   // Projection definition.
+    //   var proj = new L.Proj.CRS(
+    //     "EPSG:3572",
+    //     "+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
+    //     {
+    //       resolutions: [4096, 2048, 1024, 512, 256, 128, 64],
+    //       origin: [-4889334.802954878, -4889334.802954878]
+    //     }
+    //   );
 
-      // trust me 🥳
-      // Without this (= pi/2), proj4js returns an undefined
-      // value for tiles requested at the North Pole and
-      // it causes a runtime exception.
-      proj.projection._proj.oProj.phi0 = 1.5708;
+    //   // trust me 🥳
+    //   // Without this (= pi/2), proj4js returns an undefined
+    //   // value for tiles requested at the North Pole and
+    //   // it causes a runtime exception.
+    //   proj.projection._proj.oProj.phi0 = 1.5708;
 
-      // Map base configuration
-      var config = {
-        zoom: 0,
-        minZoom: 0,
-        maxZoom: 5,
-        center: [67, -170],
-        scrollWheelZoom: false,
-        crs: proj,
-        continuousWorld: true,
-        worldCopyJump: false,
-        zoomControl: false,
-        doubleClickZoom: false,
-        attributionControl: false,
-        layers: [baseLayer]
-      };
+    //   // Map base configuration
+    //   var config = {
+    //     zoom: 0,
+    //     minZoom: 0,
+    //     maxZoom: 5,
+    //     center: [67, -170],
+    //     scrollWheelZoom: false,
+    //     crs: proj,
+    //     continuousWorld: true,
+    //     worldCopyJump: false,
+    //     zoomControl: false,
+    //     doubleClickZoom: false,
+    //     attributionControl: false,
+    //     layers: [baseLayer]
+    //   };
 
-      return config;
-    },
+    //   return config;
+    // },
     disableButtons() {
       if (this.selectedDate == 1850 && this.monthOffset == 0) {
         this.pastButtonDisabled = true;
@@ -619,23 +620,23 @@ export default {
         ];
       }
     },
-    updateAtlas() {
-      var dates = getDateFromInteger(this.selectedDate, this.monthOffset);
-      this.displayDate = dates.display;
-      if (this.layer) {
-        this.map.removeLayer(this.layer);
-      }
-      this.layer = L.tileLayer.wms(
-        process.env.VUE_APP_WMS_URL + "?",
-        _.extend(this.baseLayerOptions, {
-          layers: ["hsia_arctic_production"],
-          styles: "hsia",
-          version: "1.3.0",
-          time: dates.wms
-        })
-      );
-      this.map.addLayer(this.layer);
-    },
+    // updateAtlas() {
+    //   var dates = getDateFromInteger(this.selectedDate, this.monthOffset);
+    //   this.displayDate = dates.display;
+    //   if (this.layer) {
+    //     this.map.removeLayer(this.layer);
+    //   }
+    //   this.layer = L.tileLayer.wms(
+    //     process.env.VUE_APP_WMS_URL + "?",
+    //     _.extend(this.baseLayerOptions, {
+    //       layers: ["hsia_arctic_production"],
+    //       styles: "hsia",
+    //       version: "1.3.0",
+    //       time: dates.wms
+    //     })
+    //   );
+    //   this.map.addLayer(this.layer);
+    // },
     dateFormatter(dateVal) {
       return getDateFromInteger(dateVal).display;
     },
