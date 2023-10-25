@@ -189,9 +189,9 @@
 <script>
 /* eslint new-cap: "off" */
 
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-import p4l from "proj4leaflet"; /* eslint-disable-line */
+// import L from "leaflet";
+// import "leaflet/dist/leaflet.css";
+// import p4l from "proj4leaflet"; 
 import _ from "lodash";
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
@@ -201,7 +201,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import axios from "axios";
 import Multiselect from "vue-multiselect";
 
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 
 import communities from "./communities.js";
 
@@ -262,7 +262,6 @@ export default {
     return {
       baseURL: process.env.BASE_URL,
       // Corresponds to marks on the vue-slider-component
-      marks: [1850, 1875, 1900, 1925, 1950, 1975, 2000, 2021],
       baseLayerOptions: {
         transparent: true,
         srs: "EPSG:3572",

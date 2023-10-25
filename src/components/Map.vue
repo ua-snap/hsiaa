@@ -4,29 +4,7 @@
 			<div class="map--wrapper">
 				<div class="map--overlay-wrapper">
 					<!-- Slider wrapper! -->
-					<div class="slider-wrapper">
-						<p class="date--display--date">Sea Ice Concentration, {{ displayDate }}</p>
-						<vue-slider
-							v-model="selectedDate"
-							:min="1850"
-							:max="2021"
-							:marks="marks"
-							:tooltip-placement="'bottom'"
-						/>
-						<div class="slider-wrapper--button-wrapper">
-							<span v-on:click="decrementMonth" :disabled="pastButtonDisabled" class="button">
-								<i class="fas fa-arrow-alt-circle-left" /><span class="month-indicator"
-									>Past Month</span
-								>
-							</span>
-							<span v-on:click="incrementMonth" :disabled="nextButtonDisabled" class="button">
-								<span class="month-indicator">Next Month</span>
-								<i class="fas fa-arrow-alt-circle-right" />
-							</span>
-
-							<span class="hint">Use slider above to change year</span>
-						</div>
-					</div>
+					
 
 					<div
 						class="report--show-current-button button is-link"
@@ -38,33 +16,86 @@
 							<i class="fas fa-arrow-right"></i>
 						</span>
 					</div>
-					<table class="map--legend">
-						<tbody>
-							<tr>
-								<td class="conc--1">0&ndash;30&nbsp;%</td>
-								<td class="conc--2">31&ndash;40&nbsp;%</td>
-								<td class="conc--3">41&ndash;50&nbsp;%</td>
-								<td class="conc--4">51&ndash;60&nbsp;%</td>
-								<td class="conc--5">61&ndash;70&nbsp;%</td>
-								<td class="conc--6">71&ndash;80&nbsp;%</td>
-								<td class="conc--7">81&ndash;90&nbsp;%</td>
-								<td class="conc--8">91&ndash;100&nbsp;%</td>
-							</tr>
-						</tbody>
-					</table>
+					
 				</div>
-
+				
 				<div id="map--main"></div>
 			</div>
 		</div>
 	</div>
 </template>
 
+<script setup>
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+import p4l from 'proj4leaflet'
+import MapLegend from './MapLegend.vue'
+import { onMounted } from 'vue'
+
+// Leaflet map object
+var map
+
+onMounted(() => {
+	map = L.map('map--main', getBaseMapAndLayers())
+	new L.Control.Zoom({ position: 'topright' }).addTo(map)
+})
+
+const getBaseMapAndLayers = function () {
+	var baseLayer = new L.tileLayer.wms('https://gs.mapventure.org/geoserver/wms', {
+		transparent: true,
+		srs: 'EPSG:3572',
+		format: 'image/png',
+		version: '1.3.0',
+		continuousWorld: true, // needed for non-3857 projs
+		layers: ['arctic_osm_3572']
+	})
+
+	// Projection definition.
+	var proj = new L.Proj.CRS(
+		'EPSG:3572',
+		'+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs',
+		{
+			resolutions: [4096, 2048, 1024, 512, 256, 128, 64],
+			origin: [-4889334.802954878, -4889334.802954878]
+		}
+	)
+
+	// trust me 🥦🥦🥦🥦
+	// Without this (= pi/2), proj4js returns an undefined
+	// value for tiles requested at the North Pole and
+	// it causes a runtime exception.
+	proj.projection._proj.oProj.phi0 = 1.5708
+
+	// Map base configuration
+	var config = {
+		zoom: 0,
+		minZoom: 0,
+		maxZoom: 5,
+		center: [67, -170],
+		scrollWheelZoom: false,
+		crs: proj,
+		continuousWorld: true,
+		worldCopyJump: false,
+		zoomControl: false,
+		doubleClickZoom: false,
+		attributionControl: false,
+		layers: [baseLayer]
+	}
+
+	return config
+}
+</script>
+
 <style lang="scss" scoped>
 .map--section--wrapper {
 	.map--wrapper {
+		border: 1px solid red;
 		height: 90vh;
 		position: relative;
+
+		#map--main {
+			height: 90vh;
+		}
 
 		.map--overlay-wrapper {
 			position: absolute;
@@ -75,53 +106,7 @@
 			z-index: 10000;
 			width: 50vw;
 
-			.map--legend {
-				font-family: 'Open Sans', sans-serif;
-				background-color: #fff;
-				margin: 0 auto;
-				box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
-				width: 100%;
-				tbody tr {
-					color: #fff;
-					font-weight: 700;
-					text-align: center;
-					& td {
-						font-size: 0.7rem;
-						padding: 0.25rem;
-						&.conc--1 {
-							width: 33%;
-							background-color: rgba(8, 29, 88, 255) !important;
-						}
-						&.conc--2 {
-							background-color: rgba(37, 52, 148, 255) !important;
-						}
-						&.conc--3 {
-							background-color: rgba(34, 94, 168, 255) !important;
-						}
-						&.conc--4 {
-							background-color: rgba(29, 145, 192, 255) !important;
-							text-shadow: 0 0 3px #000;
-						}
-						&.conc--5 {
-							background-color: rgba(65, 182, 196, 255) !important;
-							text-shadow: 0 0 3px #000;
-						}
-						&.conc--6 {
-							background-color: rgba(127, 205, 187, 255) !important;
-							color: rgba(8, 29, 88, 255);
-						}
-						&.conc--7 {
-							background-color: rgba(199, 233, 180, 255) !important;
-							color: rgba(8, 29, 88, 255);
-						}
-						&.conc--8 {
-							background-color: rgba(237, 248, 217, 255) !important;
-							color: rgba(8, 29, 88, 255);
-						}
-					}
-				}
-			}
-
+			
 			.report--show-current-button {
 				box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
 				margin-bottom: 1rem;
