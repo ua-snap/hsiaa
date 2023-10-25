@@ -8,19 +8,19 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import p4l from 'proj4leaflet'
 import MapLegend from './MapLegend.vue'
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 import moment from 'moment'
+import { useAtlasStore } from '@/stores/atlas'
+import { storeToRefs } from 'pinia'
 
 const VUE_APP_SNAP_API_URL = 'https://earthmaps.io'
 const VUE_APP_WMS_URL = 'https://maps.earthmaps.io/rasdaman/ows'
+const atlasStore = useAtlasStore()
+const { year, month } = storeToRefs(atlasStore)
 
 // Leaflet map objects
 var map
 var layer // currently active layer
-
-// Move to store
-var year = 1950
-var month = 0
 
 const baseLayerOptions = {
 	transparent: true,
@@ -36,21 +36,17 @@ onMounted(() => {
 	updateAtlas()
 })
 
-// Convert an integer (0 - end of data series)
-// into two strings: one for display,
-// and the other for the WMS request.
-const getDateFromInteger = function (year, month) {
+watch([year, month], () => {
+	updateAtlas()
+})
+
+// Converts year/month into an appropriate WMS string
+const getWmsDateFormat = function (year, month) {
 	var dateObj = moment({ day: 1, month: month, year: year })
-	return {
-		display: dateObj.format('MMMM YYYY'),
-		wms: '"' + dateObj.format('YYYY-MM-DDT00:00:00.000[Z]') + '"'
-	}
+	return '"' + dateObj.format('YYYY-MM-DDT00:00:00.000[Z]') + '"'
 }
 
 const updateAtlas = function () {
-	var dates = getDateFromInteger(year, month)
-	console.log(dates)
-	// this.displayDate = dates.display
 	if (layer) {
 		map.removeLayer(layer)
 	}
@@ -60,7 +56,7 @@ const updateAtlas = function () {
 			layers: ['hsia_arctic_production'],
 			styles: 'hsia',
 			version: '1.3.0',
-			time: dates.wms
+			time: getWmsDateFormat(year.value, month.value)
 		})
 	)
 	map.addLayer(layer)
