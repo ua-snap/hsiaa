@@ -8,7 +8,7 @@
           <p class="start">
             To begin, choose a community or click on the map.
           </p>
-          <form>
+          <!-- <form>
             <div class="select control is-medium">
               <select v-model="community">
                 <option value="">Choose a community&hellip;</option>
@@ -26,7 +26,7 @@
                 </optgroup>
               </select>
             </div>
-          </form>
+          </form> -->
         </div>
       </div>
     </section>
@@ -48,7 +48,7 @@
           </div>
 
           <!-- Loading spinner! -->
-          <div
+          <!-- <div
             class="loading-spinner box"
             v-bind:class="{ hidden: reportIsLoaded }"
           >
@@ -60,7 +60,7 @@
                 Loading data for this point, hang on&hellip;
               </span>
             </div>
-          </div>
+          </div> -->
 
           <!-- Show this section once the data are loaded,
             we'll know then if it's valid or not.
@@ -70,7 +70,7 @@
             v-bind:class="{ hidden: !reportIsLoaded }"
           >
             <!-- Notify user of invalid pixel, or hide if it's OK. -->
-            <div
+            <!-- <div
               class="report--invalid"
               v-bind:class="{ hidden: validMapPixel }"
             >
@@ -85,10 +85,10 @@
                   >Go back and pick another place on the map</a
                 >.
               </p>
-            </div>
+            </div> -->
 
             <!-- Report wrapper; hide unless there's data. -->
-            <div
+            <!-- <div
               class="report--charts"
               v-bind:class="{ hidden: !validMapPixel }"
             >
@@ -178,7 +178,7 @@
                 :display-mode-bar="true"
                 :displaylogo="false"
               ></Plotly>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

@@ -1,15 +1,23 @@
-import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import _ from 'lodash'
 
 const MIN_YEAR = 1850
 const MAX_YEAR = 2021
+
+import mock from '@/mock.js'
 
 export const useAtlasStore = defineStore('atlas', {
   state: () => {
     return {
       year: MIN_YEAR,
-      month: 0 // 0 = January, etc
+      month: 0, // 0 = January, etc
+      community: undefined, // community object from @/src/communities.js
+      lat: undefined,
+      lng: undefined,
     }
+  },
+  getters: {
+    apiData: (state) => mock
   },
   actions: {
     // Decrement month, going to prior year if necessary, but prevent
@@ -48,6 +56,14 @@ export const useAtlasStore = defineStore('atlas', {
     },
     setYear(value) {
       this.year = value
+    },
+    setCommunity(value) {
+      this.community = value
+    },
+    // in {lat, lng} format
+    setLatLng(value) {
+      this.lat = value.lat
+      this.lng = value.lng
     }
   }
 })
