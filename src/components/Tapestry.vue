@@ -56,8 +56,6 @@ const updatePlot = function () {
     yaxis: {
       type: 'category',
       fixedrange: true,
-      range: xrange,
-      autotick: false,
       tick0: 1850,
       dtick: 5
     },
@@ -95,7 +93,12 @@ const updatePlot = function () {
     }
   ]
 
-  Plotly.newPlot('tapestry', data, layout, plotSettings)
+  Plotly.newPlot(
+    'tapestry',
+    data,
+    layout
+    plotSettings
+  )
 }
 </script>
 
