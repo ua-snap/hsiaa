@@ -96,7 +96,7 @@ const updatePlot = function () {
   Plotly.newPlot(
     'tapestry',
     data,
-    layout
+    layout,
     plotSettings
   )
 }
