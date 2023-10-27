@@ -14,14 +14,12 @@
       <a :href="downloadButtonData">download data for this place (CSV).</a>
     </p>
     <ConcentrationPlot/>
-    <!-- <Tapestry/> -->
+    <Tapestry/>
   </div>
 </template>
 
 <script setup>
 import CameraIcon from './CameraIcon.vue'
 import ConcentrationPlot from './ConcentrationPlot.vue'
-// import Tapestry from './Tapestry.vue'
-
-
+import Tapestry from './Tapestry.vue'
 </script>

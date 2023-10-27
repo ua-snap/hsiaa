@@ -1,5 +1,5 @@
 <template>
-  <p class="between">
+  <p>
     The chart below also shows sea ice concentration,
     <br />but uses color instead of lines, <br />and shows every month for every year.
   </p>
@@ -12,12 +12,136 @@
       </tr>
     </tbody>
   </table>
-  <Plotly
-    :data="thresholdChartData"
-    :layout="thresholdChartLayout"
-    :mode-bar-buttons-to-remove="modebarbuttonstoremove"
-    :to-image-button-options="histogramToImageButtonOptions"
-    :display-mode-bar="true"
-    :displaylogo="false"
-  ></Plotly>
+  <div id="tapestry"></div>
 </template>
+
+<script setup>
+import Plotly from 'plotly.js-dist-min'
+import _ from 'lodash'
+import { computed, onMounted } from 'vue'
+import { useAtlasStore } from '@/stores/atlas'
+import { storeToRefs } from 'pinia'
+import { xrange, plotSettings } from '@/shared.js'
+
+const atlasStore = useAtlasStore()
+
+const title = computed(() => {
+  return 'Cows'
+})
+
+onMounted(() => {
+  updatePlot()
+})
+
+const updatePlot = function () {
+  var x = []
+  var y = []
+
+  let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  xrange.forEach((year) => {
+    months.forEach((month) => {
+      let dataIndex = (year - 1850) * 12 + (month - 1)
+      // Loop as many times as the %conc to fake the "histogram!"
+      for (let i = 1; i <= atlasStore.apiData[dataIndex]; ++i) {
+        x.push(month)
+        y.push(year)
+      }
+    })
+  })
+
+  let layout = {
+    title: `<b>Cows, 1850-2021</b>`,
+    height: 1500,
+    legend: { orientation: 'h' },
+    yaxis: {
+      type: 'category',
+      fixedrange: true,
+      range: xrange,
+      autotick: false,
+      tick0: 1850,
+      dtick: 5
+    },
+    xaxis: {
+      side: 'top',
+      tickmode: 'array',
+      tickvals: months,
+      ticktext: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ]
+    }
+  }
+  let data = [
+    {
+      x: x,
+      y: y,
+      hovertemplate:
+        'Month: %{x}</br></br>Year: %{y}</br>Concentration Percentage: %{z}%<extra></extra>',
+      type: 'histogram2d',
+      autocolorscale: false,
+      colorscale: 'YlGnBu',
+      zmin: 0,
+      zmax: 100
+    }
+  ]
+
+  Plotly.newPlot('tapestry', data, layout, plotSettings)
+}
+</script>
+
+<style lang="scss" scoped>
+table.threshold--legend {
+  font-family: 'Open Sans', sans-serif;
+  margin: 1rem auto;
+  max-width: 50rem;
+  background-image: linear-gradient(
+    to right,
+    rgba(8, 29, 88, 255),
+    rgba(37, 52, 148, 255),
+    rgba(34, 94, 168, 255),
+    rgba(29, 145, 192, 255),
+    rgba(65, 182, 196, 255),
+    rgba(127, 205, 187, 255),
+    rgba(199, 233, 180, 255),
+    rgba(237, 248, 217, 255)
+  );
+
+  thead {
+    td {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+  }
+  tbody {
+    font-weight: 700;
+    tr {
+      td {
+        width: 33%;
+        padding: 0.25rem;
+      }
+      td.th--1 {
+        color: #fff;
+        text-align: left;
+      }
+      td.th--50 {
+        color: #fff;
+        text-align: center;
+        text-shadow: 0 0 3px #000;
+      }
+      td.th--100 {
+        text-align: right;
+      }
+    }
+  }
+}
+</style>

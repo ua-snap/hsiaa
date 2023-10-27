@@ -978,50 +978,50 @@ span.hint {
           }
         }
 
-        table.threshold--legend {
-          font-family: "Open Sans", sans-serif;
-          margin: 1rem auto;
-          max-width: 50rem;
-          background-image: linear-gradient(
-            to right,
-            rgba(8, 29, 88, 255),
-            rgba(37, 52, 148, 255),
-            rgba(34, 94, 168, 255),
-            rgba(29, 145, 192, 255),
-            rgba(65, 182, 196, 255),
-            rgba(127, 205, 187, 255),
-            rgba(199, 233, 180, 255),
-            rgba(237, 248, 217, 255)
-          );
+        // table.threshold--legend {
+        //   font-family: "Open Sans", sans-serif;
+        //   margin: 1rem auto;
+        //   max-width: 50rem;
+        //   background-image: linear-gradient(
+        //     to right,
+        //     rgba(8, 29, 88, 255),
+        //     rgba(37, 52, 148, 255),
+        //     rgba(34, 94, 168, 255),
+        //     rgba(29, 145, 192, 255),
+        //     rgba(65, 182, 196, 255),
+        //     rgba(127, 205, 187, 255),
+        //     rgba(199, 233, 180, 255),
+        //     rgba(237, 248, 217, 255)
+        //   );
 
-          thead {
-            td {
-              font-size: 1rem;
-              font-weight: 700;
-            }
-          }
-          tbody {
-            font-weight: 700;
-            tr {
-              td {
-                width: 33%;
-                padding: 0.25rem;
-              }
-              td.th--1 {
-                color: #fff;
-                text-align: left;
-              }
-              td.th--50 {
-                color: #fff;
-                text-align: center;
-                text-shadow: 0 0 3px #000;
-              }
-              td.th--100 {
-                text-align: right;
-              }
-            }
-          }
-        }
+        //   thead {
+        //     td {
+        //       font-size: 1rem;
+        //       font-weight: 700;
+        //     }
+        //   }
+        //   tbody {
+        //     font-weight: 700;
+        //     tr {
+        //       td {
+        //         width: 33%;
+        //         padding: 0.25rem;
+        //       }
+        //       td.th--1 {
+        //         color: #fff;
+        //         text-align: left;
+        //       }
+        //       td.th--50 {
+        //         color: #fff;
+        //         text-align: center;
+        //         text-shadow: 0 0 3px #000;
+        //       }
+        //       td.th--100 {
+        //         text-align: right;
+        //       }
+        //     }
+        //   }
+        // }
       }
     }
   }

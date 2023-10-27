@@ -17,7 +17,7 @@ export const useAtlasStore = defineStore('atlas', {
     }
   },
   getters: {
-    apiData: (state) => mock
+    apiData: (state) => Object.values(mock)
   },
   actions: {
     // Decrement month, going to prior year if necessary, but prevent
