@@ -73,26 +73,27 @@ watch(months, () => {
 	updatePlot()
 })
 
-const layout = {
-	// title: `<b>${title}, ${monthFragment}, 1850-2021</b>`,
-	title: 'Cows',
-	xaxis: {
-		range: [1850, 2021],
-		fixedrange: true
-	},
-	yaxis: {
-		range: [0, 105],
-		fixedrange: true
-	},
-	legend: { orientation: 'h' }
-}
+const layout = computed(() => {
+	return {
+		// title: `<b>${title}, ${monthFragment}, 1850-2021</b>`,
+		title: title.value,
+		xaxis: {
+			range: [1850, 2021],
+			fixedrange: true
+		},
+		yaxis: {
+			range: [0, 105],
+			fixedrange: true
+		},
+		legend: { orientation: 'h' }
+	}
+})
 
 const traces = computed(() => {
 	let newTraces
 	let apiData = Object.values(atlasStore.apiData)
 	// Add a series of traces for the season
-	console.log('months is', months)
-	newTraces = _.map(months, (month) => {
+	newTraces = _.map(months.value, (month) => {
 		let y = _.filter(apiData, (value, index) => {
 			return index % 12 == month
 		})
@@ -100,10 +101,9 @@ const traces = computed(() => {
 			x: xrange,
 			y: y,
 			type: 'scatter',
-			name: months[month.number]
+			name: monthNames[month]
 		}
 	})
-	console.log(newTraces)
 	return newTraces
 })
 
@@ -133,7 +133,7 @@ const plotSettings = {
 }
 
 const updatePlot = function () {
-	Plotly.newPlot('concentration-plot', traces.value, layout, plotSettings)
+	Plotly.newPlot('concentration-plot', traces.value, layout.value, plotSettings)
 }
 
 onMounted(() => {
