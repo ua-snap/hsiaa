@@ -20,3 +20,6 @@ export const plotSettings = {
     'resetScale2d'
   ]
 }
+
+export const MIN_YEAR = 1850
+export const MAX_YEAR = 2021

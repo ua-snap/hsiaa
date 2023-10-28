@@ -12,6 +12,7 @@ import { onMounted, watch } from 'vue'
 import moment from 'moment'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
+import router from '@/router/index'
 
 const VUE_APP_SNAP_API_URL = 'https://earthmaps.io'
 const VUE_APP_WMS_URL = 'https://maps.earthmaps.io/rasdaman/ows'
@@ -33,12 +34,18 @@ const baseLayerOptions = {
 onMounted(() => {
 	map = L.map('map', getBaseMapAndLayers())
 	new L.Control.Zoom({ position: 'topright' }).addTo(map)
+	map.on('click', handleMapClick)
 	updateAtlas()
 })
 
 watch([year, month], () => {
 	updateAtlas()
 })
+
+const handleMapClick = function(event) {
+	atlasStore.setLatLngFromObject(event.latlng)
+	router.push('/report')
+}
 
 // Converts year/month into an appropriate WMS string
 const getWmsDateFormat = function (year, month) {

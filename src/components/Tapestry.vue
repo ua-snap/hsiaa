@@ -24,32 +24,20 @@ import { storeToRefs } from 'pinia'
 import { xrange, plotSettings } from '@/shared.js'
 
 const atlasStore = useAtlasStore()
+const { apiData } = storeToRefs(atlasStore)
+
+onMounted(() => {
+  Plotly.newPlot('tapestry', this.data, this.layout, plotSettings)
+})
+
+const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 const title = computed(() => {
   return 'Cows'
 })
 
-onMounted(() => {
-  updatePlot()
-})
-
-const updatePlot = function () {
-  var x = []
-  var y = []
-
-  let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-  xrange.forEach((year) => {
-    months.forEach((month) => {
-      let dataIndex = (year - 1850) * 12 + (month - 1)
-      // Loop as many times as the %conc to fake the "histogram!"
-      for (let i = 1; i <= atlasStore.apiData[dataIndex]; ++i) {
-        x.push(month)
-        y.push(year)
-      }
-    })
-  })
-
-  let layout = {
+const plotLayout = computed(() => {
+  return {
     title: `<b>Cows, 1850-2021</b>`,
     height: 1500,
     legend: { orientation: 'h' },
@@ -79,7 +67,23 @@ const updatePlot = function () {
       ]
     }
   }
-  let data = [
+})
+
+const plotData = computed(() => {
+  var x = []
+  var y = []
+
+  xrange.forEach((year) => {
+    months.forEach((month) => {
+      let dataIndex = (year - 1850) * 12 + (month - 1)
+      // Loop as many times as the %conc to fake the "histogram!"
+      for (let i = 1; i <= atlasStore.apiData[dataIndex]; ++i) {
+        x.push(month)
+        y.push(year)
+      }
+    })
+  })
+  return [
     {
       x: x,
       y: y,
@@ -92,13 +96,10 @@ const updatePlot = function () {
       zmax: 100
     }
   ]
+})
 
-  Plotly.newPlot(
-    'tapestry',
-    data,
-    layout,
-    plotSettings
-  )
+const updatePlot = function () {
+  Plotly.redraw('tapestry')
 }
 </script>
 

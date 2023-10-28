@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 import _ from 'lodash'
 
-const MIN_YEAR = 1850
-const MAX_YEAR = 2021
 
+import axios from 'axios'
 import mock from '@/mock.js'
+import { MIN_YEAR, MAX_YEAR } from '@/shared.js'
 
 export const useAtlasStore = defineStore('atlas', {
   state: () => {
@@ -14,10 +14,9 @@ export const useAtlasStore = defineStore('atlas', {
       community: undefined, // community object from @/src/communities.js
       lat: undefined,
       lng: undefined,
+      apiData: [],
+      isLoaded: true,
     }
-  },
-  getters: {
-    apiData: (state) => Object.values(mock)
   },
   actions: {
     // Decrement month, going to prior year if necessary, but prevent
@@ -57,13 +56,31 @@ export const useAtlasStore = defineStore('atlas', {
     setYear(value) {
       this.year = value
     },
+    // This will be an object like:
+    // { place: "64.56,-162.11", name: "Elim, AK" }
     setCommunity(value) {
-      this.community = value
+      this.community = value.name
+      this.setLatLngFromString(value.place)
+    },
+    // Incoming, a string like "64.56,-162.11"
+    setLatLngFromString(value) {
+      let parsed = value.split(',').map((val) => parseFloat(val))
+      this.lat = parsed[0]
+      this.lng = parsed[1]
     },
     // in {lat, lng} format
-    setLatLng(value) {
+    setLatLngFromObject(value) {
       this.lat = value.lat
       this.lng = value.lng
+    },
+    async fetch() {
+      let queryUrl = 'https://earthmaps.io/seaice/point/58.22/-157.61/'
+      let response = await axios.get(queryUrl, { timeout: 60000 }).catch((err) => {
+        console.error(err)
+      })
+      console.log("API data is", response.data)
+      this.apiData = response.data
+      this.isLoaded = true
     }
   }
 })

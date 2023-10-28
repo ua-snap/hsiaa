@@ -16,14 +16,14 @@
 <script setup>
 import communities from '@/communities.js'
 import { useAtlasStore } from '@/stores/atlas'
-import { ref, watch } from 'vue'
+import { ref, watch, toRaw } from 'vue'
 import router from '@/router/index'
 
 const { setCommunity } = useAtlasStore()
 const community = ref(undefined)
 
 watch(community, (newCommunity) => {
-	setCommunity(newCommunity)
+	setCommunity(toRaw(newCommunity))
 	router.push('/report')
 })
 </script>

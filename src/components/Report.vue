@@ -13,8 +13,14 @@
       Or,
       <a :href="downloadButtonData">download data for this place (CSV).</a>
     </p>
-    <ConcentrationPlot/>
-    <Tapestry/>
+    {{ isLoaded }}
+    <div v-if="isLoaded">
+      <ConcentrationPlot/>
+      <!-- <Tapestry/> -->
+    </div>
+    <div v-else>
+      <LoadingBlock/>
+    </div>
   </div>
 </template>
 
@@ -22,4 +28,14 @@
 import CameraIcon from './CameraIcon.vue'
 import ConcentrationPlot from './ConcentrationPlot.vue'
 import Tapestry from './Tapestry.vue'
+import LoadingBlock from './LoadingBlock.vue'
+import { useAtlasStore } from '@/stores/atlas'
+import { onBeforeMount, watch } from 'vue'
+import { storeToRefs } from 'pinia'
+const atlasStore = useAtlasStore()
+const { isLoaded } = storeToRefs(atlasStore)
+
+onBeforeMount(() => {
+  atlasStore.fetch()
+})
 </script>

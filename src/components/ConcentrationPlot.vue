@@ -13,14 +13,16 @@
 import Multiselect from '@vueform/multiselect'
 import Plotly from 'plotly.js-dist-min'
 import _ from 'lodash'
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, toRaw } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
 import { xrange, plotSettings } from '@/shared.js'
 
 const atlasStore = useAtlasStore()
+const { apiData, isLoaded } = storeToRefs(atlasStore)
 
 // Selected months to display in chart
+// Default spring, autumn
 const months = ref([5, 9])
 
 const monthNames = {
@@ -38,9 +40,11 @@ const monthNames = {
 	11: 'December'
 }
 
-watch(months, () => {
-	updatePlot()
-})
+const updatePlot = function () {
+	console.log("redrawing")
+	Plotly.react('concentration-plot', traces.value, layout.value, plotSettings)
+	Plotly.redraw('concentration-plot')
+}
 
 const layout = computed(() => {
 	return {
@@ -59,20 +63,25 @@ const layout = computed(() => {
 })
 
 const traces = computed(() => {
-	let newTraces
-	// Add a series of traces for the season
-	newTraces = _.map(months.value, (month) => {
-		let y = _.filter(atlasStore.apiData, (value, index) => {
-			return index % 12 == month
+	if (apiData) {
+		let unwrappedApiData = toRaw(apiData.value)
+		console.log("Generating traces!", unwrappedApiData)
+		let newTraces
+		// Add a series of traces for the season
+		newTraces = _.map(months.value, (month) => {
+			let y = _.filter(unwrappedApiData, (value, index) => {
+				return index % 12 == month
+			})
+			return {
+				x: xrange,
+				y: y,
+				type: 'scatter',
+				name: monthNames[month]
+			}
 		})
-		return {
-			x: xrange,
-			y: y,
-			type: 'scatter',
-			name: monthNames[month]
-		}
-	})
-	return newTraces
+		console.log("the traces I made are this", newTraces)
+		return newTraces
+	}
 })
 
 const title = computed(() => {
@@ -84,13 +93,16 @@ const title = computed(() => {
 	return monthFragment
 })
 
-const updatePlot = function () {
-	Plotly.newPlot('concentration-plot', traces.value, layout.value, plotSettings)
-}
-
 onMounted(() => {
+	
+})
+
+watch([months, apiData], ([newMonths, newData]) => {
+	console.log("In ConcentrationPlot/watcher: ", newMonths, newData)
 	updatePlot()
 })
+
+
 </script>
 
 <style src="@vueform/multiselect/themes/default.css"></style>
