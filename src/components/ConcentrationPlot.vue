@@ -13,7 +13,7 @@
 import Multiselect from '@vueform/multiselect'
 import Plotly from 'plotly.js-dist-min'
 import _ from 'lodash'
-import { ref, computed, watch, onMounted, toRaw } from 'vue'
+import { ref, computed, watch, toRaw } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
 import { xrange, plotSettings } from '@/shared.js'
@@ -41,9 +41,7 @@ const monthNames = {
 }
 
 const updatePlot = function () {
-	console.log("redrawing")
 	Plotly.react('concentration-plot', traces.value, layout.value, plotSettings)
-	Plotly.redraw('concentration-plot')
 }
 
 const layout = computed(() => {
@@ -65,12 +63,13 @@ const layout = computed(() => {
 const traces = computed(() => {
 	if (apiData) {
 		let unwrappedApiData = toRaw(apiData.value)
-		console.log("Generating traces!", unwrappedApiData)
 		let newTraces
 		// Add a series of traces for the season
 		newTraces = _.map(months.value, (month) => {
 			let y = _.filter(unwrappedApiData, (value, index) => {
-				return index % 12 == month
+				// Convert index to numeric month
+				let m = parseInt(index.split("-")[1])
+				return m % 12 == month
 			})
 			return {
 				x: xrange,
@@ -79,7 +78,6 @@ const traces = computed(() => {
 				name: monthNames[month]
 			}
 		})
-		console.log("the traces I made are this", newTraces)
 		return newTraces
 	}
 })
@@ -93,12 +91,7 @@ const title = computed(() => {
 	return monthFragment
 })
 
-onMounted(() => {
-	
-})
-
 watch([months, apiData], ([newMonths, newData]) => {
-	console.log("In ConcentrationPlot/watcher: ", newMonths, newData)
 	updatePlot()
 })
 

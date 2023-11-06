@@ -16,7 +16,7 @@
     {{ isLoaded }}
     <div v-if="isLoaded">
       <ConcentrationPlot/>
-      <!-- <Tapestry/> -->
+      <Tapestry/>
     </div>
     <div v-else>
       <LoadingBlock/>

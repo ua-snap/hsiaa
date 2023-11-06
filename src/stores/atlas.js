@@ -1,10 +1,13 @@
 import { defineStore } from 'pinia'
 import _ from 'lodash'
 
-
 import axios from 'axios'
 import mock from '@/mock.js'
 import { MIN_YEAR, MAX_YEAR } from '@/shared.js'
+
+const formatLatLng = function(l) {
+  return l.toPrecision(5)
+}
 
 export const useAtlasStore = defineStore('atlas', {
   state: () => {
@@ -15,7 +18,7 @@ export const useAtlasStore = defineStore('atlas', {
       lat: undefined,
       lng: undefined,
       apiData: [],
-      isLoaded: true,
+      isLoaded: true
     }
   },
   actions: {
@@ -65,20 +68,19 @@ export const useAtlasStore = defineStore('atlas', {
     // Incoming, a string like "64.56,-162.11"
     setLatLngFromString(value) {
       let parsed = value.split(',').map((val) => parseFloat(val))
-      this.lat = parsed[0]
-      this.lng = parsed[1]
+      this.lat = formatLatLng(parsed[0])
+      this.lng = formatLatLng(parsed[1])
     },
     // in {lat, lng} format
     setLatLngFromObject(value) {
-      this.lat = value.lat
-      this.lng = value.lng
+      this.lat = formatLatLng(value.lat)
+      this.lng = formatLatLng(value.lng)
     },
     async fetch() {
-      let queryUrl = 'https://earthmaps.io/seaice/point/58.22/-157.61/'
+      let queryUrl = `https://earthmaps.io/seaice/point/${this.lat}/${this.lng}/`
       let response = await axios.get(queryUrl, { timeout: 60000 }).catch((err) => {
         console.error(err)
       })
-      console.log("API data is", response.data)
       this.apiData = response.data
       this.isLoaded = true
     }
