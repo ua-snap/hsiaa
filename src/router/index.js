@@ -10,13 +10,16 @@ const router = createRouter({
       component: MapView
     },
     {
-      path: '/report',
+      path: '/report/:lat/:lng',
       name: 'report',
       // route level code-splitting
-      // this generates a separate chunk (Report.[hash].js) for this route
+      // this generates a separate chunk (ReportView.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/ReportView.vue'),
-    }
+      props: true
+    },
+    // Redirect not-found to home page
+    { path: '/:pathMatch(.*)*', name: 'NotFound', redirect: '/' }
   ]
 })
 

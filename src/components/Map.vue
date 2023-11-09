@@ -17,7 +17,7 @@ import router from '@/router/index'
 const VUE_APP_SNAP_API_URL = 'https://earthmaps.io'
 const VUE_APP_WMS_URL = 'https://maps.earthmaps.io/rasdaman/ows'
 const atlasStore = useAtlasStore()
-const { year, month } = storeToRefs(atlasStore)
+const { year, month, lat, lng } = storeToRefs(atlasStore)
 
 // Leaflet map objects
 var map
@@ -42,9 +42,15 @@ watch([year, month], () => {
 	updateAtlas()
 })
 
-const handleMapClick = function(event) {
+const handleMapClick = function (event) {
 	atlasStore.setLatLngFromObject(event.latlng)
-	router.push('/report')
+	router.push({
+		name: 'report',
+		params: {
+			lat: lat.value,
+			lng: lng.value
+		}
+	})
 }
 
 // Converts year/month into an appropriate WMS string

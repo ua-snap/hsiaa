@@ -17,13 +17,22 @@
 import communities from '@/communities.js'
 import { useAtlasStore } from '@/stores/atlas'
 import { ref, watch, toRaw } from 'vue'
+import { storeToRefs } from 'pinia'
 import router from '@/router/index'
 
-const { setCommunity } = useAtlasStore()
+const atlasStore = useAtlasStore()
+const { setCommunity } = atlasStore
+const { lat, lng } = storeToRefs(atlasStore)
 const community = ref(undefined)
 
 watch(community, (newCommunity) => {
 	setCommunity(toRaw(newCommunity))
-	router.push('/report')
+	router.push({
+		name: 'report',
+		params: {
+			lat: lat.value,
+			lng: lng.value
+		}
+	})
 })
 </script>
