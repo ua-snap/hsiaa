@@ -25,19 +25,20 @@ const { apiData, isLoaded } = storeToRefs(atlasStore)
 // Default spring, autumn
 const months = ref([5, 9])
 
+// 1-indexed to match API return results
 const monthNames = {
-	0: 'January',
-	1: 'February',
-	2: 'March',
-	3: 'April',
-	4: 'May',
-	5: 'June',
-	6: 'July',
-	7: 'August',
-	8: 'September',
-	9: 'October',
-	10: 'November',
-	11: 'December'
+	1: 'January',
+	2: 'February',
+	3: 'March',
+	4: 'April',
+	5: 'May',
+	6: 'June',
+	7: 'July',
+	8: 'August',
+	9: 'September',
+	10: 'October',
+	11: 'November',
+	12: 'December'
 }
 
 const updatePlot = function () {
@@ -68,7 +69,7 @@ const traces = computed(() => {
 		newTraces = _.map(months.value, (month) => {
 			let y = _.filter(unwrappedApiData, (value, index) => {
 				// Convert index to numeric month
-				let m = parseInt(index.split("-")[1])
+				let m = parseInt(index.split('-')[1])
 				return m % 12 == month
 			})
 			return {
@@ -88,14 +89,12 @@ const title = computed(() => {
 		monthFragment += monthNames[month] + ', '
 	})
 	monthFragment = monthFragment.substring(0, monthFragment.length - 2)
-	return monthFragment
+	return `<b>${atlasStore.getPlaceTitle}, ${monthFragment}</b>`
 })
 
 watch([months, apiData], ([newMonths, newData]) => {
 	updatePlot()
 })
-
-
 </script>
 
 <style src="@vueform/multiselect/themes/default.css"></style>

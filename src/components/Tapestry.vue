@@ -30,7 +30,7 @@ const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 const layout = computed(() => {
   return {
-    title: `<b>Cows, 1850-2021</b>`,
+    title: `<b>${atlasStore.getPlaceTitle}</b>`,
     height: 1500,
     legend: { orientation: 'h' },
     yaxis: {
@@ -71,7 +71,7 @@ const traces = computed(() => {
     xrange.forEach((year) => {
       months.forEach((month) => {
         let dataIndex = (year - 1850) * 12 + (month - 1)
-        // Loop as many times as the %conc to fake the "histogram!"        
+        // Loop as many times as the %conc to fake the "histogram!"
         for (let i = 1; i <= unwrappedApiData[dataIndex]; ++i) {
           xVals.push(month)
           yVals.push(year)
