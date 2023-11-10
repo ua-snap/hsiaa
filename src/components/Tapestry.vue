@@ -43,6 +43,7 @@ const layout = computed(() => {
       side: 'top',
       tickmode: 'array',
       tickvals: months,
+      fixedRange: true,
       ticktext: [
         'January',
         'February',
