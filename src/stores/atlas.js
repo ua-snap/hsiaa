@@ -17,7 +17,8 @@ export const useAtlasStore = defineStore('atlas', {
       lat: undefined,
       lng: undefined,
       apiData: [],
-      isLoaded: true
+      isLoaded: true,
+      validMapPixel: false
     }
   },
   getters: {
@@ -118,6 +119,16 @@ export const useAtlasStore = defineStore('atlas', {
       })
       this.apiData = response.data
       this.isLoaded = true
+
+      let timeseriesData = Object.values(this.apiData);
+      const reducer = (accumulator, currentValue) =>
+        accumulator + currentValue;
+      let sum = timeseriesData.reduce(reducer);
+      if (sum === 0) {
+        this.validMapPixel = false
+      } else {
+        this.validMapPixel = true
+      }
     }
   }
 })

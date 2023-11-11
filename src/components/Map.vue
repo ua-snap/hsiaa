@@ -36,6 +36,7 @@ onMounted(() => {
 	new L.Control.Zoom({ position: 'topright' }).addTo(map)
 	map.on('click', handleMapClick)
 	updateAtlas()
+	map.invalidateSize()
 })
 
 watch([year, month], () => {
