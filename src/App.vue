@@ -40,7 +40,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
         <div class="column is-half">
           <h5>Every month, 1850&ndash;2021</h5>
           <iframe
-            src="https://www.youtube.com/embed/XSa0iGU0uDY"
+            src="https://www.youtube-nocookie.com/embed/XSa0iGU0uDY"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
@@ -49,7 +49,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
         <div class="column is-half">
           <h5>Monthly playlist, e.g. each January, 1850&ndash;2021</h5>
           <iframe
-            src="https://www.youtube.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW"
+            src="https://www.youtube-nocookie.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
