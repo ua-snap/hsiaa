@@ -14,7 +14,6 @@ import LoadingBlock from '../components/LoadingBlock.vue'
 import InvalidPlace from '../components/InvalidPlace.vue'  
 import Report from '../components/Report.vue'
 import BackButton from '../components/BackButton.vue'
-import { defineProps } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
 const atlasStore = useAtlasStore()
