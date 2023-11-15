@@ -43,6 +43,9 @@ const monthNames = {
 
 const updatePlot = function () {
 	Plotly.react('concentration-plot', traces.value, layout.value, plotSettings)
+
+	// Fire resize event to trigger Plotly responsiveness.
+	window.dispatchEvent(new Event('resize'))
 }
 
 const layout = computed(() => {
@@ -57,7 +60,9 @@ const layout = computed(() => {
 			range: [0, 105],
 			fixedrange: true
 		},
-		legend: { orientation: 'h' }
+		legend: { orientation: 'h' },
+		autosize: true,
+		height: 450,
 	}
 })
 
@@ -98,3 +103,12 @@ watch([months, apiData], ([newMonths, newData]) => {
 </script>
 
 <style src="@vueform/multiselect/themes/default.css"></style>
+
+<style lang="scss" scoped>
+.multiselect {
+  width: 60%;
+}
+#concentration-plot {
+	min-height: 450px;
+}
+</style>

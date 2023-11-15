@@ -98,6 +98,9 @@ const traces = computed(() => {
 
 const updatePlot = function () {
   Plotly.react('tapestry', traces.value, layout.value, plotSettings)
+
+  // Fire resize event to trigger Plotly responsiveness.
+  window.dispatchEvent(new Event('resize'))
 }
 
 watch(apiData, (newData) => {

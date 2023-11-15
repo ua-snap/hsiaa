@@ -45,6 +45,7 @@ onMounted(() => {
 		}
 	}).addTo(map)
 	updateAtlas()
+	map.invalidateSize()
 })
 
 watch([year, month], () => {

@@ -10,10 +10,10 @@ const year = computed(() => {
     <div class="container">
       <div class="columns">
         <div class="logo column is-one-fifth">
-          <img src="../assets/UAF.svg" alt="UAF Logo" />
+          <img src="@/assets/UAF.svg" alt="UAF Logo" />
         </div>
         <div class="column is-four-fifths">
-          <p>
+          <p class="mb-3">
             This tool was developed by the
             <a href="http://www.aoos.org/">Alaska Ocean Observing System</a>
             (AOOS), the
@@ -24,7 +24,7 @@ const year = computed(() => {
             >.
           </p>
 
-          <p>
+          <p class="mb-3">
             Funded by the National Ocean Service at the
             <a href="http://www.noaa.gov">National Oceanic and Atmospheric Administration</a>
             through AOOS grant #NA11NOS0120020. Work was performed at the
@@ -32,13 +32,16 @@ const year = computed(() => {
             <a href="https://uaf.edu/uaf/">University of Alaska Fairbanks</a>, with assistance from
             the <a href="https://illinois.edu/">University of Illinois, Urbana-Champaign</a>.
           </p>
-          <p>
+
+          <p class="mb-3">
             This tool uses the
             <a href="https://doi.org/10.5281/zenodo.1040170">Rasdaman raster database</a>
             for data storage, processing, and web services.
           </p>
-          <p>Copyright &copy; {{ year }} University of Alaska Fairbanks. All rights reserved.</p>
-          <p>
+
+          <p class="mb-3">Copyright &copy; {{ year }} University of Alaska Fairbanks. All rights reserved.</p>
+
+          <p class="mb-3">
             UA is an AA/EO employer and educational institution and prohibits illegal discrimination
             against any individual.
             <a href="https://www.alaska.edu/nondiscrimination/">Statement of Nondiscrimination</a>

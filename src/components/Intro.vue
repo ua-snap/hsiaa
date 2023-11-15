@@ -11,7 +11,7 @@
 					research Arctic ecosystems<br />
 					&mdash; OR &mdash;<br />
 					are simply interested in<br />
-					Arctic sea ice data &nbsp; climate change
+					Arctic sea ice data climate change
 				</p>
 				<p class="announce">This atlas is for you.</p>
 			</div>
@@ -21,7 +21,7 @@
 				<div class="explainer">
 					<h4>This Atlas shows sea ice concentration.</h4>
 				</div>
-				<p class="overview">
+				<p class="overview mb-3">
 					View historical sea ice data from the seas around the circumpolar North<br />
 					and discover how ice concentrations have changed over time.
 				</p>

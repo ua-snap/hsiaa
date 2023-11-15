@@ -1,6 +1,6 @@
 <template>
-  <div class="report--invalid" v-bind:class="{ hidden: validMapPixel }">
-    <p class="is-size-5">
+  <div class="report--invalid" v-bind:class="{ 'is-hidden': validMapPixel }">
+    <p class="is-size-5 mb-6">
       Sorry, but the place you clicked on the map doesn&rsquo;t have any data! <br />This means it
       was either on land or otherwise outside of the dataset itself. <br />Zooming in on the map can
       make it easier to choose a location.
@@ -12,3 +12,10 @@
     </p>
   </div>
 </template>
+
+<script setup>
+import { useAtlasStore } from '@/stores/atlas'
+import { storeToRefs } from 'pinia'
+const atlasStore = useAtlasStore()
+const { validMapPixel } = storeToRefs(atlasStore)
+</script>
