@@ -31,4 +31,35 @@
   padding: 0.4rem;
   min-height: 2rem;
 }
+
+.intro {
+  text-align: center;
+}
+
+.intro h1 {
+  font-family: Imbue, serif;
+  font-size: 4.5em;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.intro h2, .intro h3 {
+  font-family: "Libre Caslon Text", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 2.25rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  line-height: 1;
+}
+
+.intro h2 span {
+  text-transform: uppercase;
+}
+
 </style>
