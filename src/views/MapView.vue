@@ -4,13 +4,15 @@
       <div class="controls">
         <CommunityPicker class="is-hidden-portrait m-5" />
       </div>
-      <MapLegend class="is-hidden-mobile" />
       <div class="map--wrapper is-hidden-mobile">
         <div class="map--overlay-wrapper p-4">
           <MapTitle class="is-size-4 has-text-weight-bold mb-1" />
           <YearSlider class="mb-6 px-3"/>
-          <MonthSelectors class="month-selectors mb-1 pr-4" />
-          <span class="hint pt-3">Use slider above to change year</span>
+          <div class="pb-3">
+            <MonthSelectors class="month-selectors mb-1 pr-4" />
+            <p class="hint pt-3">Use slider above to change year</p>
+          </div>
+          <MapLegend class="is-hidden-mobile" />
         </div>
         <Map />
       </div>
@@ -42,8 +44,8 @@
 
 .hint {
   display: inline-block;
-  height: 40px;
   vertical-align: middle;
+  font-family: sans-serif;
 }
 </style>
 
