@@ -16,29 +16,26 @@
 				<p class="announce">This atlas is for you.</p>
 			</div>
 		</section>
-		<section class="section about">
-			<div class="centered--wrapper">
-				<div class="explainer">
-					<h4>This Atlas shows sea ice concentration.</h4>
-				</div>
-				<p class="overview mb-3">
+		<section class="section">
+			<div class="intro">
+				<h4>This Atlas shows sea ice concentration.</h4>
+
+				<p class="mb-3">
 					View historical sea ice data from the seas around the circumpolar North<br />
 					and discover how ice concentrations have changed over time.
 				</p>
-				<p class="overview">
+				<p>
 					This Atlas shows snapshots in time, as well as long term patterns.<br />
 					It is not designed for forecasting or prediction,<br />
 					but can provide historical context for planning efforts.
 				</p>
-				<div class="explainer">
-					<h5>Sea ice concentration = ratio of sea ice to water</h5>
-					<p>&lt;30% sea ice concentration = ships can travel here. <br />&gt;90% = solid ice.</p>
-					<p>
-						<a href="https://nsidc.org/cryosphere/quickfacts/seaice.html"
-							>Learn more about sea ice</a
-						>
-					</p>
-				</div>
+
+				<h5 class="mt-5 pt-3">Sea ice concentration = ratio of sea ice to water</h5>
+				<p>&lt;30% sea ice concentration = ships can travel here. <br />&gt;90% = solid ice.</p>
+				<p>
+					<a href="https://nsidc.org/cryosphere/quickfacts/seaice.html">Learn more about sea ice</a>
+				</p>
+				<h5 class="mt-5 pt-3 pb-0 mb-0">To begin, choose a community or click on the map.</h5>
 			</div>
 		</section>
 	</div>
@@ -69,22 +66,23 @@ section.lede {
 	}
 }
 
-.centered--wrapper {
+.intro {
 	margin: 0 auto;
 	font-size: 1.2rem;
 	text-align: center;
 	line-height: 1.6;
-}
 
-.explainer {
+
+
 	h4 {
 		font-size: 1.8rem;
 		font-weight: 700;
 	}
+	
 	h5 {
-		margin-top: 2rem;
 		font-weight: 700;
 		font-size: 1.5rem;
 	}
+
 }
 </style>
