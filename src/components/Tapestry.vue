@@ -1,5 +1,5 @@
 <template>
-  <p>
+  <p class="mt-5 mb-6">
     The chart below also shows sea ice concentration,
     <br />but uses color instead of lines, <br />and shows every month for every year.
   </p>
@@ -110,9 +110,10 @@ watch(apiData, (newData) => {
 
 <style lang="scss" scoped>
 table.threshold--legend {
+  font-size: 1.1rem;
   font-family: sans-serif;
   margin: 1rem auto;
-  max-width: 50rem;
+  max-width: 30rem;
   background-image: linear-gradient(
     to right,
     rgba(8, 29, 88, 255),

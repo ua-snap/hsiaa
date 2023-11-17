@@ -25,7 +25,8 @@ import "@fortawesome/fontawesome-free/css/all.css";
 
     <RouterView />
 
-    <section class="section has-text-centered pb-0">
+    <section class="section has-text-centered mt-5 pb-0">
+      <h2 class="is-size-3 pb-3 has-text-weight-bold">Other ways to view sea ice data</h2>
       <div>
         <h5 class="is-size-5 mb-4">
           <a v-bind:href="baseURL + 'Historical-Sea-Ice-Extents-Octobers.pdf'" class="is-size-4 has-text-weight-bold">Download a poster</a
@@ -58,7 +59,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
       </div>
     </section>
 
-    <section class="section has-text-centered is-size-5">
+    <section class="section has-text-centered is-size-5 pb-6 mb-6">
       <div>
         <h4 class="is-size-4 has-text-weight-bold">Data sources used in this Atlas</h4>
         <p>
