@@ -17,7 +17,7 @@
 
 <style lang="scss" scoped>
 .map--legend {
-	font-family: 'Open Sans', sans-serif;
+	font-family: sans-serif;
 	background-color: #fff;
 	margin: 0 auto;
 	width: 100%;
