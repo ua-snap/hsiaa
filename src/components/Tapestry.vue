@@ -110,7 +110,7 @@ watch(apiData, (newData) => {
 
 <style lang="scss" scoped>
 table.threshold--legend {
-  font-family: 'Open Sans', sans-serif;
+  font-family: sans-serif;
   margin: 1rem auto;
   max-width: 50rem;
   background-image: linear-gradient(
