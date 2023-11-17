@@ -10,10 +10,10 @@ const year = computed(() => {
     <div class="container">
       <div class="columns">
         <div class="logo column is-one-fifth">
-          <img src="@/assets/UAF.svg" alt="UAF Logo" />
+          <img src="@/assets/UAF.svg" alt="UAF Logo" class="mr-5 mt-1" />
         </div>
-        <div class="column is-four-fifths">
-          <p class="mb-3">
+        <div class="column is-four-fifths content is-size-6">
+          <p>
             This tool was developed by the
             <a href="http://www.aoos.org/">Alaska Ocean Observing System</a>
             (AOOS), the
@@ -24,7 +24,7 @@ const year = computed(() => {
             >.
           </p>
 
-          <p class="mb-3">
+          <p>
             Funded by the National Ocean Service at the
             <a href="http://www.noaa.gov">National Oceanic and Atmospheric Administration</a>
             through AOOS grant #NA11NOS0120020. Work was performed at the
@@ -33,29 +33,34 @@ const year = computed(() => {
             the <a href="https://illinois.edu/">University of Illinois, Urbana-Champaign</a>.
           </p>
 
-          <p class="mb-3">
+          <p>
             This tool uses the
             <a href="https://doi.org/10.5281/zenodo.1040170">Rasdaman raster database</a>
             for data storage, processing, and web services.
           </p>
 
-          <p class="mb-3">Copyright &copy; {{ year }} University of Alaska Fairbanks. All rights reserved.</p>
+          <p>
+            UA is committed to providing accessible websites.
+            <a href="https://www.alaska.edu/webaccessibility/"
+              >Learn more about UA's notice of web accessibility.</a
+            >
+            If we can help you access this website’s content,
+            <a href="mailto:uaf-snap-data-tools@alaska.edu"
+              >please email us at uaf-snap-data-tools@alaska.edu</a
+            >.
+          </p>
 
-          <p class="mb-3">
-            UA is an AA/EO employer and educational institution and prohibits illegal discrimination
-            against any individual.
+          <p>Copyright &copy; {{ year }} University of Alaska Fairbanks. All rights reserved.</p>
+
+          <p>
+            UA is an affirmative action / equal opportunity employer, educational institution and
+            provider and prohibits illegal discrimination against any individual.
+
             <a href="https://www.alaska.edu/nondiscrimination/">Statement of Nondiscrimination</a>
             and
             <a href="https://www.alaska.edu/records/records/compliance/gdpr/ua-privacy-statement/"
               >Privacy Statement</a
             >
-          </p>
-          <p>
-            UA is committed to providing accessible websites.
-            <a href="https://www.alaska.edu/webaccessibility/"
-              >Learn more about UA&rsquo;s notice of web accessibility</a
-            >. If we can help you access this website&rsquo;s content,
-            <a href="mailto:uaf-snap-data-tools@alaska.edu">email us</a>!
           </p>
         </div>
       </div>
@@ -64,4 +69,16 @@ const year = computed(() => {
 </template>
 
 <style lang="scss" scoped>
+.logo {
+  text-align: right;
+
+  @media screen and (max-width: 768px) {
+    text-align: center;
+  }
+
+  img {
+    width: 60%;
+    max-width: 30vw;
+  }
+}
 </style>
