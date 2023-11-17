@@ -16,7 +16,7 @@ import _ from 'lodash'
 import { ref, computed, watch, toRaw } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
-import { xrange, plotSettings } from '@/shared.js'
+import { xrange, plotSettings, MIN_YEAR, MAX_YEAR } from '@/shared.js'
 
 const atlasStore = useAtlasStore()
 const { apiData, isLoaded } = storeToRefs(atlasStore)
@@ -50,10 +50,9 @@ const updatePlot = function () {
 
 const layout = computed(() => {
 	return {
-		// title: `<b>${title}, ${monthFragment}, 1850-2021</b>`,
 		title: title.value,
 		xaxis: {
-			range: [1850, 2021],
+			range: [MIN_YEAR, MAX_YEAR],
 			fixedrange: true
 		},
 		yaxis: {

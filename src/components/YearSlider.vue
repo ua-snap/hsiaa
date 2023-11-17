@@ -1,7 +1,7 @@
 <template>
 	<div class="slider-wrapper">
 		<VueSlider
-			v-model="selectedDate"
+			v-model="selectedYear"
 			max="2021"
 			min="1850"
 			:marks="marks"
@@ -16,9 +16,11 @@ import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/default.css'
 import { useAtlasStore } from '@/stores/atlas'
 const { setYear } = useAtlasStore()
+import { MIN_YEAR, MAX_YEAR } from '@/shared.js'
 
-let selectedDate = 1850
-const marks = [1850, 1875, 1900, 1925, 1950, 1975, 2000, 2021]
+
+let selectedYear = MIN_YEAR
+const marks = [MIN_YEAR, 1875, 1900, 1925, 1950, 1975, 2000, MAX_YEAR]
 
 const debouncedUpdate = _.debounce((year) => {
 	setYear(year)
