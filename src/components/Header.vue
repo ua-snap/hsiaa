@@ -8,8 +8,8 @@
 					Historical<br />
 					Sea Ice Atlas
 				</h1>
-				<h2>for <span>Alaska</span> &amp; the <span>Arctic</span></h2>
-				<h3>1850 to present</h3>
+				<h2 class="mt-4">for <span>Alaska</span> &amp; the <span>Arctic</span></h2>
+				<h3 class="mt-2">1850 to present</h3>
 			</div>
 
 			<div class="column splash is-half">

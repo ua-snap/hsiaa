@@ -13,6 +13,7 @@ import moment from 'moment'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
 import router from '@/router/index'
+import mask from '@/mask'
 
 const VUE_APP_SNAP_API_URL = 'https://earthmaps.io'
 const VUE_APP_WMS_URL = 'https://maps.earthmaps.io/rasdaman/ows'
@@ -34,8 +35,17 @@ const baseLayerOptions = {
 onMounted(() => {
 	map = L.map('map', getBaseMapAndLayers())
 	new L.Control.Zoom({ position: 'topright' }).addTo(map)
-	map.on('click', handleMapClick)
+	L.geoJSON(mask, {
+		onEachFeature: function (feature, layer) {
+			layer.on('click', handleMapClick)
+		},
+		style: {
+			opacity: 0.0,
+			fillOpacity: 0.0
+		}
+	}).addTo(map)
 	updateAtlas()
+	map.invalidateSize()
 })
 
 watch([year, month], () => {

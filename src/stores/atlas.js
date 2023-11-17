@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia'
 import _ from 'lodash'
-
 import axios from 'axios'
 import mock from '@/mock.js'
 import { MIN_YEAR, MAX_YEAR } from '@/shared.js'
-
-const formatLatLng = function(l) {
+import communities from '@/communities.js'
+const formatLatLng = function (l) {
   return l.toPrecision(5)
 }
 
@@ -18,7 +17,44 @@ export const useAtlasStore = defineStore('atlas', {
       lat: undefined,
       lng: undefined,
       apiData: [],
-      isLoaded: true
+      isLoaded: true,
+      validMapPixel: false
+    }
+  },
+  getters: {
+    // Return a plain text string of the place name for use in
+    // the report title + charts, in the form:
+    // Sea Ice Concentration, Goodnews Bay, AK (59.16ºN, -161.83ºE), 1850–2021
+    getPlaceTitle: (state) => {
+      let placeName,
+        latLng = ''
+      let template = _.template(
+        'Sea Ice Concentration, <%= placeName %><%= latLng %>, <%= minYear %>-<%= maxYear %>'
+      )
+      if (state.community) {
+        placeName = `${state.community} (${state.lat}ºN, ${state.lng}ºE)`
+      } else if (state.lat && state.lng) {
+        // try a lookup in case we need to fetch community
+        // name from lat/lng
+        let place = _.find(communities, {
+          place: `${state.lat},${state.lng}`
+        })
+        // Named place!
+        if (place) {
+          let { lat, lng } = place.place.split(',')
+          placeName = `${place.name} (${lat}ºN, ${lng}ºE)`
+        }
+        // Just return lat/lng
+        else {
+          latLng = `${state.lat}ºN, ${state.lng}ºE`
+        }
+      }
+      return template({
+        placeName: placeName,
+        latLng: latLng,
+        minYear: MIN_YEAR,
+        maxYear: MAX_YEAR
+      })
     }
   },
   actions: {
@@ -83,6 +119,16 @@ export const useAtlasStore = defineStore('atlas', {
       })
       this.apiData = response.data
       this.isLoaded = true
+
+      let timeseriesData = Object.values(this.apiData);
+      const reducer = (accumulator, currentValue) =>
+        accumulator + currentValue;
+      let sum = timeseriesData.reduce(reducer);
+      if (sum === 0) {
+        this.validMapPixel = false
+      } else {
+        this.validMapPixel = true
+      }
     }
   }
 })

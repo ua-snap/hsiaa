@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="content is-size-5">
     <p>
       These charts show two different ways of seeing changes<br />in sea ice concentration over
       time.
     </p>
-    <p class="content is-size-5">
+    <p>
       Click the
       <CameraIcon/>
       icon in the upper-right of each chart to download it.
@@ -13,7 +13,6 @@
       Or,
       <a :href="downloadButtonData">download data for this place (CSV).</a>
     </p>
-    {{ isLoaded }}
     <div v-if="isLoaded">
       <ConcentrationPlot/>
       <Tapestry/>

@@ -6,3 +6,9 @@
     ></path>
   </svg>
 </template>
+
+<style lang="scss" scoped>
+.icon path {
+  fill: #ccc;
+}
+</style>
