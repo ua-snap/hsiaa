@@ -17,7 +17,7 @@ footer,
 a {
   text-decoration: underline !important;
   display: inline-block;
-  color: #0033cc;
+  color: #0033cc !important;
 }
 
 @media (max-width: 768px) and (orientation: portrait) {
