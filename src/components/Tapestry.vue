@@ -21,7 +21,7 @@ import _ from 'lodash'
 import { computed, watch, toRaw } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
-import { xrange, plotSettings } from '@/shared.js'
+import { xrange, plotSettings, MIN_YEAR, MAX_YEAR } from '@/shared.js'
 
 const atlasStore = useAtlasStore()
 const { apiData } = storeToRefs(atlasStore)
@@ -36,7 +36,7 @@ const layout = computed(() => {
     yaxis: {
       type: 'category',
       fixedrange: true,
-      tick0: 1850,
+      tick0: MIN_YEAR,
       dtick: 5
     },
     xaxis: {
@@ -71,7 +71,7 @@ const traces = computed(() => {
 
     xrange.forEach((year) => {
       months.forEach((month) => {
-        let dataIndex = (year - 1850) * 12 + (month - 1)
+        let dataIndex = (year - MIN_YEAR) * 12 + (month - 1)
         // Loop as many times as the %conc to fake the "histogram!"
         for (let i = 1; i <= unwrappedApiData[dataIndex]; ++i) {
           xVals.push(month)

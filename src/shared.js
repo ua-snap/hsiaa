@@ -1,6 +1,9 @@
+export const MIN_YEAR = 1850
+export const MAX_YEAR = 2021
+
 // Range of years for x-axis in chart
 var xrange = []
-for (let x = 1850; x <= 2021; x++) {
+for (let x = MIN_YEAR; x <= MAX_YEAR; x++) {
 	xrange.push(x)
 }
 export var xrange
@@ -20,6 +23,3 @@ export const plotSettings = {
     'resetScale2d'
   ]
 }
-
-export const MIN_YEAR = 1850
-export const MAX_YEAR = 2021
