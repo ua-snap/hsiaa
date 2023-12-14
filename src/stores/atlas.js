@@ -17,7 +17,7 @@ export const useAtlasStore = defineStore('atlas', {
       lat: undefined,
       lng: undefined,
       apiData: [],
-      isLoaded: true,
+      isLoaded: false,
       validMapPixel: false
     }
   },
@@ -113,6 +113,7 @@ export const useAtlasStore = defineStore('atlas', {
       this.lng = formatLatLng(value.lng)
     },
     async fetch() {
+      this.isLoaded = false
       let queryUrl = `https://earthmaps.io/seaice/point/${this.lat}/${this.lng}/`
       let response = await axios.get(queryUrl, { timeout: 60000 }).catch((err) => {
         console.error(err)
