@@ -2,7 +2,7 @@
 	<div class="slider-wrapper">
 		<VueSlider
 			v-model="selectedYear"
-			max="2021"
+			max="2022"
 			min="1850"
 			:marks="marks"
 			v-on:change="debouncedUpdate"
