@@ -114,7 +114,7 @@ export const useAtlasStore = defineStore('atlas', {
     },
     async fetch() {
       this.isLoaded = false
-      let queryUrl = `https://earthmaps.io/seaice/point/${this.lat}/${this.lng}/`
+      let queryUrl = import.meta.env.VITE_SNAP_API_URL + `/seaice/point/${this.lat}/${this.lng}/`
       let response = await axios.get(queryUrl, { timeout: 60000 }).catch((err) => {
         console.error(err)
       })

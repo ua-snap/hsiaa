@@ -15,8 +15,6 @@ import { storeToRefs } from 'pinia'
 import router from '@/router/index'
 import mask from '@/mask'
 
-const VUE_APP_SNAP_API_URL = 'https://earthmaps.io'
-const VUE_APP_WMS_URL = 'https://maps.earthmaps.io/rasdaman/ows'
 const atlasStore = useAtlasStore()
 const { year, month, lat, lng } = storeToRefs(atlasStore)
 
@@ -74,7 +72,7 @@ const updateAtlas = function () {
 		map.removeLayer(layer)
 	}
 	layer = L.tileLayer.wms(
-		VUE_APP_WMS_URL + '?',
+		import.meta.env.VITE_WMS_URL + '?',
 		_.extend(baseLayerOptions, {
 			layers: ['hsia_arctic_production'],
 			styles: 'hsia',
