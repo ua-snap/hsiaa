@@ -1,5 +1,5 @@
 export const MIN_YEAR = 1850
-export const MAX_YEAR = 2021
+export const MAX_YEAR = 2022
 
 // Range of years for x-axis in chart
 var xrange = []
