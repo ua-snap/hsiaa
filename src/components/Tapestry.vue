@@ -18,7 +18,7 @@
 <script setup>
 import Plotly from 'plotly.js-dist-min'
 import _ from 'lodash'
-import { computed, watch, toRaw } from 'vue'
+import { computed, watch, toRaw, onMounted } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
 import { xrange, plotSettings, MIN_YEAR, MAX_YEAR } from '@/shared.js'
@@ -102,6 +102,10 @@ const updatePlot = function () {
   // Fire resize event to trigger Plotly responsiveness.
   window.dispatchEvent(new Event('resize'))
 }
+
+onMounted(() => {
+	updatePlot()
+})
 
 watch(apiData, (newData) => {
   updatePlot()

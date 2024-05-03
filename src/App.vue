@@ -29,7 +29,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
       <h2 class="is-size-3 pb-3 has-text-weight-bold">Other ways to view sea ice data</h2>
       <div>
         <h5 class="is-size-5 mb-4">
-          <a v-bind:href="baseURL + 'Historical-Sea-Ice-Extents-Octobers.pdf'" class="is-size-4 has-text-weight-bold">Download a poster</a
+          <a href="Historical-Sea-Ice-Extents-Octobers.pdf" class="is-size-4 has-text-weight-bold">Download a poster</a
           ><br /><span>that shows 170 images of sea ice concentration for October, 1850&ndash;2019.</span
           >
         </h5>

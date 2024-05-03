@@ -13,7 +13,7 @@
 import Multiselect from '@vueform/multiselect'
 import Plotly from 'plotly.js-dist-min'
 import _ from 'lodash'
-import { ref, computed, watch, toRaw } from 'vue'
+import { ref, computed, watch, toRaw, onMounted } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
 import { xrange, plotSettings, MIN_YEAR, MAX_YEAR } from '@/shared.js'
@@ -94,6 +94,10 @@ const title = computed(() => {
 	})
 	monthFragment = monthFragment.substring(0, monthFragment.length - 2)
 	return `<b>${atlasStore.getPlaceTitle}, ${monthFragment}</b>`
+})
+
+onMounted(() => {
+	updatePlot()
 })
 
 watch([months, apiData], ([newMonths, newData]) => {
