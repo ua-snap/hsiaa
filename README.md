@@ -12,8 +12,8 @@ npm install
 The production URLs for Rasdaman and the Data API are used by default. These can be overridden like so:
 
 ```
-VITE_SNAP_API_URL=http://localhost:5000
-VITE_WMS_URL=https://zeus.snap.uaf.edu/rasdaman/ows
+export VITE_SNAP_API_URL=http://localhost:5000
+export VITE_WMS_URL=https://zeus.snap.uaf.edu/rasdaman/ows
 ```
 
 Then, to run the app locally:
