@@ -30,7 +30,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
       <div>
         <h5 class="is-size-5 mb-4">
           <a v-bind:href="baseURL + 'Historical-Sea-Ice-Extents-Octobers.pdf'" class="is-size-4 has-text-weight-bold">Download a poster</a
-          ><br /><span>that shows 170 images of sea ice concentration for October, {{ MIN_YEAR }}&ndash;{{ MAX_YEAR }}.</span
+          ><br /><span>that shows 170 images of sea ice concentration for October, 1850&ndash;2019.</span
           >
         </h5>
       </div>
@@ -39,7 +39,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
       <h5 class="is-size-4 has-text-weight-bold mb-5">Watch sea ice concentration animations</h5>
       <div class="columns">
         <div class="column is-half">
-          <h5>Every month, {{ MIN_YEAR }}&ndash;{{ MAX_YEAR }}</h5>
+          <h5>Every month, {{ MIN_YEAR }}&ndash;2019</h5>
           <iframe
             src="https://www.youtube-nocookie.com/embed/XSa0iGU0uDY"
             frameborder="0"
@@ -48,7 +48,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
           ></iframe>
         </div>
         <div class="column is-half">
-          <h5>Monthly playlist, e.g. each January, {{ MIN_YEAR }}&ndash;{{ MAX_YEAR }}</h5>
+          <h5>Monthly playlist, e.g. each January, {{ MIN_YEAR }}&ndash;2019</h5>
           <iframe
             src="https://www.youtube-nocookie.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW"
             frameborder="0"
@@ -121,7 +121,6 @@ import "@fortawesome/fontawesome-free/css/all.css";
 
 <script>
 import { MIN_YEAR, MAX_YEAR } from '@/shared.js'
-
 </script>
 
 <style lang="scss" scoped>

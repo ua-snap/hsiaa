@@ -1,3 +1,7 @@
+<script setup>
+import { MAX_YEAR } from '@/shared.js'
+</script>
+
 <template>
 	<header>
 		<div class="headerbanner">University of Alaska Fairbanks | Alaska Center for Climate Assessment and Policy</div>
@@ -9,7 +13,7 @@
 					Sea Ice Atlas
 				</h1>
 				<h2 class="mt-4">for <span>Alaska</span> &amp; the <span>Arctic</span></h2>
-				<h3 class="mt-2">1850 to present</h3>
+				<h3 class="mt-2">1850 to {{ MAX_YEAR }}</h3>
 			</div>
 
 			<div class="column splash is-half">
