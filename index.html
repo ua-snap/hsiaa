@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="">
+<!doctype html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,8 +10,8 @@
       property="og:description"
       content="View historical sea ice data from the seas around the circumpolar north and discover how ice extent and concentration have changed over time."
     />
-    <meta property="og:image" content="<%= BASE_URL %>hsia-og-image.png" />
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <meta property="og:image" content="hsia-og-image.png" />
+    <link rel="icon" href="favicon.ico" />
     <!-- TODO this stylesheet should be imported as a module dependency -->
     <link
       rel="stylesheet"
@@ -28,14 +28,16 @@
     <title>Historical Sea Ice Atlas</title>
   </head>
   <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
     <noscript>
       <strong
-        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to
-        continue.</strong
-      >
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+        >We&rsquo;re sorry but this site doesn&rsquo;t work properly without JavaScript enabled.
+        Please enable it to continue. If you have questions or want help accessing this content
+        through different media, please email us at
+        <a href="mailto:uaf-snap-data-tools@alaska.edu">uaf-snap-data-tools@alaska.edu</a>.</strong>
+    </p>
+  </noscript>
+</body>
+
 </html>
