@@ -1,24 +1,31 @@
-# hsia-app
+# hsiaa
 
-## Project setup
-```
+## Setup
+
+```sh
+nvm use lts/hydrogen
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Run
+
+The production URLs for Rasdaman and the Data API are used by default. These can be overridden like so:
+
 ```
-npm run serve
+export VITE_SNAP_API_URL=http://localhost:5000
+export VITE_WMS_URL=https://zeus.snap.uaf.edu/rasdaman/ows
 ```
 
-### Compiles and minifies for production
+Then, to run the app locally:
+
+```sh
+npm run dev
 ```
+
+### Build for production
+
+```sh
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+The built application is stored in the `dist` subdirectory.
