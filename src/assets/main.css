@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Imbue:wght@600&display=swap&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
+
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+label,
+footer,
+.title {
+  font-family: 'Libre Caslon Text', serif;
+  color: #1b3f7c;
+}
+
+a {
+  text-decoration: underline !important;
+  display: inline-block;
+  color: #0033cc !important;
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .is-hidden-portrait {
+    display: none;
+  }
+}
+@media  (max-width: 768px) and (orientation: landscape) {
+  .is-hidden-landscape {
+    display: none;
+  }
+}
