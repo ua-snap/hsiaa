@@ -66,7 +66,7 @@ const layout = computed(() => {
 })
 
 const traces = computed(() => {
-	if (apiData) {
+	if (apiData.value) {
 		let unwrappedApiData = toRaw(apiData.value)
 		let newTraces
 		// Add a series of traces for the season
