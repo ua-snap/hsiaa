@@ -74,7 +74,7 @@ const traces = computed(() => {
 			let y = _.filter(unwrappedApiData, (value, index) => {
 				// Convert index to numeric month
 				let m = parseInt(index.split('-')[1])
-				return m % 12 == month
+				return m % 13 == month
 			})
 			return {
 				x: xrange,
