@@ -6,7 +6,7 @@
     </p>
     <p>
       Click the
-      <CameraIcon/>
+      <CameraIcon />
       icon in the upper-right of each chart to download it.
     </p>
     <p>
@@ -14,11 +14,11 @@
       <a :href="downloadButtonData">download data for this place (CSV).</a>
     </p>
     <div v-if="isLoaded">
-      <ConcentrationPlot/>
-      <Tapestry/>
+      <ConcentrationPlot />
+      <Tapestry />
     </div>
     <div v-else>
-      <LoadingBlock/>
+      <LoadingBlock />
     </div>
   </div>
 </template>

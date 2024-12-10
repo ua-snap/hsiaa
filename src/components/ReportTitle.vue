@@ -1,5 +1,5 @@
 <template>
-	<h4 class="title is-4">{{ atlasStore.getPlaceTitle }}</h4>
+  <h4 class="title is-4">{{ atlasStore.getPlaceTitle }}</h4>
 </template>
 
 <script setup>

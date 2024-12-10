@@ -104,7 +104,7 @@ const updatePlot = function () {
 }
 
 onMounted(() => {
-	updatePlot()
+  updatePlot()
 })
 
 watch(apiData, (newData) => {

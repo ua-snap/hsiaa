@@ -121,10 +121,9 @@ export const useAtlasStore = defineStore('atlas', {
       this.apiData = response.data
       this.isLoaded = true
 
-      let timeseriesData = Object.values(this.apiData);
-      const reducer = (accumulator, currentValue) =>
-        accumulator + currentValue;
-      let sum = timeseriesData.reduce(reducer);
+      let timeseriesData = Object.values(this.apiData)
+      const reducer = (accumulator, currentValue) => accumulator + currentValue
+      let sum = timeseriesData.reduce(reducer)
       if (sum === 0) {
         this.validMapPixel = false
       } else {
