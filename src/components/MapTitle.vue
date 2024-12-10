@@ -1,5 +1,5 @@
 <template>
-	<h3>Sea Ice Concentration, {{ displayDate }}</h3>
+  <h3>Sea Ice Concentration, {{ displayDate }}</h3>
 </template>
 
 <script setup>
@@ -12,7 +12,7 @@ const atlasStore = useAtlasStore()
 const { year, month } = storeToRefs(atlasStore)
 
 const displayDate = computed(() => {
-	var dateObj = moment({ day: 1, month: month.value, year: year.value })
-	return dateObj.format('MMMM YYYY')
+  var dateObj = moment({ day: 1, month: month.value, year: year.value })
+  return dateObj.format('MMMM YYYY')
 })
 </script>

@@ -3,28 +3,29 @@ import { MAX_YEAR } from '@/shared.js'
 </script>
 
 <template>
-	<header>
-		<div class="headerbanner">University of Alaska Fairbanks | Alaska Center for Climate Assessment and Policy</div>
+  <header>
+    <div class="headerbanner">
+      University of Alaska Fairbanks | Alaska Center for Climate Assessment and Policy
+    </div>
 
-		<div class="columns is-vcentered">
-			<div class="column intro is-half">
-				<h1>
-					Historical<br />
-					Sea Ice Atlas
-				</h1>
-				<h2 class="mt-4">for <span>Alaska</span> &amp; the <span>Arctic</span></h2>
-				<h3 class="mt-2">1850 to {{ MAX_YEAR }}</h3>
-			</div>
+    <div class="columns is-vcentered">
+      <div class="column intro is-half">
+        <h1>
+          Historical<br />
+          Sea Ice Atlas
+        </h1>
+        <h2 class="mt-4">for <span>Alaska</span> &amp; the <span>Arctic</span></h2>
+        <h3 class="mt-2">1850 to {{ MAX_YEAR }}</h3>
+      </div>
 
-			<div class="column splash is-half">
-				<img src="@/assets/hsia-splash.jpg" />
-			</div>
-		</div>
-	</header>
+      <div class="column splash is-half">
+        <img src="@/assets/hsia-splash.jpg" />
+      </div>
+    </div>
+  </header>
 </template>
 
 <style lang="scss" scoped>
-
 .headerbanner {
   text-transform: uppercase;
   background-color: #0c2342;
@@ -52,8 +53,9 @@ import { MAX_YEAR } from '@/shared.js'
   text-transform: uppercase;
 }
 
-.intro h2, .intro h3 {
-  font-family: "Libre Caslon Text", serif;
+.intro h2,
+.intro h3 {
+  font-family: 'Libre Caslon Text', serif;
   font-style: italic;
   font-weight: 400;
   font-size: 2.25rem;
@@ -65,5 +67,4 @@ import { MAX_YEAR } from '@/shared.js'
 .intro h2 span {
   text-transform: uppercase;
 }
-
 </style>

@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import Header from './components/Header.vue'
 import Intro from './components/Intro.vue'
 import Footer from './components/Footer.vue'
-import "@fortawesome/fontawesome-free/css/all.css";
+import '@fortawesome/fontawesome-free/css/all.css'
 </script>
 
 <template>
@@ -13,13 +13,13 @@ import "@fortawesome/fontawesome-free/css/all.css";
 
     <div>
       <p class="is-hidden-tablet is-hidden-portrait mx-5 mb-6">
-        <span>😓 We&rsquo;re sorry!</span> The interactive map doesn&rsquo;t work on a
-        screen this size, but you can still pick a community to see visualizations.
+        <span>😓 We&rsquo;re sorry!</span> The interactive map doesn&rsquo;t work on a screen this
+        size, but you can still pick a community to see visualizations.
       </p>
       <p class="is-hidden-tablet is-hidden-landscape mx-5">
-        <span>⚠️ Oh no!</span> The interactive tools on this site don&rsquo;t work on
-        a phone in portrait mode. Turn your phone sideways to pick a community, or try using this
-        site on a computer!
+        <span>⚠️ Oh no!</span> The interactive tools on this site don&rsquo;t work on a phone in
+        portrait mode. Turn your phone sideways to pick a community, or try using this site on a
+        computer!
       </p>
     </div>
 
@@ -29,8 +29,10 @@ import "@fortawesome/fontawesome-free/css/all.css";
       <h2 class="is-size-3 pb-3 has-text-weight-bold">Other ways to view sea ice data</h2>
       <div>
         <h5 class="is-size-5 mb-4">
-          <a href="Historical-Sea-Ice-Extents-Octobers.pdf" class="is-size-4 has-text-weight-bold">Download a poster</a
-          ><br /><span>that shows 170 images of sea ice concentration for October, 1850&ndash;2019.</span
+          <a href="Historical-Sea-Ice-Extents-Octobers.pdf" class="is-size-4 has-text-weight-bold"
+            >Download a poster</a
+          ><br /><span
+            >that shows 170 images of sea ice concentration for October, 1850&ndash;2019.</span
           >
         </h5>
       </div>
@@ -115,7 +117,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
         </p>
       </div>
     </section>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 

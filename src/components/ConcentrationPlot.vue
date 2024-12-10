@@ -1,12 +1,12 @@
 <template>
-	<p>Choose months<br />and view sea ice changes over time for this place.</p>
-	<Multiselect
-		v-model="months"
-		:options="monthNames"
-		mode="tags"
-		placeholder="Choose months to show on chart"
-	/>
-	<div id="concentration-plot"></div>
+  <p>Choose months<br />and view sea ice changes over time for this place.</p>
+  <Multiselect
+    v-model="months"
+    :options="monthNames"
+    mode="tags"
+    placeholder="Choose months to show on chart"
+  />
+  <div id="concentration-plot"></div>
 </template>
 
 <script setup>
@@ -27,81 +27,81 @@ const months = ref([5, 9])
 
 // 1-indexed to match API return results
 const monthNames = {
-	1: 'January',
-	2: 'February',
-	3: 'March',
-	4: 'April',
-	5: 'May',
-	6: 'June',
-	7: 'July',
-	8: 'August',
-	9: 'September',
-	10: 'October',
-	11: 'November',
-	12: 'December'
+  1: 'January',
+  2: 'February',
+  3: 'March',
+  4: 'April',
+  5: 'May',
+  6: 'June',
+  7: 'July',
+  8: 'August',
+  9: 'September',
+  10: 'October',
+  11: 'November',
+  12: 'December'
 }
 
 const updatePlot = function () {
-	Plotly.react('concentration-plot', traces.value, layout.value, plotSettings)
+  Plotly.react('concentration-plot', traces.value, layout.value, plotSettings)
 
-	// Fire resize event to trigger Plotly responsiveness.
-	window.dispatchEvent(new Event('resize'))
+  // Fire resize event to trigger Plotly responsiveness.
+  window.dispatchEvent(new Event('resize'))
 }
 
 const layout = computed(() => {
-	return {
-		title: title.value,
-		xaxis: {
-			range: [MIN_YEAR, MAX_YEAR],
-			fixedrange: true
-		},
-		yaxis: {
-			range: [0, 105],
-			fixedrange: true
-		},
-		legend: { orientation: 'h' },
-		autosize: true,
-		height: 450,
-	}
+  return {
+    title: title.value,
+    xaxis: {
+      range: [MIN_YEAR, MAX_YEAR],
+      fixedrange: true
+    },
+    yaxis: {
+      range: [0, 105],
+      fixedrange: true
+    },
+    legend: { orientation: 'h' },
+    autosize: true,
+    height: 450
+  }
 })
 
 const traces = computed(() => {
-	if (apiData.value) {
-		let unwrappedApiData = toRaw(apiData.value)
-		let newTraces
-		// Add a series of traces for the season
-		newTraces = _.map(months.value, (month) => {
-			let y = _.filter(unwrappedApiData, (value, index) => {
-				// Convert index to numeric month
-				let m = parseInt(index.split('-')[1])
-				return m % 13 == month
-			})
-			return {
-				x: xrange,
-				y: y,
-				type: 'scatter',
-				name: monthNames[month]
-			}
-		})
-		return newTraces
-	}
+  if (apiData.value) {
+    let unwrappedApiData = toRaw(apiData.value)
+    let newTraces
+    // Add a series of traces for the season
+    newTraces = _.map(months.value, (month) => {
+      let y = _.filter(unwrappedApiData, (value, index) => {
+        // Convert index to numeric month
+        let m = parseInt(index.split('-')[1])
+        return m % 13 == month
+      })
+      return {
+        x: xrange,
+        y: y,
+        type: 'scatter',
+        name: monthNames[month]
+      }
+    })
+    return newTraces
+  }
 })
 
 const title = computed(() => {
-	let monthFragment = ''
-	months.value.forEach((month) => {
-		monthFragment += monthNames[month] + ', '
-	})
-	monthFragment = monthFragment.substring(0, monthFragment.length - 2)
-	return `<b>${atlasStore.getPlaceTitle}, ${monthFragment}</b>`
+  let monthFragment = ''
+  months.value.forEach((month) => {
+    monthFragment += monthNames[month] + ', '
+  })
+  monthFragment = monthFragment.substring(0, monthFragment.length - 2)
+  return `<b>${atlasStore.getPlaceTitle}, ${monthFragment}</b>`
 })
 
 onMounted(() => {
-	updatePlot()
+  updatePlot()
 })
 
 watch([months, apiData], ([newMonths, newData]) => {
-	updatePlot()
+  updatePlot()
 })
 </script>
 
@@ -112,6 +112,6 @@ watch([months, apiData], ([newMonths, newData]) => {
   width: 60%;
 }
 #concentration-plot {
-	min-height: 450px;
+  min-height: 450px;
 }
 </style>
