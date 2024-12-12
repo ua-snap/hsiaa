@@ -112,7 +112,7 @@ var proj = new L.Proj.CRS(
 )
 
 const getBaseMapAndLayers = function () {
-  const baseLayer = new L.tileLayer.wms('https://gs.mapventure.org/geoserver/wms', {
+  const baseLayer = new L.tileLayer.wms('https://gs.earthmaps.io/geoserver/wms', {
     transparent: true,
     srs: 'EPSG:3572',
     format: 'image/png',
