@@ -32,6 +32,21 @@ const baseLayerOptions = {
 
 onMounted(() => {
   map = L.map('map', getBaseMapAndLayers())
+
+  // Create a pane for the mask layer to sit on top of the data layer
+  map.createPane('maskPane')
+  map.getPane('maskPane').style.zIndex = 650
+
+  L.tileLayer
+    .wms('https://gs.earthmaps.io/geoserver/wms', {
+      layers: ['hsia_mask'],
+      format: 'image/png',
+      transparent: true,
+      version: '1.3.0',
+      pane: 'maskPane'
+    })
+    .addTo(map)
+
   new L.Control.Zoom({ position: 'topright' }).addTo(map)
   L.geoJSON(mask, {
     onEachFeature: function (feature, layer) {
@@ -83,8 +98,21 @@ const updateAtlas = function () {
   map.addLayer(layer)
 }
 
+let resolutions = [4096, 2048, 1024, 512, 256, 128, 64]
+let center = L.latLng(68, -150)
+let zoom = 0
+// Projection definition.
+var proj = new L.Proj.CRS(
+  'EPSG:3572',
+  '+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs',
+  {
+    resolutions: resolutions,
+    origin: [-4889334.802954878, -4889334.802954878]
+  }
+)
+
 const getBaseMapAndLayers = function () {
-  var baseLayer = new L.tileLayer.wms('https://gs.earthmaps.io/geoserver/wms', {
+  const baseLayer = new L.tileLayer.wms('https://gs.earthmaps.io/geoserver/wms', {
     transparent: true,
     srs: 'EPSG:3572',
     format: 'image/png',
@@ -92,40 +120,38 @@ const getBaseMapAndLayers = function () {
     continuousWorld: true, // needed for non-3857 projs
     layers: ['arctic_osm_3572']
   })
+  // EPSG:3572 has strange bounds. These values were chosen in another of our projects and
+  // seem to work well here as well.
+  let southWest = L.latLng(20, -15)
+  let northEast = L.latLng(20, 165)
 
-  // Projection definition.
-  var proj = new L.Proj.CRS(
-    'EPSG:3572',
-    '+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs',
-    {
-      resolutions: [4096, 2048, 1024, 512, 256, 128, 64],
-      origin: [-4889334.802954878, -4889334.802954878]
-    }
-  )
-
-  // trust me 🥦🥦🥦🥦
-  // Without this (= pi/2), proj4js returns an undefined
-  // value for tiles requested at the North Pole and
-  // it causes a runtime exception.
-  proj.projection._proj.oProj.phi0 = 1.5708
+  // Set viscosity to maximum because the map produces (harmless) JavaScript
+  // errors if you drag too far outside the maxBounds. This prevents errors
+  // vertically but not horizontally, but might be as good as it gets for
+  // the EPSG:3572 projection.
+  let viscosity = 1.0
 
   // Map base configuration
-  var config = {
-    zoom: 0,
+  const bounds = L.latLngBounds(southWest, northEast)
+
+  // Map base configuration
+  let layerConfig = {
+    zoom: zoom,
+    zoomSnap: 0.1,
     minZoom: 0,
-    maxZoom: 5,
-    center: [67, -170],
+    maxZoom: resolutions.length,
     scrollWheelZoom: false,
     crs: proj,
-    continuousWorld: true,
-    worldCopyJump: false,
+    center: center,
     zoomControl: false,
     doubleClickZoom: false,
     attributionControl: false,
-    layers: [baseLayer]
+    layers: [baseLayer],
+    maxBounds: bounds,
+    maxBoundsViscosity: viscosity
   }
 
-  return config
+  return layerConfig
 }
 </script>
 
