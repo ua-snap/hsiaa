@@ -1,7 +1,7 @@
 <template>
   <div class="report--invalid" v-bind:class="{ 'is-hidden': validMapPixel }">
     <p class="is-size-5 mb-6">
-      Sorry, the place you click on the map doesn&rsquo;t show any sea ice data.
+      Sorry, the place you clicked on the map doesn&rsquo;t show any sea ice data.
       <br />This can be for a few different reasons: the point is too far south and never has sea
       ice, it&rsquo;s on land, or it&rsquo;s outside of the extent of this dataset.
     </p>
