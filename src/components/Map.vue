@@ -33,6 +33,7 @@ const baseLayerOptions = {
 onMounted(() => {
   map = L.map('map', getBaseMapAndLayers())
 
+  // Create a pane for the mask layer to sit on top of the data layer
   map.createPane('maskPane')
   map.getPane('maskPane').style.zIndex = 650
 
@@ -119,11 +120,8 @@ const getBaseMapAndLayers = function () {
     continuousWorld: true, // needed for non-3857 projs
     layers: ['arctic_osm_3572']
   })
-  // EPSG:3572 has strange bounds. These values were determined by using
-  // getBounds() on Leaflet's map object after loading a map in EPSG:3572,
-  // then tweaking the latitude values until the maxBounds behaved as
-  // expected. The maxBounds behavior isn't perfect, but maybe as good as it
-  // gets for the EPSG:3572 projection.
+  // EPSG:3572 has strange bounds. These values were chosen in another of our projects and
+  // seem to work well here as well.
   let southWest = L.latLng(20, -15)
   let northEast = L.latLng(20, 165)
 
@@ -135,13 +133,6 @@ const getBaseMapAndLayers = function () {
 
   // Map base configuration
   const bounds = L.latLngBounds(southWest, northEast)
-
-  const shadowMaskLayer = L.tileLayer.wms('https://gs.earthmaps.io/geoserver/wms', {
-    layers: ['hsia_mask'], // Layer name from your GeoServer
-    format: 'image/png',
-    transparent: true, // Set to true for overlay transparency
-    version: '1.3.0'
-  })
 
   // Map base configuration
   let layerConfig = {
