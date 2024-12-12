@@ -1,9 +1,9 @@
 <template>
   <div class="report--invalid" v-bind:class="{ 'is-hidden': validMapPixel }">
     <p class="is-size-5 mb-6">
-      Sorry, but the place you clicked on the map doesn&rsquo;t have any data! <br />This means it
-      was either on land or otherwise outside of the dataset itself. <br />Zooming in on the map can
-      make it easier to choose a location.
+      Sorry, the place you click on the map doesn&rsquo;t show any sea ice data.
+      <br />This can be for a few different reasons: the point is too far south and never has sea
+      ice, it&rsquo;s on land, or it&rsquo;s outside of the extent of this dataset.
     </p>
     <p>
       <a v-on:click.prevent.stop="foldoutActive = false" href="#"
