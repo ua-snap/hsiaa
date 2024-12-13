@@ -22,8 +22,6 @@ import { onBeforeMount } from 'vue'
 const atlasStore = useAtlasStore()
 const { validMapPixel } = storeToRefs(atlasStore)
 
-// This will parse/set the lat/lng if it's being supplied via URL.
-// TBD << reconstituting this from URL via rewrite/traps
 const props = defineProps(['lat', 'lng'])
 
 onBeforeMount(() => {
