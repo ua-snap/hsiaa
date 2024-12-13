@@ -32,6 +32,7 @@ const layout = computed(() => {
   return {
     title: `<b>${atlasStore.getPlaceTitle}</b>`,
     height: 1500,
+    dragmode: false,
     legend: { orientation: 'h' },
     yaxis: {
       type: 'category',
@@ -75,7 +76,13 @@ const traces = computed(() => {
       const row = []
       months.forEach((month) => {
         const dataIndex = (year - MIN_YEAR) * 12 + (month - 1)
-        row.push(unwrappedApiData[dataIndex])
+        const concentration = unwrappedApiData[dataIndex]
+
+        if (concentration === undefined) {
+          row.push(null)
+        } else {
+          row.push(unwrappedApiData[dataIndex])
+        }
       })
       z.push(row)
     })
@@ -89,7 +96,9 @@ const traces = computed(() => {
         colorscale: 'YlGnBu',
         zmin: 0,
         zmax: 100,
-        hovertemplate: 'Month: %{x}<br>Year: %{y}<br>Concentration Percentage: %{z}%<extra></extra>'
+        hovertemplate:
+          'Month: %{x}<br>Year: %{y}<br>Concentration Percentage: %{z}%<extra></extra>',
+        hoverongaps: false
       }
     ]
 
