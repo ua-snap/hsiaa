@@ -18,10 +18,20 @@ import Report from '../components/Report.vue'
 import BackButton from '../components/BackButton.vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
+import { onBeforeMount } from 'vue'
 const atlasStore = useAtlasStore()
 const { validMapPixel } = storeToRefs(atlasStore)
 
 // This will parse/set the lat/lng if it's being supplied via URL.
 // TBD << reconstituting this from URL via rewrite/traps
 const props = defineProps(['lat', 'lng'])
+
+onBeforeMount(() => {
+  if (props.lat && props.lng) {
+    const latNum = parseFloat(props.lat)
+    const lngNum = parseFloat(props.lng)
+    atlasStore.setLatLngFromObject({ lat: latNum, lng: lngNum })
+    atlasStore.fetch()
+  }
+})
 </script>

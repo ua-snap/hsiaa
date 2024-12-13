@@ -29,12 +29,7 @@ import ConcentrationPlot from './ConcentrationPlot.vue'
 import Tapestry from './Tapestry.vue'
 import LoadingBlock from './LoadingBlock.vue'
 import { useAtlasStore } from '@/stores/atlas'
-import { onBeforeMount, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 const atlasStore = useAtlasStore()
 const { isLoaded } = storeToRefs(atlasStore)
-
-onBeforeMount(() => {
-  atlasStore.fetch()
-})
 </script>
