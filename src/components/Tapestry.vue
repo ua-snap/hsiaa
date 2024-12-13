@@ -21,7 +21,7 @@ import _ from 'lodash'
 import { computed, watch, toRaw, onMounted } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
-import { xrange, plotSettings, MIN_YEAR, MAX_YEAR } from '@/shared.js'
+import { xrange, plotSettings, MIN_YEAR } from '@/shared.js'
 
 const atlasStore = useAtlasStore()
 const { apiData } = storeToRefs(atlasStore)
@@ -66,32 +66,33 @@ const traces = computed(() => {
   if (apiData) {
     let unwrappedApiData = toRaw(apiData.value)
     unwrappedApiData = Object.values(unwrappedApiData)
-    var xVals = []
-    var yVals = []
+
+    const x = months
+    const y = xrange
+    const z = []
 
     xrange.forEach((year) => {
+      const row = []
       months.forEach((month) => {
-        let dataIndex = (year - MIN_YEAR) * 12 + (month - 1)
-        // Loop as many times as the %conc to fake the "histogram!"
-        for (let i = 1; i <= unwrappedApiData[dataIndex]; ++i) {
-          xVals.push(month)
-          yVals.push(year)
-        }
+        const dataIndex = (year - MIN_YEAR) * 12 + (month - 1)
+        row.push(unwrappedApiData[dataIndex])
       })
+      z.push(row)
     })
-    let trace = [
+
+    const trace = [
       {
-        x: xVals,
-        y: yVals,
-        hovertemplate:
-          'Month: %{x}</br></br>Year: %{y}</br>Concentration Percentage: %{z}%<extra></extra>',
-        type: 'histogram2d',
-        autocolorscale: false,
+        x: x,
+        y: y,
+        z: z,
+        type: 'heatmap',
         colorscale: 'YlGnBu',
         zmin: 0,
-        zmax: 100
+        zmax: 100,
+        hovertemplate: 'Month: %{x}<br>Year: %{y}<br>Concentration Percentage: %{z}%<extra></extra>'
       }
     ]
+
     return trace
   }
 })
