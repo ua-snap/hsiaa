@@ -59,6 +59,10 @@ onMounted(() => {
   }).addTo(map)
   updateAtlas()
   map.invalidateSize()
+
+  // This ensures that when the map is shown, it will clear the previous report data
+  // including community name, lat, lon, and data.
+  atlasStore.clearReport()
 })
 
 watch([year, month], () => {
