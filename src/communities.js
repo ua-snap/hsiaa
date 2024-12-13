@@ -179,7 +179,7 @@ export default {
         name: 'Togiak, AK'
       },
       {
-        place: '60.5,-165.11',
+        place: '60.25,-165.06',
         name: 'Toksook Bay, AK'
       },
       {
