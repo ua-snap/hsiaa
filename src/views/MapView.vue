@@ -1,13 +1,14 @@
 <template>
   <main>
     <div>
+      <h5 class="mt-5 pt-3 pb-0 mb-0">To begin, choose a community or click on the map.</h5>
       <div class="controls">
         <CommunityPicker class="is-hidden-portrait m-5" />
       </div>
       <div class="map--wrapper is-hidden-mobile">
         <div class="map--overlay-wrapper p-4">
           <MapTitle class="is-size-4 has-text-weight-bold mb-1" />
-          <YearSlider class="mb-6 px-3"/>
+          <YearSlider class="mb-6 px-3" />
           <div class="pb-3">
             <MonthSelectors class="month-selectors mb-1 pr-4" />
             <p class="hint pt-3">Use slider above to change year</p>
@@ -47,6 +48,11 @@
   vertical-align: middle;
   font-family: sans-serif;
 }
+h5 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
 </style>
 
 <script setup>
@@ -57,4 +63,3 @@ import MonthSelectors from '../components/MonthSelectors.vue'
 import YearSlider from '../components/YearSlider.vue'
 import CommunityPicker from '../components/CommunityPicker.vue'
 </script>
-

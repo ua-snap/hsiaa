@@ -35,7 +35,6 @@
         <p>
           <a href="https://nsidc.org/cryosphere/quickfacts/seaice.html">Learn more about sea ice</a>
         </p>
-        <h5 class="mt-5 pt-3 pb-0 mb-0">To begin, choose a community or click on the map.</h5>
       </div>
     </section>
   </div>
@@ -75,11 +74,6 @@ section.lede {
   h4 {
     font-size: 1.8rem;
     font-weight: 700;
-  }
-
-  h5 {
-    font-weight: 700;
-    font-size: 1.5rem;
   }
 }
 </style>
