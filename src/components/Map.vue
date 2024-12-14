@@ -159,4 +159,13 @@ const getBaseMapAndLayers = function () {
 #map {
   height: 90vh;
 }
+:deep(.leaflet-control-zoom a) {
+	text-decoration: none !important;
+	span {
+		display: inline-block;
+		position: relative;
+		bottom: 2px;
+		right: 1px;
+	}
+}
 </style>
