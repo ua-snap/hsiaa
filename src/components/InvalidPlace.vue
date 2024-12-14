@@ -1,17 +1,27 @@
 <template>
   <div class="report--invalid" v-bind:class="{ 'is-hidden': validMapPixel }">
-    <p class="is-size-5 mb-6">
-      Sorry, the place you clicked on the map doesn&rsquo;t show any sea ice data.
-      <br />This can be for a few different reasons: the point is too far south and never has sea
-      ice, it&rsquo;s on land, or it&rsquo;s outside of the extent of this dataset.
+    <p class="is-size-5 mb-3">
+      <strong>Sorry, the place you clicked on the map doesn&rsquo;t show any sea ice data.</strong>
     </p>
-    <p>
+    <p class="is-size-5 mb-3 reasons">
+      This can be for a few different reasons:<br />it is too far south and never has sea ice,<br />it&rsquo;s
+      on land,<br />or it&rsquo;s outside of the extent of this dataset.
+    </p>
+    <p class="is-size-5 mb-6">Zooming in on the map can make it easier to choose a location.</p>
+    <p class="is-size-4">
       <a v-on:click.prevent.stop="foldoutActive = false" href="#"
         >Go back and pick another place on the map</a
       >.
     </p>
   </div>
 </template>
+
+<style lang="scss" scoped>
+p.reasons {
+  line-height: 1.3;
+  font-weight: 400;
+}
+</style>
 
 <script setup>
 import { useAtlasStore } from '@/stores/atlas'

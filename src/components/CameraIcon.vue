@@ -11,4 +11,7 @@
 .icon path {
   fill: #ccc;
 }
+.icon {
+  vertical-align: sub;
+}
 </style>
