@@ -58,6 +58,12 @@ export const useAtlasStore = defineStore('atlas', {
     }
   },
   actions: {
+    clearReport() {
+      this.apiData = []
+      this.community = undefined
+      this.lat = undefined
+      this.lng = undefined
+    },
     // Decrement month, going to prior year if necessary, but prevent
     // going before January 1850.
     decrementMonth() {

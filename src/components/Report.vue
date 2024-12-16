@@ -29,8 +29,8 @@ import ConcentrationPlot from './ConcentrationPlot.vue'
 import Tapestry from './Tapestry.vue'
 import LoadingBlock from './LoadingBlock.vue'
 import { useAtlasStore } from '@/stores/atlas'
+import { onBeforeMount, onUnmounted } from 'vue'
 import { storeToRefs } from 'pinia'
-import { onBeforeMount } from 'vue'
 const atlasStore = useAtlasStore()
 const { isLoaded } = storeToRefs(atlasStore)
 
@@ -43,5 +43,10 @@ onBeforeMount(() => {
     atlasStore.setLatLngFromObject({ lat: latNum, lng: lngNum })
     atlasStore.fetch()
   }
+})
+
+onUnmounted(() => {
+  // This ensures that when the report is closed, it will clear the report data
+  atlasStore.clearReport()
 })
 </script>
