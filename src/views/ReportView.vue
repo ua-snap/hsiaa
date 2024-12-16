@@ -5,7 +5,7 @@
       <ReportTitle v-bind:class="{ 'is-hidden': !validMapPixel }" />
       <LoadingBlock />
       <InvalidPlace />
-      <Report v-bind:class="{ 'is-hidden': !validMapPixel }" />
+      <Report v-bind:class="{ 'is-hidden': !validMapPixel }" :lat="props.lat" :lng="props.lng" />
     </div>
   </section>
 </template>
@@ -21,7 +21,5 @@ import { storeToRefs } from 'pinia'
 const atlasStore = useAtlasStore()
 const { validMapPixel } = storeToRefs(atlasStore)
 
-// This will parse/set the lat/lng if it's being supplied via URL.
-// TBD << reconstituting this from URL via rewrite/traps
 const props = defineProps(['lat', 'lng'])
 </script>
