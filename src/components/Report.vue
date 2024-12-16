@@ -29,12 +29,19 @@ import ConcentrationPlot from './ConcentrationPlot.vue'
 import Tapestry from './Tapestry.vue'
 import LoadingBlock from './LoadingBlock.vue'
 import { useAtlasStore } from '@/stores/atlas'
-import { onBeforeMount, watch } from 'vue'
 import { storeToRefs } from 'pinia'
+import { onBeforeMount } from 'vue'
 const atlasStore = useAtlasStore()
 const { isLoaded } = storeToRefs(atlasStore)
 
+const props = defineProps(['lat', 'lng'])
+
 onBeforeMount(() => {
-  atlasStore.fetch()
+  if (props.lat && props.lng) {
+    const latNum = parseFloat(props.lat)
+    const lngNum = parseFloat(props.lng)
+    atlasStore.setLatLngFromObject({ lat: latNum, lng: lngNum })
+    atlasStore.fetch()
+  }
 })
 </script>
