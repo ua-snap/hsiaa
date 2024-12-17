@@ -1,9 +1,11 @@
 <template>
-  <div class="content is-size-5">
+  <div class="content is-size-4 mt-6">
     <p>
-      These charts show two different ways of seeing changes<br />in sea ice concentration over
+      The charts below show two different ways of seeing changes<br />in sea ice concentration over
       time.
     </p>
+  </div>
+  <div class="content is-size-5">
     <p>
       Click the
       <CameraIcon />

@@ -16,19 +16,24 @@ let map
 let marker
 
 onMounted(() => {
+  let baseLayer = new L.tileLayer.wms(
+    'https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WmsServer?',
+    {
+      transparent: true,
+      format: 'image/png',
+      version: '1.3.0',
+      layers: ['0']
+    }
+  )
+
   map = L.map('mini-map', {
-    crs: proj,
-    zoom: 0,
     zoomControl: false,
     doubleClickZoom: false,
-    attributionControl: false,
     scrollWheelZoom: false,
-    dragging: false
+    dragging: false,
+    layers: [baseLayer]
   })
-
-  getBaseMapAndLayers().addTo(map)
-
-  map.setView([lat.value, lng.value], 0)
+  map.setView([lat.value, lng.value], 4)
 
   if (marker) {
     map.removeLayer(marker)
@@ -37,28 +42,6 @@ onMounted(() => {
 
   map.invalidateSize()
 })
-
-let resolutions = [4096, 2048, 1024, 512, 256, 128, 64]
-
-const proj = new L.Proj.CRS(
-  'EPSG:3572',
-  '+proj=laea +lat_0=90 +lon_0=-150 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs',
-  {
-    resolutions: resolutions,
-    origin: [-4889334.802954878, -4889334.802954878]
-  }
-)
-
-const getBaseMapAndLayers = function () {
-  return L.tileLayer.wms('https://gs.earthmaps.io/geoserver/wms', {
-    transparent: true,
-    srs: 'EPSG:3572',
-    format: 'image/png',
-    version: '1.3.0',
-    continuousWorld: true,
-    layers: ['arctic_osm_3572']
-  })
-}
 </script>
 
 <style lang="scss" scoped>
