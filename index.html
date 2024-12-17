@@ -15,6 +15,7 @@
       content="https://snap.uaf.edu/tools/sea-ice-atlas/hsia-og-image.png"
     />
     <link rel="icon" href="/favicon.ico" />
+
     <!-- TODO this stylesheet should be imported as a module dependency -->
     <link
       rel="stylesheet"
@@ -28,19 +29,126 @@
       src="https://umami.snap.uaf.edu/script.js"
       data-do-not-track="true"
     ></script>
-    <script type="text/javascript" src="//script.crazyegg.com/pages/scripts/0126/7664.js" async="async" ></script>
+    <script
+      type="text/javascript"
+      src="//script.crazyegg.com/pages/scripts/0126/7664.js"
+      async="async"
+    ></script>
     <title>Historical Sea Ice Atlas</title>
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
     <noscript>
-      <strong
-        >We&rsquo;re sorry but this site doesn&rsquo;t work properly without JavaScript enabled.
-        Please enable it to continue. If you have questions or want help accessing this content
-        through different media, please email us at
-        <a href="mailto:uaf-snap-data-tools@alaska.edu">uaf-snap-data-tools@alaska.edu</a>.</strong
-      >
+      <h1>Historical Sea Ice Atlas</h1>
+      <h2>For Alaska, and the Arctic</h2>
+      <div class="container content">
+        <p class="is-size-4">
+          This site shows a circumpolar historical sea ice concentration dataset, from 1850 to the
+          present. Combining different types of observations&mdash;from whaling ship logbooks to
+          satellite imagery&mdash;this provides a long, continuous record of sea ice conditions that
+          can be studied to assess trends and changes in sea ice distribution and formation.
+        </p>
+        <p>
+          <strong
+            >We&rsquo;re sorry but this site doesn&rsquo;t work properly without JavaScript
+            enabled.</strong
+          >
+          Please enable it to continue. If you have questions or want help accessing this content
+          through different media, please email us at
+          <a href="mailto:uaf-snap-data-tools@alaska.edu">uaf-snap-data-tools@alaska.edu</a>.
+        </p>
+        <p>With JavaScript enabled, this site shows:</p>
+        <ul>
+          <li>
+            A dynamic circumpolar map of sea ice concentration, with controls to select any month
+            from 1850 until the present.
+          </li>
+          <li>
+            A list of Arctic coastal communities. Picking a community, or clicking on the map, will
+            produce two different visualizations:
+            <ul>
+              <li>
+                An interactive chart of sea ice concentration by month over time, where you can
+                select the months to show.
+              </li>
+              <li>
+                A full &ldquo;tapestry&rdquo; visualization showing the % sea ice concentration for
+                every month and year for the selected point.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Videos showing an animation of the changing sea ice over time, available through
+            YouTube.
+          </li>
+          <li>
+            A downloadable PDF chart showing the changing sea ice as a visualization in a poster
+            format.
+          </li>
+          <li>Data sources and discussion of methodology.</li>
+          <li>Links to source data downloads and the data API where this data can be obtained.</li>
+        </ul>
+        <p>
+          Please email us at
+          <a href="mailto:uaf-snap-data-tools@alaska.edu">uaf-snap-data-tools@alaska.edu</a> with
+          any questions.
+        </p>
+      </div>
+      <hr />
+      <footer class="footer">
+        <div class="container">
+          <p>
+            This tool was developed by the
+            <a href="http://www.aoos.org/">Alaska Ocean Observing System</a>
+            (AOOS), the
+            <a href="https://uaf-accap.org">Alaska Center for Climate Assessment and Policy</a>, and
+            the
+            <a href="https://www.snap.uaf.edu/" title="👍"
+              >Scenarios Network for Alaska and Arctic Planning</a
+            >.
+          </p>
+
+          <p>
+            Funded by the National Ocean Service at the
+            <a href="http://www.noaa.gov">National Oceanic and Atmospheric Administration</a>
+            through AOOS grant #NA11NOS0120020. Work was performed at the
+            <a href="https://uaf-iarc.org/">International Arctic Research Center</a>, at the
+            <a href="https://uaf.edu/uaf/">University of Alaska Fairbanks</a>, with assistance from
+            the <a href="https://illinois.edu/">University of Illinois, Urbana-Champaign</a>.
+          </p>
+
+          <p>
+            This tool uses the
+            <a href="https://doi.org/10.5281/zenodo.1040170">Rasdaman raster database</a>
+            for data storage, processing, and web services.
+          </p>
+
+          <p>
+            UA is committed to providing accessible websites.
+            <a href="https://www.alaska.edu/webaccessibility/"
+              >Learn more about UA's notice of web accessibility.</a
+            >
+            If we can help you access this website’s content,
+            <a href="mailto:uaf-snap-data-tools@alaska.edu"
+              >please email us at uaf-snap-data-tools@alaska.edu</a
+            >.
+          </p>
+
+          <p>Copyright &copy; University of Alaska Fairbanks. All rights reserved.</p>
+
+          <p>
+            UA is an affirmative action / equal opportunity employer, educational institution and
+            provider and prohibits illegal discrimination against any individual.
+
+            <a href="https://www.alaska.edu/nondiscrimination/">Statement of Nondiscrimination</a>
+            and
+            <a href="https://www.alaska.edu/records/records/compliance/gdpr/ua-privacy-statement/"
+              >Privacy Statement</a
+            >
+          </p>
+        </div>
+      </footer>
     </noscript>
   </body>
 </html>
