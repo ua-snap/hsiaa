@@ -9,9 +9,7 @@
     </p>
     <p class="is-size-5 mb-6">Zooming in on the map can make it easier to choose a location.</p>
     <p class="is-size-4">
-      <a v-on:click.prevent.stop="foldoutActive = false" href="#"
-        >Go back and pick another place on the map</a
-      >.
+      <router-link to="/">Go back and pick another place on the map.</router-link>
     </p>
   </div>
 </template>
