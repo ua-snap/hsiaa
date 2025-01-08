@@ -17,11 +17,10 @@ import { storeToRefs } from 'pinia'
 import { useAtlasStore } from '@/stores/atlas'
 const atlasStore = useAtlasStore()
 const { incrementMonth, decrementMonth } = atlasStore
-const { year, month } = storeToRefs(atlasStore)
-import { MIN_YEAR, MAX_YEAR, MAX_MONTH } from '@/shared.js'
+const { year, month, MIN_YEAR, MAX_YEAR, MAX_MONTH } = storeToRefs(atlasStore)
 
 const pastButtonDisabled = computed(() => {
-  return year.value == MIN_YEAR && month.value == 0
+  return year.value == MIN_YEAR.value && month.value == 0
 })
 const nextButtonDisabled = computed(() => {
   return year.value == MAX_YEAR.value && month.value == MAX_MONTH.value

@@ -21,7 +21,9 @@ import _ from 'lodash'
 import { computed, watch, toRaw, onMounted } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
-import { xrange, plotSettings, MIN_YEAR } from '@/shared.js'
+
+import { plotSettings } from '@/shared.js'
+const { xrange, MIN_YEAR, MAX_YEAR } = useAtlasStore()
 
 const atlasStore = useAtlasStore()
 const { apiData } = storeToRefs(atlasStore)

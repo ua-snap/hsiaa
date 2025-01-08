@@ -2,8 +2,9 @@ import { defineStore } from 'pinia'
 import _ from 'lodash'
 import axios from 'axios'
 import mock from '@/mock.js'
-import { MIN_YEAR, MAX_YEAR } from '@/shared.js'
 import communities from '@/communities.js'
+import moment from 'moment'
+
 const formatLatLng = function (l) {
   return l.toPrecision(5)
 }
@@ -11,14 +12,18 @@ const formatLatLng = function (l) {
 export const useAtlasStore = defineStore('atlas', {
   state: () => {
     return {
-      year: MIN_YEAR,
+      year: 1850,
       month: 0, // 0 = January, etc
       community: undefined, // community object from @/src/communities.js
       lat: undefined,
       lng: undefined,
       apiData: [],
       isLoaded: false,
-      validMapPixel: false
+      validMapPixel: false,
+      xrange: [], // used in the Plotly code for both charts
+      MIN_YEAR: 1850,
+      MAX_YEAR: 2023, // sane default
+      MAX_MONTH: 11 // december, sane default
     }
   },
   getters: {
@@ -55,6 +60,10 @@ export const useAtlasStore = defineStore('atlas', {
         minYear: MIN_YEAR,
         maxYear: MAX_YEAR
       })
+    },
+    displayMaxDate: (state) => {
+      var dateObj = moment({ day: 1, month: state.MAX_MONTH, year: state.MAX_YEAR })
+      return dateObj.format('MMMM YYYY')
     }
   },
   actions: {
@@ -134,6 +143,27 @@ export const useAtlasStore = defineStore('atlas', {
         this.validMapPixel = false
       } else {
         this.validMapPixel = true
+      }
+    },
+    async getMaxYearAndMonth() {
+      try {
+        let queryUrl = import.meta.env.VITE_SNAP_API_URL + `/seaice/enddate/`
+        let enddate = await axios.get(queryUrl, { timeout: 60000 }).catch((err) => {
+          console.error(err)
+        })
+
+        enddate = enddate.data
+        this.MAX_YEAR = Number(enddate['year'])
+        // Sets max month to 0-11 range rather than 1-12
+        this.MAX_MONTH = Number(enddate['month']) - 1
+
+        this.xrange = []
+        for (let x = this.MIN_YEAR; x <= this.MAX_YEAR.value; x++) {
+          this.xrange.push(x)
+        }
+      } catch (error) {
+        // This is where we would swap the app into "broken" mode
+        console.error('Error getting max year and month:', error)
       }
     }
   }

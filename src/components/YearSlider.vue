@@ -2,7 +2,7 @@
   <div class="slider-wrapper">
     <VueSlider
       v-model="selectedYear"
-      :max="maxYear"
+      :max="MAX_YEAR"
       min="1850"
       :marks="marks"
       v-on:change="debouncedUpdate"
@@ -16,18 +16,15 @@ import _ from 'lodash'
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/default.css'
 import { useAtlasStore } from '@/stores/atlas'
-const { setYear } = useAtlasStore()
-import { MIN_YEAR, MAX_YEAR } from '@/shared.js'
+const { setYear, MIN_YEAR, MAX_YEAR } = useAtlasStore()
 
-let maxYear = ref(MAX_YEAR.value)
 let marks = ref([MIN_YEAR, 1875, 1900, 1925, 1950, 1975, 2000, MAX_YEAR.value])
 
 let selectedYear = MIN_YEAR
 
 // This watches for any changes to the MAX_YEAR value and updates the slider accordingly
 watch(MAX_YEAR, (newMaxYear) => {
-  maxYear.value = newMaxYear
-  marks.value = [MIN_YEAR, 1875, 1900, 1925, 1950, 1975, 2000, newMaxYear]
+  marks.value = [MIN_YEAR, 1875, 1900, 1925, 1950, 1975, 2000, MAX_YEAR]
 })
 
 const debouncedUpdate = _.debounce((year) => {

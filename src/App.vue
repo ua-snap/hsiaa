@@ -4,6 +4,11 @@ import Header from './components/Header.vue'
 import Intro from './components/Intro.vue'
 import Footer from './components/Footer.vue'
 import '@fortawesome/fontawesome-free/css/all.css'
+import { useAtlasStore } from '@/stores/atlas'
+
+const { getMaxYearAndMonth } = useAtlasStore()
+getMaxYearAndMonth() // update to most current temporal extent!
+
 </script>
 
 <template>
@@ -41,7 +46,7 @@ import '@fortawesome/fontawesome-free/css/all.css'
       <h5 class="is-size-4 has-text-weight-bold mb-5">Watch sea ice concentration animations</h5>
       <div class="columns">
         <div class="column is-half">
-          <h5>Every month, {{ MIN_YEAR }}&ndash;2019</h5>
+          <h5>Every month, 1850&ndash;2019</h5>
           <iframe
             src="https://www.youtube-nocookie.com/embed/XSa0iGU0uDY"
             frameborder="0"
@@ -50,7 +55,7 @@ import '@fortawesome/fontawesome-free/css/all.css'
           ></iframe>
         </div>
         <div class="column is-half">
-          <h5>Monthly playlist, e.g. each January, {{ MIN_YEAR }}&ndash;2019</h5>
+          <h5>Monthly playlist, e.g. each January, 1850&ndash;2019</h5>
           <iframe
             src="https://www.youtube-nocookie.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW"
             frameborder="0"
@@ -120,10 +125,6 @@ import '@fortawesome/fontawesome-free/css/all.css'
     <Footer />
   </div>
 </template>
-
-<script>
-import { MIN_YEAR, MAX_YEAR } from '@/shared.js'
-</script>
 
 <style lang="scss" scoped>
 iframe {
