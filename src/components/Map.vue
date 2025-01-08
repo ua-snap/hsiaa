@@ -72,7 +72,8 @@ const handleMapClick = function (event) {
     params: {
       lat: lat.value,
       lng: lng.value
-    }
+    },
+    hash: '#report'
   })
 }
 

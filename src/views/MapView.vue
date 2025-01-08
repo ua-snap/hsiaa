@@ -1,7 +1,7 @@
 <template>
   <main>
     <div>
-      <h5 class="mt-5 pt-3 pb-0 mb-0">To begin, choose a community or click on the map.</h5>
+      <h5 id="place" class="mt-5 pt-3 pb-0 mb-0">To begin, choose a community or click on the map.</h5>
       <div class="controls">
         <CommunityPicker class="is-hidden-portrait m-5" />
       </div>

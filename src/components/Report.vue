@@ -1,26 +1,24 @@
 <template>
-  <div class="content is-size-4 mt-6">
-    <p>
-      The charts below show two different ways of seeing changes<br />in sea ice concentration over
-      time.
-    </p>
-  </div>
-  <div class="content is-size-5">
-    <p>
-      Click the
-      <CameraIcon />
-      icon in the upper-right of each chart to download it.
-    </p>
-    <p>
-      Or,
-      <a :href="downloadButtonData">download data for this place (CSV).</a>
-    </p>
-    <div v-if="isLoaded">
+  <div id="report" :class="{ 'is-hidden': isHidden }" v-if="isLoaded">
+    <div class="content is-size-4 mt-6">
+      <p>
+        The charts below show two different ways of seeing changes<br />in sea ice concentration
+        over time.
+      </p>
+    </div>
+    <div class="content is-size-5">
+      <p>
+        Click the
+        <CameraIcon />
+        icon in the upper-right of each chart to download it.
+      </p>
+      <p>
+        Or,
+        <a :href="downloadButtonData">download data for this place (CSV).</a>
+      </p>
+
       <ConcentrationPlot />
       <Tapestry />
-    </div>
-    <div v-else>
-      <LoadingBlock />
     </div>
   </div>
 </template>
@@ -36,7 +34,7 @@ import { storeToRefs } from 'pinia'
 const atlasStore = useAtlasStore()
 const { isLoaded } = storeToRefs(atlasStore)
 
-const props = defineProps(['lat', 'lng'])
+const props = defineProps(['lat', 'lng', 'isHidden'])
 
 onBeforeMount(() => {
   if (props.lat && props.lng) {

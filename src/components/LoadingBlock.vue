@@ -1,13 +1,25 @@
 <template>
-  <div class="loading-spinner box" v-bind:class="{ 'is-hidden': isLoaded }">
-    <div class="loading-spinner--wrapper">
-      <span class="icon is-large">
+  <div class="" v-bind:class="{ 'is-hidden': isLoaded }">
+    <p class="loading mt-4">
+      <span class="icon is-large mr-2">
         <i class="fas fa-spin fa-2x fa-spinner"></i>
       </span>
-      <span class="text"> Loading data for this point, hang on&hellip; </span>
-    </div>
+      <span class="text"> <strong>Loading data</strong> for this point, hang on&hellip; </span>
+    </p>
   </div>
 </template>
+
+<style lang="scss">
+.loading {
+  font-size: 1.3rem;
+
+  .icon {
+    display: inline-block;
+    position: relative;
+    top: 0.4rem;
+  }
+}
+</style>
 
 <script setup>
 import { useAtlasStore } from '@/stores/atlas'
