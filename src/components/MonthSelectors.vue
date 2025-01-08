@@ -18,12 +18,12 @@ import { useAtlasStore } from '@/stores/atlas'
 const atlasStore = useAtlasStore()
 const { incrementMonth, decrementMonth } = atlasStore
 const { year, month } = storeToRefs(atlasStore)
-import { MIN_YEAR, MAX_YEAR } from '@/shared.js'
+import { MIN_YEAR, MAX_YEAR, MAX_MONTH } from '@/shared.js'
 
 const pastButtonDisabled = computed(() => {
   return year.value == MIN_YEAR && month.value == 0
 })
 const nextButtonDisabled = computed(() => {
-  return year.value == MAX_YEAR && month.value == 5
+  return year.value == MAX_YEAR && month.value == MAX_MONTH
 })
 </script>
