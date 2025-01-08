@@ -5,11 +5,8 @@ export const MIN_YEAR = 1850
 export const MAX_YEAR = ref(2022)
 export const MAX_MONTH = ref(11)
 
-export const xrange = ref([])
+export let xrange = []
 
-/**
- * Fetch MAX_YEAR and MAX_MONTH from the API and update reactive variables.
- */
 export async function getMaxYearAndMonth() {
   try {
     let queryUrl = import.meta.env.VITE_SNAP_API_URL + `/seaice/enddate/`
@@ -22,9 +19,9 @@ export async function getMaxYearAndMonth() {
     // Sets max month to 0-11 range rather than 1-12
     MAX_MONTH.value = Number(enddate['month']) - 1
 
-    xrange.value = [] // Clear xrange before populating it
+    xrange = []
     for (let x = MIN_YEAR; x <= MAX_YEAR.value; x++) {
-      xrange.value.push(x)
+      xrange.push(x)
     }
   } catch (error) {
     console.error('Error getting max year and month:', error)
