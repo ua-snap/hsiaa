@@ -542,6 +542,14 @@ export default {
         name: 'St. Anthony, NL'
       },
       {
+        place: '52.30,-55.18',
+        name: 'Mary's Harbour, NL'
+      },
+      {
+        place: '55.20,-58.78',
+        name: 'Makkovik, NL'
+      },
+      {
         place: '50.67,-55.93',
         name: 'Englee, NL'
       },
