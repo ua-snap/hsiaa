@@ -24,6 +24,6 @@ const pastButtonDisabled = computed(() => {
   return year.value == MIN_YEAR && month.value == 0
 })
 const nextButtonDisabled = computed(() => {
-  return year.value == MAX_YEAR && month.value == MAX_MONTH
+  return year.value == MAX_YEAR.value && month.value == MAX_MONTH.value
 })
 </script>
