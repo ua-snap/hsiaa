@@ -1,5 +1,5 @@
 <template>
-  <div class="report--invalid content is-size-5" v-bind:class="{ 'is-hidden': validMapPixel }">
+  <div class="report--invalid content is-size-5" v-bind:class="{ 'is-hidden': validMapPixel || !isLoaded }">
     <p class="is-size-5 mt-6 mb-3 sorry">
       <strong>This sea ice dataset<br>doesn&rsquo;t show any recorded sea ice<br>in this place.</strong>
     </p>
@@ -7,7 +7,7 @@
       This can be for a few different reasons:
     </p>
       <ul class="mt-1">
-        <li>it is too far south and <strong>never has sea ice</strong>,</li>
+        <li>it <strong>never has sea ice</strong>,</li>
         <li>it&rsquo;s <strong>on land</strong>,</li>
         <li>or it&rsquo;s <strong>outside of the extent of this dataset</strong>.</li>
       </ul>
@@ -38,4 +38,6 @@ import { storeToRefs } from 'pinia'
 import BackButton from '../components/BackButton.vue'
 const atlasStore = useAtlasStore()
 const { validMapPixel } = storeToRefs(atlasStore)
+const { isLoaded } = storeToRefs(atlasStore)
+
 </script>
