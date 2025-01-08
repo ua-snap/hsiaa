@@ -6,11 +6,16 @@ h2,
 h3,
 h4,
 h5,
+ul,
 label,
 footer,
 .title {
   font-family: 'Libre Caslon Text', serif;
   color: #112951;
+}
+
+li {
+  list-style: none;
 }
 
 a {

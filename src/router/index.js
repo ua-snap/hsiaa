@@ -20,7 +20,16 @@ const router = createRouter({
     },
     // Redirect not-found to home page
     { path: '/:pathMatch(.*)*', name: 'NotFound', redirect: '/' }
-  ]
+  ],
+  // Scroll just above the map / report when you navigate
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth'
+      }
+    }
+  }
 })
 
 export default router

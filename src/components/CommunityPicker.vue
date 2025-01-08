@@ -44,7 +44,8 @@ watch(community, (newCommunity) => {
     params: {
       lat: lat.value,
       lng: lng.value
-    }
+    },
+    hash: '#report'
   })
 })
 </script>

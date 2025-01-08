@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/" class="mb-6"><a class="button is-link">
+  <router-link :to="{ path: '/', hash: '#place' }" class="mb-6"><a class="button is-link">
     <span class="icon is-large">
       <i class="fas fa-arrow-left"></i>
     </span>

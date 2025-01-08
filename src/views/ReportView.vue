@@ -1,11 +1,11 @@
 <template>
-  <section class="section has-text-centered">
+  <section class="section has-text-centered" id="report">
     <div class="container">
       <BackButton />
-      <ReportTitle v-bind:class="{ 'is-hidden': !validMapPixel }" />
+      <ReportTitle />
       <MiniMap />
       <LoadingBlock />
-      <InvalidPlace />
+      <InvalidPlace v-bind:class="{ 'is-hidden': validMapPixel }" />
       <Report v-bind:class="{ 'is-hidden': !validMapPixel }" :lat="props.lat" :lng="props.lng" />
     </div>
   </section>
