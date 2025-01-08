@@ -187,7 +187,7 @@ export default {
         name: 'Tununak, AK'
       },
       {
-        place: '60.5,-165.11',
+        place: '60,-166.11',
         name: 'Umkumiut, AK'
       },
       {
@@ -428,7 +428,7 @@ export default {
         name: 'Salluit, QC'
       },
       {
-        place: '58.78,-69.77',
+        place: '58.76,-69.50',
         name: 'Tasiujaq, QC'
       },
       {
@@ -489,11 +489,11 @@ export default {
         name: 'Lodge Bay, NL'
       },
       {
-        place: '54.93,-58.93',
+        place: '55.23,-58.33',
         name: 'Makkovik, NL'
       },
       {
-        place: '52.33,-55.71',
+        place: '52.33,-55.31',
         name: "Mary's Harbour, NL"
       },
       {
@@ -505,7 +505,7 @@ export default {
         name: 'Natuashish, NL'
       },
       {
-        place: '53.53,-57.29',
+        place: '53.83,-57.0',
         name: 'Paradise River, NL'
       },
       {
@@ -517,7 +517,7 @@ export default {
         name: 'Pinware, NL'
       },
       {
-        place: '55,-59.7',
+        place: '55,-59.2',
         name: 'Postville, NL'
       },
       {
@@ -529,7 +529,7 @@ export default {
         name: 'Rigolet, NL'
       },
       {
-        place: '51.58,-56.67',
+        place: '51.58,-55.67',
         name: 'West Saint Modeste, NL'
       }
     ]
