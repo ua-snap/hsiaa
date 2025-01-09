@@ -35,6 +35,7 @@
         <p>
           <a href="https://nsidc.org/cryosphere/quickfacts/seaice.html">Learn more about sea ice</a>
         </p>
+        <p class="available is-size-4 mt-5">Data are available through {{ displayMaxDate }}.</p>
       </div>
     </section>
   </div>
@@ -77,3 +78,10 @@ section.lede {
   }
 }
 </style>
+
+<script setup>
+import { useAtlasStore } from '@/stores/atlas'
+import { storeToRefs } from 'pinia'
+const atlasStore = useAtlasStore()
+const { displayMaxDate } = storeToRefs(atlasStore)
+</script>

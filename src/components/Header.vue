@@ -1,5 +1,9 @@
 <script setup>
-import { MAX_YEAR } from '@/shared.js'
+import { useAtlasStore } from '@/stores/atlas'
+import { storeToRefs } from 'pinia'
+const atlasStore = useAtlasStore()
+const { displayMaxDate } = storeToRefs(atlasStore)
+
 </script>
 
 <template>
@@ -15,7 +19,7 @@ import { MAX_YEAR } from '@/shared.js'
           Sea Ice Atlas
         </h1>
         <h2 class="mt-4">for <span>Alaska</span> &amp; the <span>Arctic</span></h2>
-        <h3 class="mt-2">1850 to {{ MAX_YEAR }}</h3>
+        <h3 class="mt-2">1850 to {{ displayMaxDate }}</h3>
       </div>
 
       <div class="column splash is-half">
