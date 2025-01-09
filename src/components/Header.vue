@@ -1,6 +1,9 @@
 <script setup>
 import { useAtlasStore } from '@/stores/atlas'
-const { displayMaxDate } = useAtlasStore()
+import { storeToRefs } from 'pinia'
+const atlasStore = useAtlasStore()
+const { displayMaxDate } = storeToRefs(atlasStore)
+
 </script>
 
 <template>

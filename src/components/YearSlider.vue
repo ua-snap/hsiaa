@@ -16,15 +16,18 @@ import _ from 'lodash'
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/default.css'
 import { useAtlasStore } from '@/stores/atlas'
-const { setYear, MIN_YEAR, MAX_YEAR } = useAtlasStore()
+import { storeToRefs } from 'pinia'
+const atlasStore = useAtlasStore()
+const { MIN_YEAR, MAX_YEAR } = storeToRefs(atlasStore)
+const { setYear } = useAtlasStore()
 
-let marks = ref([MIN_YEAR, 1875, 1900, 1925, 1950, 1975, 2000, MAX_YEAR.value])
+let marks = ref([MIN_YEAR.value, 1875, 1900, 1925, 1950, 1975, 2000, MAX_YEAR.value])
 
-let selectedYear = MIN_YEAR
+let selectedYear = MIN_YEAR.value
 
 // This watches for any changes to the MAX_YEAR value and updates the slider accordingly
 watch(MAX_YEAR, (newMaxYear) => {
-  marks.value = [MIN_YEAR, 1875, 1900, 1925, 1950, 1975, 2000, MAX_YEAR]
+  marks.value = [MIN_YEAR.value, 1875, 1900, 1925, 1950, 1975, 2000, MAX_YEAR.value]
 })
 
 const debouncedUpdate = _.debounce((year) => {

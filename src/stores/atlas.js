@@ -95,15 +95,15 @@ export const useAtlasStore = defineStore('atlas', {
 
     decrementYear() {
       this.year--
-      if (this.year < MIN_YEAR) {
-        this.year = MIN_YEAR
+      if (this.year < this.MIN_YEAR) {
+        this.year = this.MIN_YEAR
         this.setMonth(0) // reset to Jan
       }
     },
     incrementYear() {
       this.year++
-      if (this.year > MAX_YEAR) {
-        this.year = MAX_YEAR
+      if (this.year > this.MAX_YEAR) {
+        this.year = this.MAX_YEAR
         this.setMonth(11) // reset to Dec
       }
     },
