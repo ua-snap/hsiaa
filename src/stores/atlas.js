@@ -57,8 +57,8 @@ export const useAtlasStore = defineStore('atlas', {
       return template({
         placeName: placeName,
         latLng: latLng,
-        minYear: MIN_YEAR,
-        maxYear: MAX_YEAR
+        minYear: state.MIN_YEAR,
+        maxYear: state.MAX_YEAR
       })
     },
     displayMaxDate: (state) => {
@@ -158,7 +158,7 @@ export const useAtlasStore = defineStore('atlas', {
         this.MAX_MONTH = Number(enddate['month']) - 1
 
         this.xrange = []
-        for (let x = this.MIN_YEAR; x <= this.MAX_YEAR.value; x++) {
+        for (let x = this.MIN_YEAR; x <= this.MAX_YEAR; x++) {
           this.xrange.push(x)
         }
       } catch (error) {
