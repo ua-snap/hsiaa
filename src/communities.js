@@ -543,7 +543,7 @@ export default {
       },
       {
         place: '52.30,-55.18',
-        name: 'Mary's Harbour, NL'
+        name: "Mary's Harbour, NL"
       },
       {
         place: '55.20,-58.78',
