@@ -14,7 +14,7 @@
       </p>
       <p>
         Or,
-        <a :href="downloadButtonData">download data for this place (CSV).</a>
+        <a :href="atlasStore.getCsvUrl">download data for this place (CSV).</a>
       </p>
 
       <ConcentrationPlot />

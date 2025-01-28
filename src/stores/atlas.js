@@ -64,6 +64,10 @@ export const useAtlasStore = defineStore('atlas', {
     displayMaxDate: (state) => {
       var dateObj = moment({ day: 1, month: state.MAX_MONTH, year: state.MAX_YEAR })
       return dateObj.format('MMMM YYYY')
+    },
+    getCsvUrl: (state) => {
+      let csvUrl = import.meta.env.VITE_SNAP_API_URL + `/seaice/point/${state.lat}/${state.lng}?format=csv`
+      return csvUrl
     }
   },
   actions: {
