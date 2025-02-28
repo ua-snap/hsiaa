@@ -53,14 +53,11 @@ const year = computed(() => {
           <p>Copyright &copy; {{ year }} University of Alaska Fairbanks. All rights reserved.</p>
 
           <p>
-            UA is an affirmative action / equal opportunity employer, educational institution and
-            provider and prohibits illegal discrimination against any individual.
-
-            <a href="https://www.alaska.edu/nondiscrimination/">Statement of Nondiscrimination</a>
-            and
-            <a href="https://www.alaska.edu/records/records/compliance/gdpr/ua-privacy-statement/"
-              >Privacy Statement</a
-            >
+            The <a href="https://www.alaska.edu/"> University of Alaska</a> is an Equal
+            Opportunity/Equal Access Employer and Educational institution. The University
+            is committed to a
+            <a href="https://www.alaska.edu/nondiscrimination/">policy of non-discrimination</a>
+            against individuals on the basis of any legally protected status.
           </p>
         </div>
       </div>
