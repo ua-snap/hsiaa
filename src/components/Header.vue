@@ -3,13 +3,12 @@ import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
 const atlasStore = useAtlasStore()
 const { displayMaxDate } = storeToRefs(atlasStore)
-
 </script>
 
 <template>
   <header>
     <div class="headerbanner">
-      University of Alaska Fairbanks | Alaska Center for Climate Assessment and Policy
+      University of Alaska Fairbanks | Alaska Center for Climate Assessment and Preparedness
     </div>
 
     <div class="columns is-vcentered">

@@ -17,8 +17,8 @@ const year = computed(() => {
             This tool was developed by the
             <a href="http://www.aoos.org/">Alaska Ocean Observing System</a>
             (AOOS), the
-            <a href="https://uaf-accap.org">Alaska Center for Climate Assessment and Policy</a>, and
-            the
+            <a href="https://uaf-accap.org">Alaska Center for Climate Assessment and Preparedness</a
+            >, and the
             <a href="https://www.snap.uaf.edu/" title="👍"
               >Scenarios Network for Alaska and Arctic Planning</a
             >.
@@ -54,8 +54,8 @@ const year = computed(() => {
 
           <p>
             The <a href="https://www.alaska.edu/"> University of Alaska</a> is an Equal
-            Opportunity/Equal Access Employer and Educational institution. The University
-            is committed to a
+            Opportunity/Equal Access Employer and Educational institution. The University is
+            committed to a
             <a href="https://www.alaska.edu/nondiscrimination/">policy of non-discrimination</a>
             against individuals on the basis of any legally protected status.
           </p>
