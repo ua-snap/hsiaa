@@ -22,7 +22,7 @@ const { displayMaxDate } = storeToRefs(atlasStore)
       </div>
 
       <div class="column splash is-half">
-        <img src="@/assets/hsia-splash.jpg" />
+        <img src="@/assets/hsia-splash.jpg" alt="Historical Sea Ice Atlas splash image" />
       </div>
     </div>
   </header>
