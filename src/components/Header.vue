@@ -3,13 +3,12 @@ import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
 const atlasStore = useAtlasStore()
 const { displayMaxDate } = storeToRefs(atlasStore)
-
 </script>
 
 <template>
   <header>
     <div class="headerbanner">
-      University of Alaska Fairbanks | Alaska Center for Climate Assessment and Policy
+      University of Alaska Fairbanks | Alaska Center for Climate Assessment and Preparedness
     </div>
 
     <div class="columns is-vcentered">
@@ -23,7 +22,7 @@ const { displayMaxDate } = storeToRefs(atlasStore)
       </div>
 
       <div class="column splash is-half">
-        <img src="@/assets/hsia-splash.jpg" />
+        <img src="@/assets/hsia-splash.jpg" alt="Historical Sea Ice Atlas splash image" />
       </div>
     </div>
   </header>

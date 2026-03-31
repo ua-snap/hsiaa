@@ -81,7 +81,10 @@ getMaxYearAndMonth() // update to most current temporal extent!
           Other data sources are incorporated as they were developed over time.
         </p>
       </div>
-      <img src="@/assets/SourcesChart.svg" />
+      <img
+        src="@/assets/SourcesChart.svg"
+        alt="Timeline of data sources from 1850 to present, showing whaling ship logs, aircraft observations, and satellite data"
+      />
       <div>
         <h5 class="is-size-4 has-text-weight-bold">More information on sea ice data sources</h5>
         <p>
