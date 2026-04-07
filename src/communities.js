@@ -35,7 +35,7 @@ export default {
         name: 'Elim, AK'
       },
       {
-        place: '62.82,-164.94',
+        place: '62.82,-165.08',
         name: 'Emmonak, AK'
       },
       {
@@ -43,7 +43,7 @@ export default {
         name: 'Gambell, AK'
       },
       {
-        place: '64.38,-162.96',
+        place: '64.25,-162.96',
         name: 'Golovin, AK'
       },
       {
@@ -67,7 +67,7 @@ export default {
         name: 'Kivalina, AK'
       },
       {
-        place: '59.91,-162.89',
+        place: '59.88,-162.89',
         name: 'Kongiganak, AK'
       },
       {
@@ -79,7 +79,7 @@ export default {
         name: 'Kotzebue, AK'
       },
       {
-        place: '64.7,-161.16',
+        place: '64.68,-161.16',
         name: 'Koyuk, AK'
       },
       {
@@ -99,7 +99,7 @@ export default {
         name: 'Nelson Lagoon, AK'
       },
       {
-        place: '60.88,-165.16',
+        place: '60.88,-165.33',
         name: 'Newtok, AK'
       },
       {
@@ -111,7 +111,7 @@ export default {
         name: 'Nunam Iqua, AK'
       },
       {
-        place: '57.6,-157.83',
+        place: '57.6,-157.92',
         name: 'Pilot Point, AK'
       },
       {
@@ -151,7 +151,7 @@ export default {
         name: 'Shaktoolik, AK'
       },
       {
-        place: '66.22,-166.23',
+        place: '66.31,-166.23',
         name: 'Shishmaref, AK'
       },
       {
@@ -187,7 +187,7 @@ export default {
         name: 'Tununak, AK'
       },
       {
-        place: '60,-166.11',
+        place: '60,-165.79',
         name: 'Umkumiut, AK'
       },
       {
@@ -245,7 +245,7 @@ export default {
         name: 'Arviat, NU'
       },
       {
-        place: '68.96,-105.38',
+        place: '68.92,-105.28',
         name: 'Cambridge Bay, NU'
       },
       {
@@ -253,7 +253,7 @@ export default {
         name: 'Cape Dorset, NU'
       },
       {
-        place: '63.40,-90.65',
+        place: '63.40,-90.55',
         name: 'Chesterfield Inlet, NU'
       },
       {
@@ -261,7 +261,7 @@ export default {
         name: 'Clyde River, NU'
       },
       {
-        place: '63.96,-82.83',
+        place: '63.76,-82.83',
         name: 'Coral Harbour, NU'
       },
       {
@@ -347,7 +347,7 @@ export default {
     name: 'Ontario',
     places: [
       {
-        place: '52.96,-82.26',
+        place: '52.760,-82.260',
         name: 'Attawapiskat, ON'
       },
       {
@@ -355,7 +355,7 @@ export default {
         name: 'Fort Albany, ON'
       },
       {
-        place: '56.02,-87.63',
+        place: '56.02,-87.33',
         name: 'Fort Severn, ON'
       },
       {
@@ -380,11 +380,11 @@ export default {
         name: 'Aupaluk, QC'
       },
       {
-        place: '53.82,-79.15',
+        place: '53.82,-79.35',
         name: 'Chisasibi, QC'
       },
       {
-        place: '52.23,-78.62',
+        place: '52.23,-78.72',
         name: 'Eastmain, QC'
       },
       {
@@ -404,7 +404,7 @@ export default {
         name: 'Kangiqsujuaq, QC'
       },
       {
-        place: '60,-69.46',
+        place: '59.9,-69.46',
         name: 'Kangirsuk, QC'
       },
       {
@@ -412,7 +412,7 @@ export default {
         name: 'Kuujjuaq, QC'
       },
       {
-        place: '55.32,-77.73',
+        place: '55.32,-78.05',
         name: 'Kuujjuarapik, QC'
       },
       {
@@ -420,15 +420,15 @@ export default {
         name: 'Puvirnituq, QC'
       },
       {
-        place: '60.91,-69.39',
+        place: '60.91,-69.29',
         name: 'Quaqtaq, QC'
       },
       {
-        place: '62.31,-75.76',
+        place: '62.41,-75.76',
         name: 'Salluit, QC'
       },
       {
-        place: '58.76,-69.50',
+        place: '59.06,-69.00',
         name: 'Tasiujaq, QC'
       },
       {
@@ -440,11 +440,11 @@ export default {
         name: 'Waskaganish, QC'
       },
       {
-        place: '52.97,-78.98',
+        place: '52.97,-79.08',
         name: 'Wemindji, QC'
       },
       {
-        place: '55.32,-77.73',
+        place: '55.42,-77.93',
         name: 'Whapmagoostui, QC'
       }
     ]
@@ -457,23 +457,23 @@ export default {
         name: 'Black Tickle, NL'
       },
       {
-        place: '51.54,-56.72',
+        place: '51.34,-56.72',
         name: 'Capstan Island, NL'
       },
       {
-        place: '53.8,-57.02',
+        place: '53.8,-56.8',
         name: 'Cartwright, NL'
       },
       {
-        place: '52.71,-55.88',
+        place: '52.71,-55.58',
         name: 'Charlottetown, NL'
       },
       {
-        place: '51.42,-56.89',
+        place: '51.22,-56.89',
         name: 'English Point, NL'
       },
       {
-        place: '55.3,-60.09',
+        place: '55.3,-59.6',
         name: 'Hopedale, NL'
       },
       {
@@ -481,7 +481,7 @@ export default {
         name: "L'Anse-au-Clair"
       },
       {
-        place: '51.49,-56.78',
+        place: '51.29,-56.78',
         name: "L'Anse-au-Loup"
       },
       {
@@ -497,11 +497,11 @@ export default {
         name: "Mary's Harbour, NL"
       },
       {
-        place: '56.54,-61.26',
+        place: '56.54,-61.16',
         name: 'Nain, NL'
       },
       {
-        place: '56.03,-61.19',
+        place: '56.03,-60.6',
         name: 'Natuashish, NL'
       },
       {
@@ -517,7 +517,7 @@ export default {
         name: 'Pinware, NL'
       },
       {
-        place: '55,-59.2',
+        place: '55.2,-59.2',
         name: 'Postville, NL'
       },
       {
@@ -525,7 +525,7 @@ export default {
         name: 'Red Bay, NL'
       },
       {
-        place: '54.33,-57.83',
+        place: '54.33,-57.63',
         name: 'Rigolet, NL'
       },
       {
@@ -599,7 +599,7 @@ export default {
         name: 'Ванкарем, CAR'
       },
       {
-        place: '66.32,-170.27',
+        place: '66.42,-170.27',
         name: 'Инчоун, CAR'
       },
       {
@@ -663,7 +663,7 @@ export default {
         name: 'Айон, CAR'
       },
       {
-        place: '69.03,170.83',
+        place: '69.03,170.72',
         name: 'Красноарме́йский, CAR'
       },
       {
