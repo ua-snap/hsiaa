@@ -489,14 +489,6 @@ export default {
         name: 'Lodge Bay, NL'
       },
       {
-        place: '55.23,-58.33',
-        name: 'Makkovik, NL'
-      },
-      {
-        place: '52.33,-55.31',
-        name: "Mary's Harbour, NL"
-      },
-      {
         place: '56.54,-61.26',
         name: 'Nain, NL'
       },
@@ -546,7 +538,7 @@ export default {
         name: "Mary's Harbour, NL"
       },
       {
-        place: '55.20,-58.78',
+        place: '55.09,-59.18',
         name: 'Makkovik, NL'
       },
       {
