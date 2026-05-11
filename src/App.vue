@@ -93,7 +93,7 @@ getMaxYearAndMonth() // update to most current temporal extent!
         </p>
         <p class="mt-5">Find out more by investigating</p>
         <p>
-          <a href="https://nsidc.org/sites/nsidc.org/files/G10010_V002.0.pdf"
+          <a href="https://nsidc.org/sites/default/files/g10010_v0020_1_0.pdf"
             >detailed data source descriptions</a
           ><br />
           and<br />
