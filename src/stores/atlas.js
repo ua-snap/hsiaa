@@ -22,7 +22,7 @@ export const useAtlasStore = defineStore('atlas', {
       validMapPixel: false,
       xrange: [], // used in the Plotly code for both charts
       MIN_YEAR: 1850,
-      MAX_YEAR: 2023, // sane default
+      MAX_YEAR: 2025, // sane default
       MAX_MONTH: 11 // december, sane default
     }
   },
@@ -66,7 +66,8 @@ export const useAtlasStore = defineStore('atlas', {
       return dateObj.format('MMMM YYYY')
     },
     getCsvUrl: (state) => {
-      let csvUrl = import.meta.env.VITE_SNAP_API_URL + `/seaice/point/${state.lat}/${state.lng}?format=csv`
+      let csvUrl =
+        import.meta.env.VITE_SNAP_API_URL + `/seaice/point/${state.lat}/${state.lng}?format=csv`
       return csvUrl
     }
   },

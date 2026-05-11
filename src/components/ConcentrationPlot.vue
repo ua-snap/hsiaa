@@ -48,7 +48,7 @@ const downloadFilename = computed(() => {
   if (community.value) {
     placeName = `${community.value}`
   } else if (lat.value && lng.value) {
-    placeName = `${lat.value}ºN, ${lng.value}ºW`
+    placeName = `${lat.value}ºN, ${lng.value}ºE`
   }
   return `Sea Ice Concentration, ${placeName}, 1850-${MAX_YEAR}`
 })
