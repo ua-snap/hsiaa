@@ -21,7 +21,7 @@ import { plotSettings } from '@/shared.js'
 const { xrange, MIN_YEAR, MAX_YEAR } = useAtlasStore()
 
 const atlasStore = useAtlasStore()
-const { apiData, isLoaded } = storeToRefs(atlasStore)
+const { apiData, isLoaded, community, lat, lng } = storeToRefs(atlasStore)
 
 // Selected months to display in chart
 // Default spring, autumn
@@ -43,8 +43,28 @@ const monthNames = {
   12: 'December'
 }
 
+const downloadFilename = computed(() => {
+  let placeName = ''
+  if (community.value) {
+    placeName = `${community.value}`
+  } else if (lat.value && lng.value) {
+    placeName = `${lat.value}ºN, ${lng.value}ºW`
+  }
+  return `Sea Ice Concentration, ${placeName}, 1850-${MAX_YEAR}`
+})
+
+const customPlotSettings = computed(() => {
+  return {
+    ...plotSettings,
+    toImageButtonOptions: {
+      filename: downloadFilename.value,
+      format: 'png'
+    }
+  }
+})
+
 const updatePlot = function () {
-  Plotly.react('concentration-plot', traces.value, layout.value, plotSettings)
+  Plotly.react('concentration-plot', traces.value, layout.value, customPlotSettings.value)
 
   // Fire resize event to trigger Plotly responsiveness.
   window.dispatchEvent(new Event('resize'))
