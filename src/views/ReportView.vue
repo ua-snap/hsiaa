@@ -7,6 +7,7 @@
       <LoadingBlock />
       <InvalidPlace v-bind:class="{ 'is-hidden': validMapPixel }" />
       <Report v-bind:class="{ 'is-hidden': !validMapPixel }" :lat="props.lat" :lng="props.lng" />
+      <BackButton />
     </div>
   </section>
 </template>
