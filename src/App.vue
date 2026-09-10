@@ -76,7 +76,7 @@ getMaxYearAndMonth() // update to most current temporal extent!
         </p>
         <p>
           Atlas data begin with sea ice observations extrapolated from whaling ship log books<br />
-          in the Beaufort, Chukchi, and Bering seas starting in {{ MIN_YEAR }}.<br />
+          in the Beaufort, Chukchi, and Bering seas starting in 1850.<br />
           Estimates are used to fill gaps in log book data.<br />
           Other data sources are incorporated as they were developed over time.<br />
           <strong>Data added since 2019 come from the NSIDC.</strong>
@@ -94,7 +94,7 @@ getMaxYearAndMonth() // update to most current temporal extent!
         </p>
         <p class="mt-5">Find out more by investigating</p>
         <p>
-          <a href="https://nsidc.org/sites/default/files/g10010_v0020_1_0.pdf"
+          <a href="https://nsidc.org/sites/default/files/g02202-v004-userguide_1_1.pdf"
             >detailed data source descriptions</a
           ><br />
           and<br />
