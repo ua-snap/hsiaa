@@ -18,7 +18,7 @@
     </section>
     <section class="section">
       <div class="intro">
-        <h4>This Atlas shows sea ice concentration.</h4>
+        <h2>This Atlas shows sea ice concentration.</h2>
 
         <p class="mb-3">
           View historical sea ice data from the seas around the circumpolar North<br />
@@ -30,7 +30,7 @@
           but can provide historical context for planning efforts.
         </p>
 
-        <h5 class="mt-5 pt-3">Sea ice concentration = ratio of sea ice to water</h5>
+        <h3 class="mt-5 pt-3">Sea ice concentration = ratio of sea ice to water</h3>
         <p>&lt;30% sea ice concentration = ships can travel here. <br />&gt;90% = solid ice.</p>
         <p>
           <a href="https://nsidc.org/cryosphere/quickfacts/seaice.html">Learn more about sea ice</a>
@@ -72,7 +72,7 @@ section.lede {
   text-align: center;
   line-height: 1.6;
 
-  h4 {
+  h2 {
     font-size: 1.8rem;
     font-weight: 700;
   }

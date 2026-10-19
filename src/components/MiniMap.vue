@@ -9,6 +9,8 @@ import markerIcon from 'leaflet/dist/images/marker-icon.png'
 import retinaMarkerIcon from 'leaflet/dist/images/marker-icon-2x.png'
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 // This is necessary to fix the marker icon path issues when the static app is built
+// Leaflet otherwise prefixes these imported URLs with a path sniffed from its CSS.
+L.Icon.Default.imagePath = ''
 L.Icon.Default.mergeOptions({
   iconUrl: markerIcon,
   iconRetinaUrl: retinaMarkerIcon,
@@ -38,6 +40,7 @@ onMounted(() => {
 
   map = L.map('mini-map', {
     zoomControl: false,
+    keyboard: false, // the map isn't interactive, so keep it out of the tab order
     doubleClickZoom: false,
     scrollWheelZoom: false,
     dragging: false,
@@ -48,7 +51,11 @@ onMounted(() => {
   if (marker) {
     map.removeLayer(marker)
   }
-  marker = L.marker([lat.value, lng.value]).addTo(map)
+  marker = L.marker([lat.value, lng.value], {
+    keyboard: false,
+    interactive: false,
+    alt: ''
+  }).addTo(map)
 
   map.invalidateSize()
 })
@@ -59,5 +66,8 @@ onMounted(() => {
   width: 40%;
   height: 400px;
   margin: 0 auto;
+}
+:deep(.leaflet-control-attribution a) {
+  color: #0023ac;
 }
 </style>

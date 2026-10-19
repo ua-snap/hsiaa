@@ -1,12 +1,12 @@
 <template>
   <div>
     <button v-on:click="decrementMonth" :disabled="pastButtonDisabled" class="button mr-2">
-      <i class="fas fa-arrow-alt-circle-left mr-2" />
+      <i class="fas fa-arrow-alt-circle-left mr-2" aria-hidden="true" />
       <span>Past Month</span>
     </button>
     <button v-on:click="incrementMonth" :disabled="nextButtonDisabled" class="button ml-2">
       <span>Next Month</span>
-      <i class="fas fa-arrow-alt-circle-right ml-2" />
+      <i class="fas fa-arrow-alt-circle-right ml-2" aria-hidden="true" />
     </button>
   </div>
 </template>

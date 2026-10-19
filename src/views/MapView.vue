@@ -1,9 +1,12 @@
 <template>
   <main>
     <div>
-      <h5 id="place" class="mt-5 pt-3 pb-0 mb-0">To begin, choose a community or click on the map.</h5>
+      <h2 id="place" class="mt-5 pt-3 pb-0 mb-0">
+        To begin, choose a community, enter coordinates, or click on the map.
+      </h2>
       <div class="controls">
-        <CommunityPicker class="is-hidden-portrait m-5" />
+        <CommunityPicker class="m-5" />
+        <CoordinatePicker class="mx-5 mb-5" />
       </div>
       <div class="map--wrapper is-hidden-mobile">
         <div class="map--overlay-wrapper p-4">
@@ -48,7 +51,7 @@
   vertical-align: middle;
   font-family: sans-serif;
 }
-h5 {
+h2 {
   text-align: center;
   font-weight: 700;
   font-size: 1.5rem;
@@ -62,4 +65,5 @@ import MapTitle from '../components/MapTitle.vue'
 import MonthSelectors from '../components/MonthSelectors.vue'
 import YearSlider from '../components/YearSlider.vue'
 import CommunityPicker from '../components/CommunityPicker.vue'
+import CoordinatePicker from '../components/CoordinatePicker.vue'
 </script>

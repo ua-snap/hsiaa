@@ -5,6 +5,7 @@
       :max="MAX_YEAR"
       min="1850"
       :marks="marks"
+      :dot-attrs="{ 'aria-label': 'Year' }"
       v-on:change="debouncedUpdate"
     />
   </div>
@@ -34,3 +35,10 @@ const debouncedUpdate = _.debounce((year) => {
   setYear(year)
 }, 200)
 </script>
+
+<style lang="scss" scoped>
+// Darken the default rail so the track meets 3:1 non-text contrast.
+:deep(.vue-slider-rail) {
+  background-color: #767676;
+}
+</style>
