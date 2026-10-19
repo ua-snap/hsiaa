@@ -18,7 +18,7 @@ getMaxYearAndMonth() // update to most current temporal extent!
     <div>
       <p class="is-hidden-tablet mx-5 mb-6">
         <span>😓 We&rsquo;re sorry!</span> The interactive map doesn&rsquo;t work on a screen this
-        size, but you can still pick a community or enter coordinates to see visualizations.
+        size, but you can still pick a community to see visualizations.
       </p>
     </div>
 

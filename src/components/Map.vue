@@ -38,7 +38,7 @@ onMounted(() => {
   container.setAttribute('role', 'region')
   container.setAttribute(
     'aria-label',
-    'Sea ice concentration map. Use arrow keys to pan. To see a report for a place, use the community or coordinate forms above the map.'
+    'Sea ice concentration map. Use arrow keys to pan. To see a report for a place, click the map or use the community list above it.'
   )
 
   // Create a pane for the mask layer to sit on top of the data layer
