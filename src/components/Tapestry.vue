@@ -12,7 +12,7 @@
     </ul>
   </div>
   <div id="tapestry" role="img" :aria-label="chartDescription"></div>
-  <button type="button" class="button is-link is-outlined mt-3" v-on:click="download">
+  <button type="button" class="button is-link is-outlined mb-6" v-on:click="download">
     <span class="icon" aria-hidden="true"><i class="fas fa-download"></i></span>
     <span>Download chart</span>
   </button>
