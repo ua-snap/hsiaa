@@ -1,11 +1,9 @@
 <template>
-  <router-link :to="{ path: '/', hash: '#place' }" class="mb-6"
-    ><a class="button is-link">
-      <span class="icon is-large">
-        <i class="fas fa-arrow-left"></i>
-      </span>
-      <span class="text"> Pick another place </span>
-    </a>
+  <router-link :to="{ path: '/', hash: '#place' }" class="button is-link mb-6">
+    <span class="icon is-large" aria-hidden="true">
+      <i class="fas fa-arrow-left"></i>
+    </span>
+    <span class="text">Pick another place</span>
   </router-link>
 </template>
 
@@ -14,7 +12,3 @@ a:hover {
   text-decoration: none !important;
 }
 </style>
-
-<script setup>
-import router from '@/router/index'
-</script>

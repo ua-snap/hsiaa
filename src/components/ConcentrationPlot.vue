@@ -5,8 +5,14 @@
     :options="monthNames"
     mode="tags"
     placeholder="Choose months to show on chart"
+    :aria="multiselectAria"
+    :can-clear="false"
   />
-  <div id="concentration-plot"></div>
+  <div id="concentration-plot" role="img" :aria-label="chartDescription"></div>
+  <button type="button" class="button is-link is-outlined mt-3" v-on:click="download">
+    <span class="icon" aria-hidden="true"><i class="fas fa-download"></i></span>
+    <span>Download chart</span>
+  </button>
 </template>
 
 <script setup>
@@ -17,7 +23,7 @@ import { ref, computed, watch, toRaw, onMounted } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
 
-import { plotSettings } from '@/shared.js'
+import { plotSettings, downloadPlot } from '@/shared.js'
 const { xrange, MIN_YEAR, MAX_YEAR } = useAtlasStore()
 
 const atlasStore = useAtlasStore()
@@ -53,18 +59,33 @@ const downloadFilename = computed(() => {
   return `Sea Ice Concentration, ${placeName}, 1850-${MAX_YEAR}`
 })
 
-const customPlotSettings = computed(() => {
-  return {
-    ...plotSettings,
-    toImageButtonOptions: {
-      filename: downloadFilename.value,
-      format: 'png'
-    }
-  }
+// The library adds aria-placeholder and aria-multiselectable to its combobox,
+// which aren't allowed on that role; nulling them here removes them.
+const multiselectAria = {
+  'aria-label': 'Choose months to show on chart',
+  'aria-placeholder': null,
+  'aria-multiselectable': null
+}
+
+const download = function () {
+  downloadPlot('concentration-plot', downloadFilename.value)
+}
+
+// Text alternative for the chart; the CSV link above holds the full values.
+const chartDescription = computed(() => {
+  const monthList = months.value.map((month) => monthNames[month]).join(', ')
+  return `Line chart of ${
+    atlasStore.getPlaceTitle
+  }, showing percent sea ice concentration by year for ${
+    monthList || 'no months'
+  }. Download the CSV for the values.`
 })
 
+// Line styles so months can be told apart without relying on color.
+const lineDashes = ['solid', 'dash', 'dot', 'dashdot', 'longdash', 'longdashdot']
+
 const updatePlot = function () {
-  Plotly.react('concentration-plot', traces.value, layout.value, customPlotSettings.value)
+  Plotly.react('concentration-plot', traces.value, layout.value, plotSettings)
 
   // Fire resize event to trigger Plotly responsiveness.
   window.dispatchEvent(new Event('resize'))
@@ -92,7 +113,7 @@ const traces = computed(() => {
     let unwrappedApiData = toRaw(apiData.value)
     let newTraces
     // Add a series of traces for the season
-    newTraces = _.map(months.value, (month) => {
+    newTraces = _.map(months.value, (month, i) => {
       let y = _.filter(unwrappedApiData, (value, index) => {
         // Convert index to numeric month
         let m = parseInt(index.split('-')[1])
@@ -102,7 +123,8 @@ const traces = computed(() => {
         x: xrange,
         y: y,
         type: 'scatter',
-        name: monthNames[month]
+        name: monthNames[month],
+        line: { dash: lineDashes[i % lineDashes.length] }
       }
     })
     return newTraces
@@ -132,6 +154,15 @@ watch([months, apiData], ([newMonths, newData]) => {
 <style lang="scss" scoped>
 .multiselect {
   width: 60%;
+  // Override the theme's green palette, which fails text, border and focus contrast.
+  --ms-border-color: #767676;
+  --ms-placeholder-color: #6b7280;
+  --ms-caret-color: #4a4a4a;
+  --ms-tag-bg: #0023ac;
+  --ms-option-bg-selected: #0023ac;
+  --ms-option-bg-selected-pointed: #001a80;
+  --ms-ring-width: 3px;
+  --ms-ring-color: #0023ac;
 }
 #concentration-plot {
   min-height: 450px;

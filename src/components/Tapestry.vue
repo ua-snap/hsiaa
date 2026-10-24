@@ -3,16 +3,19 @@
     The chart below also shows sea ice concentration,
     <br />but uses color instead of lines, <br />and shows every month for every year.
   </p>
-  <table class="threshold--legend">
-    <tbody>
-      <tr>
-        <td class="th--1">0&#37; open water</td>
-        <td class="th--50">50&#37;</td>
-        <td class="th--100">solid ice 100&#37;</td>
-      </tr>
-    </tbody>
-  </table>
-  <div id="tapestry"></div>
+  <div class="threshold--legend">
+    <div class="gradient" aria-hidden="true"></div>
+    <ul aria-label="Color scale for the chart below">
+      <li class="th--1">0&#37; open water</li>
+      <li class="th--50">50&#37;</li>
+      <li class="th--100">solid ice 100&#37;</li>
+    </ul>
+  </div>
+  <div id="tapestry" role="img" :aria-label="chartDescription"></div>
+  <button type="button" class="button is-link is-outlined mb-6" v-on:click="download">
+    <span class="icon" aria-hidden="true"><i class="fas fa-download"></i></span>
+    <span>Download chart</span>
+  </button>
 </template>
 
 <script setup>
@@ -22,13 +25,22 @@ import { computed, watch, toRaw, onMounted } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
 
-import { plotSettings } from '@/shared.js'
+import { plotSettings, downloadPlot } from '@/shared.js'
 const { xrange, MIN_YEAR, MAX_YEAR } = useAtlasStore()
 
 const atlasStore = useAtlasStore()
 const { apiData } = storeToRefs(atlasStore)
 
 const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+// Text alternative for the chart; the CSV link above holds the full values.
+const chartDescription = computed(() => {
+  return `Heatmap of ${atlasStore.getPlaceTitle}, with one row per year and one column per month, colored from dark blue for open water to pale yellow for solid ice. Download the CSV for the values.`
+})
+
+const download = function () {
+  downloadPlot('tapestry', `${atlasStore.getPlaceTitle}, monthly`)
+}
 
 const layout = computed(() => {
   return {
@@ -125,48 +137,47 @@ watch(apiData, (newData) => {
 </script>
 
 <style lang="scss" scoped>
-table.threshold--legend {
+// Labels sit below the gradient in dark text, since white text over the
+// middle of the scale doesn't meet contrast.
+.threshold--legend {
   font-size: 1.1rem;
   font-family: sans-serif;
   margin: 1rem auto;
   max-width: 30rem;
-  background-image: linear-gradient(
-    to right,
-    rgba(8, 29, 88, 255),
-    rgba(37, 52, 148, 255),
-    rgba(34, 94, 168, 255),
-    rgba(29, 145, 192, 255),
-    rgba(65, 182, 196, 255),
-    rgba(127, 205, 187, 255),
-    rgba(199, 233, 180, 255),
-    rgba(237, 248, 217, 255)
-  );
 
-  thead {
-    td {
-      font-size: 1rem;
-      font-weight: 700;
-    }
+  .gradient {
+    height: 1.5rem;
+    background-image: linear-gradient(
+      to right,
+      rgba(8, 29, 88, 255),
+      rgba(37, 52, 148, 255),
+      rgba(34, 94, 168, 255),
+      rgba(29, 145, 192, 255),
+      rgba(65, 182, 196, 255),
+      rgba(127, 205, 187, 255),
+      rgba(199, 233, 180, 255),
+      rgba(237, 248, 217, 255)
+    );
   }
-  tbody {
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
     font-weight: 700;
-    tr {
-      td {
-        width: 33%;
-        padding: 0.25rem;
-      }
-      td.th--1 {
-        color: #fff;
-        text-align: left;
-      }
-      td.th--50 {
-        color: #fff;
-        text-align: center;
-        text-shadow: 0 0 3px #000;
-      }
-      td.th--100 {
-        text-align: right;
-      }
+    li {
+      flex: 1 1 0;
+      margin: 0;
+      padding: 0.25rem 0;
+      color: #112951;
+    }
+    li.th--1 {
+      text-align: left;
+    }
+    li.th--50 {
+      text-align: center;
+    }
+    li.th--100 {
+      text-align: right;
     }
   }
 }

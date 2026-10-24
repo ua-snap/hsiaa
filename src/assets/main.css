@@ -27,6 +27,13 @@ a:hover {
   text-decoration: underline !important;
 }
 
+/* Visible keyboard focus everywhere. Bulma, Leaflet and the third-party
+   widgets suppress or fade the default outline, so this needs !important. */
+:is(a, button, input, select, textarea, [tabindex]:not([tabindex='-1'])):focus-visible {
+  outline: 3px solid #0023ac !important;
+  outline-offset: 2px;
+}
+
 @media (max-width: 768px) and (orientation: portrait) {
   .is-hidden-portrait {
     display: none;
@@ -36,8 +43,4 @@ a:hover {
   .is-hidden-landscape {
     display: none;
   }
-}
-
-.js-plotly-plot .plotly .cursor-ew-resize {
-  cursor: pointer !important;
 }

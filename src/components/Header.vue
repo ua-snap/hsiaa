@@ -17,12 +17,12 @@ const { displayMaxDate } = storeToRefs(atlasStore)
           Historical<br />
           Sea Ice Atlas
         </h1>
-        <h2 class="mt-4">for <span>Alaska</span> &amp; the <span>Arctic</span></h2>
-        <h3 class="mt-2">1850 to {{ displayMaxDate }}</h3>
+        <p class="tagline mt-4">for <span>Alaska</span> &amp; the <span>Arctic</span></p>
+        <p class="tagline mt-2">1850 to {{ displayMaxDate }}</p>
       </div>
 
       <div class="column splash is-half">
-        <img src="@/assets/hsia-splash.jpg" alt="Historical Sea Ice Atlas splash image" />
+        <img src="@/assets/hsia-splash.jpg" alt="" />
       </div>
     </div>
   </header>
@@ -56,8 +56,7 @@ const { displayMaxDate } = storeToRefs(atlasStore)
   text-transform: uppercase;
 }
 
-.intro h2,
-.intro h3 {
+.intro .tagline {
   font-family: 'Libre Caslon Text', serif;
   font-style: italic;
   font-weight: 400;
@@ -67,7 +66,7 @@ const { displayMaxDate } = storeToRefs(atlasStore)
   line-height: 1;
 }
 
-.intro h2 span {
+.intro .tagline span {
   text-transform: uppercase;
 }
 </style>

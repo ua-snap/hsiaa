@@ -1,7 +1,7 @@
 <template>
   <div class="" v-bind:class="{ 'is-hidden': isLoaded }">
     <p class="loading mt-4">
-      <span class="icon is-large mr-2">
+      <span class="icon is-large mr-2" aria-hidden="true">
         <i class="fas fa-spin fa-2x fa-spinner"></i>
       </span>
       <span class="text"> <strong>Loading data</strong> for this point, hang on&hellip; </span>

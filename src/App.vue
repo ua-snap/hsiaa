@@ -1,12 +1,12 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import Header from './components/Header.vue'
 import Intro from './components/Intro.vue'
 import Footer from './components/Footer.vue'
 import '@fortawesome/fontawesome-free/css/all.css'
 import { useAtlasStore } from '@/stores/atlas'
 
-const { getMaxYearAndMonth } = useAtlasStore()
+const { getMaxYearAndMonth, MIN_YEAR } = useAtlasStore()
 getMaxYearAndMonth() // update to most current temporal extent!
 </script>
 
@@ -16,14 +16,9 @@ getMaxYearAndMonth() // update to most current temporal extent!
     <Intro />
 
     <div>
-      <p class="is-hidden-tablet is-hidden-portrait mx-5 mb-6">
+      <p class="is-hidden-tablet mx-5 mb-6">
         <span>😓 We&rsquo;re sorry!</span> The interactive map doesn&rsquo;t work on a screen this
         size, but you can still pick a community to see visualizations.
-      </p>
-      <p class="is-hidden-tablet is-hidden-landscape mx-5">
-        <span>⚠️ Oh no!</span> The interactive tools on this site don&rsquo;t work on a phone in
-        portrait mode. Turn your phone sideways to pick a community, or try using this site on a
-        computer!
       </p>
     </div>
 
@@ -32,21 +27,22 @@ getMaxYearAndMonth() // update to most current temporal extent!
     <section class="section has-text-centered mt-5 pb-0">
       <h2 class="is-size-3 pb-3 has-text-weight-bold">Other ways to view sea ice data</h2>
       <div>
-        <h5 class="is-size-5 mb-4">
+        <p class="is-size-5 mb-4">
           <a href="/Historical-Sea-Ice-Extents-Octobers.pdf" class="is-size-4 has-text-weight-bold"
             >Download a poster</a
           ><br /><span
             >that shows 170 images of sea ice concentration for October, 1850&ndash;2019.</span
           >
-        </h5>
+        </p>
       </div>
     </section>
     <section class="section has-text-centered videos">
-      <h5 class="is-size-4 has-text-weight-bold mb-5">Watch sea ice concentration animations</h5>
+      <h3 class="is-size-4 has-text-weight-bold mb-5">Watch sea ice concentration animations</h3>
       <div class="columns">
         <div class="column is-half">
-          <h5>Every month, 1850&ndash;2019</h5>
+          <h4>Every month, 1850&ndash;2019</h4>
           <iframe
+            title="Sea ice concentration animation, every month, 1850–2019"
             src="https://www.youtube-nocookie.com/embed/XSa0iGU0uDY"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -54,8 +50,9 @@ getMaxYearAndMonth() // update to most current temporal extent!
           ></iframe>
         </div>
         <div class="column is-half">
-          <h5>Monthly playlist, e.g. each January, 1850&ndash;2019</h5>
+          <h4>Monthly playlist, e.g. each January, 1850&ndash;2019</h4>
           <iframe
+            title="Sea ice concentration animation playlist, one video per month, 1850–2019"
             src="https://www.youtube-nocookie.com/embed/videoseries?list=PLHlhXw356_VfeMkTxZHrOx_qSf_ZqrSGW"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -67,7 +64,7 @@ getMaxYearAndMonth() // update to most current temporal extent!
 
     <section class="section has-text-centered is-size-5 pb-6 mb-6">
       <div>
-        <h4 class="is-size-4 has-text-weight-bold">Data sources used in this Atlas</h4>
+        <h2 class="is-size-4 has-text-weight-bold">Data sources used in this Atlas</h2>
         <p>
           Collecting and interpreting sea ice data has always been challenging.<br />
           Charting conventions and interpretations of ice concentration have changed over time.<br />
@@ -87,7 +84,7 @@ getMaxYearAndMonth() // update to most current temporal extent!
         alt="Timeline of data sources from 1850 to present, showing whaling ship logs, aircraft observations, and satellite data"
       />
       <div>
-        <h5 class="is-size-4 has-text-weight-bold">More information on sea ice data sources</h5>
+        <h3 class="is-size-4 has-text-weight-bold">More information on sea ice data sources</h3>
         <p>
           While the Atlas data captures much of the historical sea ice variability,<br />scientific
           confidence decreases for records further in the past.
@@ -102,7 +99,7 @@ getMaxYearAndMonth() // update to most current temporal extent!
             >methodology used to synthesize data sources</a
           ><br />
         </p>
-        <h5 class="is-size-4 has-text-weight-bold mt-5">Download data for Alaska</h5>
+        <h3 class="is-size-4 has-text-weight-bold mt-5">Download data for Alaska</h3>
         <p>
           Includes only the Alaska portion of the Historical Sea Ice Atlas,<br />
           compiled from the sources listed here.
@@ -112,12 +109,13 @@ getMaxYearAndMonth() // update to most current temporal extent!
             >Download the dataset</a
           >
         </p>
-        <h5 class="is-size-4 has-text-weight-bold mt-5">Get in touch</h5>
+        <h3 class="is-size-4 has-text-weight-bold mt-5">Get in touch</h3>
         <p>
           <a
-            target="_new"
+            target="_blank"
+            rel="noopener"
             href="https://uaf-iarc.typeform.com/to/mN7J5cCK#tool=Historical%20Sea Ice%20Atlas%20for%20Alaska%20&%20The%20Arctic"
-            >Send us feedback</a
+            >Send us feedback (opens in a new tab)</a
           >
           or email
           <a href="mailto:uaf-snap-data-tools@alaska.edu">uaf-snap-data-tools@alaska.edu</a>
