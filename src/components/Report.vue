@@ -1,5 +1,5 @@
 <template>
-  <div id="report" :class="{ 'is-hidden': isHidden }" v-if="isLoaded">
+  <div :class="{ 'is-hidden': isHidden }" v-if="isLoaded">
     <div class="content is-size-4 mt-6">
       <p>
         The charts below show two different ways of seeing changes<br />in sea ice concentration
@@ -7,14 +7,11 @@
       </p>
     </div>
     <div class="content is-size-5">
-      <p>
-        Click the
-        <CameraIcon />
-        icon in the upper-right of each chart to download it.
-      </p>
+      <p>Use the camera button at the top right of each chart to save it as an image.</p>
       <p>
         Or,
-        <a :href="atlasStore.getCsvUrl">download data for this place (CSV).</a>
+        <a :href="atlasStore.getCsvUrl">download data for this place (CSV)</a>, which contains the
+        values shown in both charts.
       </p>
 
       <ConcentrationPlot />
@@ -24,10 +21,8 @@
 </template>
 
 <script setup>
-import CameraIcon from './CameraIcon.vue'
 import ConcentrationPlot from './ConcentrationPlot.vue'
 import Tapestry from './Tapestry.vue'
-import LoadingBlock from './LoadingBlock.vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { onBeforeMount, onUnmounted } from 'vue'
 import { storeToRefs } from 'pinia'

@@ -33,6 +33,14 @@ const baseLayerOptions = {
 onMounted(() => {
   map = L.map('map', getBaseMapAndLayers())
 
+  // Leaflet makes the container focusable (for arrow-key panning) but gives it no name.
+  const container = map.getContainer()
+  container.setAttribute('role', 'region')
+  container.setAttribute(
+    'aria-label',
+    'Sea ice concentration map. Use arrow keys to pan. To see a report for a place, click the map or use the community list above it.'
+  )
+
   // Create a pane for the mask layer to sit on top of the data layer
   map.createPane('maskPane')
   map.getPane('maskPane').style.zIndex = 650
