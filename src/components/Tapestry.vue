@@ -11,7 +11,7 @@
       <li class="th--100">solid ice 100&#37;</li>
     </ul>
   </div>
-  <div id="tapestry" class="mb-6"></div>
+  <div id="tapestry"></div>
 </template>
 
 <script setup>
