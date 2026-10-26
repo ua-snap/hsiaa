@@ -8,11 +8,7 @@
     :aria="multiselectAria"
     :can-clear="false"
   />
-  <div id="concentration-plot" role="img" :aria-label="chartDescription"></div>
-  <button type="button" class="button is-link is-outlined mt-3" v-on:click="download">
-    <span class="icon" aria-hidden="true"><i class="fas fa-download"></i></span>
-    <span>Download chart</span>
-  </button>
+  <div id="concentration-plot"></div>
 </template>
 
 <script setup>
@@ -23,7 +19,7 @@ import { ref, computed, watch, toRaw, onMounted } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
 
-import { plotSettings, downloadPlot } from '@/shared.js'
+import { plotSettings, makeChartAccessible } from '@/shared.js'
 const { xrange, MIN_YEAR, MAX_YEAR } = useAtlasStore()
 
 const atlasStore = useAtlasStore()
@@ -67,10 +63,6 @@ const multiselectAria = {
   'aria-multiselectable': null
 }
 
-const download = function () {
-  downloadPlot('concentration-plot', downloadFilename.value)
-}
-
 // Text alternative for the chart; the CSV link above holds the full values.
 const chartDescription = computed(() => {
   const monthList = months.value.map((month) => monthNames[month]).join(', ')
@@ -85,7 +77,12 @@ const chartDescription = computed(() => {
 const lineDashes = ['solid', 'dash', 'dot', 'dashdot', 'longdash', 'longdashdot']
 
 const updatePlot = function () {
-  Plotly.react('concentration-plot', traces.value, layout.value, plotSettings)
+  Plotly.react(
+    'concentration-plot',
+    traces.value,
+    layout.value,
+    plotSettings(downloadFilename.value)
+  ).then(() => makeChartAccessible('concentration-plot', chartDescription.value))
 
   // Fire resize event to trigger Plotly responsiveness.
   window.dispatchEvent(new Event('resize'))

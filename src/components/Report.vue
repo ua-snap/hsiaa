@@ -7,7 +7,7 @@
       </p>
     </div>
     <div class="content is-size-5">
-      <p>Use the &ldquo;Download chart&rdquo; button below each chart to save it as an image.</p>
+      <p>Use the camera button at the top right of each chart to save it as an image.</p>
       <p>
         Or,
         <a :href="atlasStore.getCsvUrl">download data for this place (CSV)</a>, which contains the

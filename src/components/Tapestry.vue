@@ -11,11 +11,7 @@
       <li class="th--100">solid ice 100&#37;</li>
     </ul>
   </div>
-  <div id="tapestry" role="img" :aria-label="chartDescription"></div>
-  <button type="button" class="button is-link is-outlined mb-6" v-on:click="download">
-    <span class="icon" aria-hidden="true"><i class="fas fa-download"></i></span>
-    <span>Download chart</span>
-  </button>
+  <div id="tapestry" class="mb-6"></div>
 </template>
 
 <script setup>
@@ -25,7 +21,7 @@ import { computed, watch, toRaw, onMounted } from 'vue'
 import { useAtlasStore } from '@/stores/atlas'
 import { storeToRefs } from 'pinia'
 
-import { plotSettings, downloadPlot } from '@/shared.js'
+import { plotSettings, makeChartAccessible } from '@/shared.js'
 const { xrange, MIN_YEAR, MAX_YEAR } = useAtlasStore()
 
 const atlasStore = useAtlasStore()
@@ -37,10 +33,6 @@ const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 const chartDescription = computed(() => {
   return `Heatmap of ${atlasStore.getPlaceTitle}, with one row per year and one column per month, colored from dark blue for open water to pale yellow for solid ice. Download the CSV for the values.`
 })
-
-const download = function () {
-  downloadPlot('tapestry', `${atlasStore.getPlaceTitle}, monthly`)
-}
 
 const layout = computed(() => {
   return {
@@ -121,7 +113,12 @@ const traces = computed(() => {
 })
 
 const updatePlot = function () {
-  Plotly.react('tapestry', traces.value, layout.value, plotSettings)
+  Plotly.react(
+    'tapestry',
+    traces.value,
+    layout.value,
+    plotSettings(`${atlasStore.getPlaceTitle}, monthly`)
+  ).then(() => makeChartAccessible('tapestry', chartDescription.value))
 
   // Fire resize event to trigger Plotly responsiveness.
   window.dispatchEvent(new Event('resize'))
